@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html class="no-js" dir="rtl" lang="fa-IR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>  @(ViewData["Title"]==null?"MoneyMagnet":ViewData["Title"]) </title>
+    <!-- meta tag -->
+    <partial name="_MetaTags" />
+    @RenderSection("MetaTag", false)
+    <!-- /meta tag -->
+    <!-- style -->
+    <partial name="_Styles" />
+    @RenderSection("StylePage", false)
+    <!-- /style -->
+
+
+    <script src="/site/js/jquery.min.js"></script>
+    <script>!function(t, e, n) { t.yektanetAnalyticsObject = n, t[n] = t[n] || function() { t[n].q.push(arguments) }, t[n].q = t[n].q || []; var a = new Date, r = a.getFullYear().toString() + '0' + a.getMonth() + '0' + a.getDate() + '0' + a.getHours(), c = e.getElementsByTagName('script')[0], s = e.createElement('script'); s.id = 'ua-script-myJ3aHH8'; s.dataset.analyticsobject = n; s.async = 1; s.type = 'text/javascript'; s.src = 'https://cdn.yektanet.com/rg_woebegone/scripts_v3/myJ3aHH8/rg.complete.js?v=' + r, c.parentNode.insertBefore(s, c); }(window, document, 'yektanet');</script>
+</head>
+<body>
+    <script src="/site/js/modernizr.js"></script>
+
+    <div class="overlay"></div>
+
+    <!-- landing -->
+    <div class="landing-layer home-page" style="background: url('@await Component.InvokeAsync("ImageSliderHomeName")') no-repeat center center;background-size: cover;padding: 25px 0;">
+        <div class="container">
+            <!-- main header -->
+            @await Component.InvokeAsync("MainHeader")
+
+            <!--/ main header -->
+            <!-- landing content -->
+            @RenderSection("SearchBox", false)
+            <!-- /landing content -->
+        </div>
+    </div>
+    <!-- /landing -->
+    <!-- main menu -->
+    @await Component.InvokeAsync("CourseGroupComponent")
+
+    <!-- /main menu -->
+    <!-- fixed-menu -->
+    <div class="fixed-menu">
+        <div class="inner">
+            <a href="javascript:void(0)" class="close-menu"><i class="zmdi zmdi-close"></i></a>
+            <div class="logo">
+                <a href="/"><img src="/images/logo.png"></a>
+            </div>
+            <form method="get" action="/Course">
+                <input type="text" name="filter" class="autocomplete" placeholder=" جستجو کنید ...">
+                <button><i class="zmdi zmdi-search"></i></button>
+            </form>
+            <nav>
+                <div class="heading"> آموزش های MoneyMagnet </div>
+
+                @await Component.InvokeAsync("CourseGroupMobileComponent")
+
+                <div class="heading"> منوی دسترسی </div>
+                <ul>
+                    <li><a href="/Course"> آخرین دوره ها </a></li>
+                    <li><a href="/Masters"> معرفی مدرسین </a></li>
+                    <li><a href="/Blogs"> مقاله </a></li>
+                    <li><a href="/Consulting"> مشاوره </a></li>
+=                    <li><a href="/Terms">قوانین سایت </a></li>
+                    <li><a href="/Help">راهنمای خرید از سایت</a></li>
+                    <li><a href="/Contact"> تماس با ما </a></li>
+                    <li><a href="/About"> درباره ما </a></li>
+                </ul>
+
+            </nav>
+        </div>
+    </div>
+    <!-- /fixed-menu -->
+    <!-- popup search -->
+    <div class="search-layer">
+        <div class="sublayer">
+            <form method="get" action="/Course">
+                <input type="text" name="filter" class="name1" placeholder=" جستجو کنید ...">
+                <button><i class="zmdi zmdi-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <!-- footer -->
+    <partial name="_Footer" />
+    <!-- /footer -->
+
+    <partial name="_Script" />
+    <partial name="_SiteMessages" />
+    @RenderSection("Scripts", false)
+
+</body>
+</html>
+
+

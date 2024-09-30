@@ -1,0 +1,81 @@
+﻿@using Learning.Domain.DTO.OnlineClass
+@model InfoOnlineClassForUserDTO
+@{
+
+    ViewData["Title"] = "مشخصات کلاس  ";
+}
+
+@section StylePage{
+<link rel="stylesheet" type="text/css" href="/site/classes/css/account.css">
+<link rel="stylesheet" type="text/css" href="/site/classes/css/panel.css">
+
+   }
+
+
+
+<div class="account-page-style">
+    <div class="container">
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  @ViewData["Title"]  </span></a></li>
+            </ul>
+        </div>
+        <!-- /breadcrumb -->
+
+        <div class="account-page">
+
+            <div class="row">
+
+
+                <partial name="_SideBar" />
+
+                <!-- left side -->
+
+
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="left-content">
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <section class="section-style shadow-style">
+                                    <header>
+                                        <h3> اطلاعات کلاس آنلاین </h3>
+                                    </header>
+                                    <div class="user-info-inner">
+                                        <div class="user-info-layer">
+                                            <ul>
+                                                <li><span> لینک کلاس : </span> <a href="@Model.Link">@Model.Link</a> </li>
+                                                @*                                                <li><span> نام کاربری : </span> mehdisahandi@yahoo.com </li>
+                                                    <li><span> کلمه عبور : </span> 09357035985 </li>*@
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /left side -->
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts{
+    <script src="/site/classes/js/panel.js"></script>
+
+    }

@@ -1,0 +1,26 @@
+﻿@using Learning.Domain.DTO.Wallet
+@model ChargeWalletDTO
+<form class="form-style" id="formWallet" asp-area="UserPanel" asp-controller="Wallet" asp-action="Index" method="post" novalidate="novalidate">
+
+    <div class="row charge-wallet">
+        <div class="alert alert-warning">
+            <b>مبلغ شارژ به تومان می باشد و لطفا دقت کنید مبلغ پرداختی به هیچ عنوان امکان استرداد ندارد .</b>
+        </div>
+        <div class="col-sm-7 col-xs-12">
+
+            <!-- input -->
+            <div class="input-layer">
+                <label><i class="zmdi zmdi-money"></i> مبلغ مورد نظر (تومان) </label>
+                <input type="number" id="Amount" asp-for="Amount" placeholder="مبلغ به تومان">
+                <span class="field-validation-valid" data-valmsg-for="Price" data-valmsg-replace="true"></span>
+                <div class="text-danger" id="numPersian" asp-validation-summary="All"></div>
+            </div>
+
+            <!-- /input -->
+
+        </div>
+        <div class="col-sm-5 col-xs-12">
+            <button id="formBtnWallet" class="button-st green"> شارژ حساب </button>
+        </div>
+    </div>
+</form>

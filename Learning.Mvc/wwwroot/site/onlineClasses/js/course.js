@@ -1,0 +1,6 @@
+﻿function CopyText() {
+    var a = document.getElementById("myLink").innerHTML;
+    navigator.clipboard.writeText(a)
+}
+
+$(function () { $(".left-sidebar,.right-content").theiaStickySidebar(); var a = $(".sidebar"); a.outerHeight(), items = a.find(".sidebar-item"), items.map(function () { var a = $($(this).attr("href")); if (a.length) return a }), items.click(function (a) { var t = $(this).attr("href"), t = "#" === t ? 0 : $(t).offset().top; $("html, body").stop().animate({ scrollTop: t }, 1e3), a.preventDefault() }); var e = []; $(".sidebar li a").each(function () { e.push($(this).attr("href")) }), $(window).scroll(function () { var t = $(this).scrollTop() + 1; e.forEach(function (a) { $(a).offset().top < t && ($(".sidebar li").removeClass("active"), $('.sidebar a[href="' + a + '"]').parent("li").addClass("active")) }) }), $(".faq-layer .faq-list .faq-row > h2").click(function () { var a = $(this).parent(".faq-row"), t = $(this).parent(".faq-row").find(".arrow i"), e = $(this).parent(".faq-row").find(".inner"); $(a).hasClass("open") ? ($(a).removeClass("open"), $(e).fadeOut("fast"), $(t).removeClass("zmdi-minus"), $(t).addClass("zmdi-plus")) : ($(a).addClass("open"), $(e).fadeIn("fast"), $(t).removeClass("zmdi-plus"), $(t).addClass("zmdi-minus")) }) });

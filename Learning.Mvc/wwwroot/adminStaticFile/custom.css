@@ -1,0 +1,40 @@
+﻿.pagination-layer {
+    margin: 30px 0
+}
+
+
+.pagination-layer {
+    padding: 2px 0;
+    position: relative;
+    text-align: center;
+}
+
+    .pagination-layer a {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+        border: 2px solid #d8e0e6;
+        line-height: 38px;
+        font-size: 15px;
+        text-align: center;
+        line-height: 27px;
+        font-size: 16px;
+        margin: 2px;
+        background-color: #fff;
+        color: #2d3339
+    }
+
+        .pagination-layer a i {
+            font-size: 21px;
+            position: relative;
+            top: 3px;
+            color: #b0b9be
+        }
+
+        .pagination-layer a:hover,
+        .pagination-layer a.active {
+            border: 2px solid #4cadfb;
+            color: #2196f3
+        }

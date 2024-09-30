@@ -1,0 +1,138 @@
+﻿
+@model Order
+
+@inject IWalletService _walletService
+
+@{
+    ViewData["Title"] = "سبد خرید ";
+    int sumOrder = Model.OrderSum;
+    string discountType = ViewBag.typeDiscount.ToString();
+    int userId = User.GetUserId();
+}
+@section StylePage{
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/site/classes/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/site/classes/css/account.css">
+<link rel="stylesheet" type="text/css" href="/site/classes/css/form.css">
+<link rel="stylesheet" type="text/css" href="/site/classes/css/basket.css">
+<link rel="stylesheet" type="text/css" href="/site/css/basket.css">
+
+   }
+
+<div class="page-style">
+    <div class="container">
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name"> سبد خرید </span></a></li>
+            </ul>
+        </div>
+        <!-- /breadcrumb -->
+        <div class="basket-page">
+            <div class="basket-preview">
+                <div class="row">
+                    @if (!Model.IsFinaly)
+                    {
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <div class="basket-items">
+                                @foreach (var item in Model.OrderDetails)
+                                {
+                                    <div class="item-row box-shadow">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="title"> @item.OnlineClass.Title </span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row flex">
+                                                    <div class="col-md-6">
+                                                        <img src="@item.OnlineClass.GetOnlineClassImageThumbAddress()" class="preview-course-image">
+                                                    </div>
+                                                    <div class="col-md-6 paddind-basket-info flex-column">
+                                                        <div class="flex-style-start color-gray">
+                                                            <span class="flex-style-center"> <i class="zmdi zmdi-account ml-5"></i> مدرس : </span>
+                                                            <span class="mr-5"> @item.OnlineClass.User.UserName </span>
+                                                        </div>
+
+                                                        <div class="flex-style-start color-gray">
+                                                            <span class="flex-style-center"> <i class="zmdi zmdi-collection-video ml-5"></i> تعداد جلسات : </span>
+                                                            <span class="mr-5"> @item.OnlineClass.NumberSessions جلسه </span>
+                                                        </div>
+
+                                                        <div class="flex-style-start color-gray">
+                                                            <span class="flex-style-center"> <i class="zmdi zmdi-time ml-5"></i> مدت دوره : </span>
+                                                            <span class="mr-5"> @item.OnlineClass.TimeSessions ساعت </span>
+                                                        </div>
+
+
+                                                        <div class="flex-style-start color-gray">
+                                                            <span class="flex-style-center"> <i class="zmdi zmdi-calendar ml-5"></i> شروع دوره : </span>
+                                                            <span class="mr-5"> @item.OnlineClass.StartClass.ToShamsi() </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-15">
+                                                <div class="alert alert-danger mb-0">
+                                                    <h2 class="text-bold"> <strong>قابل توجه شرکت کنندگان :</strong> </h2>
+                                                    <p class="lh-25 mt-10px">
+                                                        وجه پرداخت شده به هیچ عنوان عودت داده نخواهد شد
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                          
+                            <form method="post" action="/UserPanel/OnlineClass/FinalyOrder/@Model.OrderId" novalidate="novalidate">
+                                <div class="basket-factor box-shadow">
+                                    @*<span class="main-payment">موجودی کیف پول شما  : <i>0 تومان</i> </span>*@
+                                    <span class="main-payment">مبلغ کل : <i>@Model.OrderDetails.Sum(d => d.Price * d.Count).ToString("#,0") تومان</i> </span>
+                                    @if (Model.DiscountPrice > 0)
+                                    {
+                                        <span class="profit-amount">تخفیف  : <i> @Model.DiscountPrice.ToString("#,0") تومان </i></span>
+                                    }
+                                    <span class="final-payment">مبلغ قابل پرداخت : <i> @sumOrder.ToString("#,0") تومان</i></span>
+                                    @if (await _walletService.BalanceUserWallet(User.GetUserId()) >= sumOrder)
+                                    {
+                                        <button class="button-st green wide" type="submit" id="btn-sumbit"> تایید و پرداخت  </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="button-st green wide" type="submit" id="btn-sumbit" disabled> تایید فاکتور </button>
+                                        <div class="alert alert-danger">
+                                            موجودی کیف پول شما کافی نمی باشد ، لطفا از طریق این
+                                            <a href="/UserPanel/Wallet" class="alert-link text-success">لینک</a>
+                                            اقدام به شارژ حساب کنید
+                                        </div>
+                                    }
+                                </div>
+                            </form>
+                        </div>
+
+                    }
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@*
+    @section Scripts{
+    <script src="/Site/js/Basket.js"></script>
+    }
+*@

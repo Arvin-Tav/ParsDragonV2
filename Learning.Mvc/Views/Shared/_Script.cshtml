@@ -1,0 +1,51 @@
+﻿<script src="/site/js/site.min.js"></script>
+<script src="/site/js/PushNotification/util.js"></script>
+<script src="/site/js/PushNotification/script.js"></script>
+<script src="/site/common/waitMe/waitMe.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", yall);
+
+    function StartLoading(element = 'body') {
+        $(element).waitMe({
+            effect: 'stretch',
+            text: 'لطفا صبر کنید ...',
+            bg: 'rgba(255,255,255,0.7)',
+            color: '#000'
+        });
+    }
+
+    function EndLoading(element = 'body') {
+        $(element).waitMe('hide');
+    }
+</script>
+
+<script src="/site/js/site.validate.min.js"></script>
+<script src="/site/js/MegaMenu.js"></script>
+<script src="/site/js/new-script.js"></script>
+
+<!--Notification-->
+<link rel="manifest" href="/manifest.json">
+<!--End Notification-->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script src='https://www.google.com/recaptcha/api.js?hl=fa'></script>
+
+<script async src='https://www.googletagmanager.com/gtag/js?id=UA-110897399-1'></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-110897399-1');</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+@*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+
+
+<!--BEGIN RAYCHAT CODE-->
+<script type="text/javascript">!function() { function t() { var t = document.createElement("script"); t.type = "text/javascript", t.async = !0, localStorage.getItem("rayToken") ? t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href : t.src = "https://app.raychat.io/scripts/js/" + o + "?href=" + window.location.href; var e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(t, e) } var e = document, a = window, o = "e4d82f23-46da-4493-8b07-f3cddba7a659"; "complete" == e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1) }();</script>
+<!--END RAYCHAT CODE-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7/dist/sweetalert2.all.min.js"></script>
+
+
+
+<script src="/js/notifications.js"></script>
+<script src="/js/custom.js"></script>
+

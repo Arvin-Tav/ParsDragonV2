@@ -1,0 +1,125 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Blogs.EditBlogModel
+@{
+    ViewData["Title"] = "ویرایش مقاله";
+
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class="card flex-div border-0 main-shadow">
+            <input type="hidden" asp-for="EditBlogDTO.BlogId" />
+            <input type="hidden" asp-for="EditBlogDTO.BlogImageName" />
+            <div class="modal-body row">
+                <div asp-validation-summary="All"></div>
+                <div class="col-md-8 col-lg-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات مقاله
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>موضوع </label>
+                                    <input type="text" asp-for="EditBlogDTO.Title" class="form-control">
+                                    <span asp-validation-for="EditBlogDTO.Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>توضیح مختصر</label>
+                                    <textarea class="form-control" asp-for="EditBlogDTO.Description" rows="5"></textarea>
+                                    <span asp-validation-for="EditBlogDTO.Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>کلمات کلیدی </label>
+                                    <input type="text" placeholder="کلمات را با - جدا کنید" asp-for="EditBlogDTO.Tags" class="form-control">
+                                    <p class="help-block">کلمات را با - جدا کنید</p>
+                                    <span asp-validation-for="EditBlogDTO.Tags" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>شرح مقاله</label>
+                                    <textarea class="form-control" asp-for="EditBlogDTO.BodyHtml" rows="10"></textarea>
+                                    <span asp-validation-for="EditBlogDTO.BodyHtml" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4  col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            تصویر مقاله
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <img id="imgAvatar" class="thumbnail" src="@Model.EditBlogDTO.GetBlogImageAddress()" />
+                            <div class="form-group">
+                                <label>انتخاب تصویر</label><br />
+                                <input type="file"  name="imageBlog">
+                            </div>
+                            <span asp-validation-for="EditBlogDTO.BlogImageName" class="text-danger"></span>
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="submit" class="btn btn-success btn-sm text-white">ویرایش<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#EditBlogViewModel_BlogImageName").change(function () {
+            readURL(this);
+        });
+    </script>
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    @*<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>*@
+    <script>
+
+        CKEDITOR.replace('EditBlogViewModel_BodyHtml', {
+            customConfig: '/ckeditor/config.js'
+        });
+
+    </script>
+}
+

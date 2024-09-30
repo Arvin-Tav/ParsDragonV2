@@ -1,0 +1,107 @@
+﻿@page "{handler?}"
+@model Learning.Mvc.Pages.Admin.Blogs.IndexModel
+@{
+    ViewData["Title"] = "لیست مقاله ها";
+}
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+                    <form class="card-form  filter-form">
+                        <input type="hidden" class="pageId" name="PageId" value="@Model.FilterBlogDTO.PageId"  />
+
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <input name="Search" value="@Model.FilterBlogDTO.Search" class="form-control uk-text-small" placeholder="متن جستجو">
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+                                <a href="/Admin/Blogs" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+                                <a asp-page="CreateBlog" class="btn btn-success btn-sm LoadingDiv"> افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th> موضوع</th>
+                                <th>عکس</th>
+                                <th>توسط کاربر</th>
+                                <th>تاریخ ثبت مقاله</th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var blog in Model.FilterBlogDTO.Blogs)
+                            {
+                                <tr class="item_@blog.BlogId">
+                                    <td>
+                                        <a href="/Blog/@blog.BlogId/@blog.Title.FixTextForUrl()">@blog.Title</a>
+                                    </td>
+                                    <td>
+                                        <img class="thumbnail" style="max-height:100px" src="@blog.GetBlogImageThumbAddress()">
+                                    </td>
+                                    <td>
+                                        @blog.User.UserName
+                                    </td>
+                                    <td>
+                                        @blog.CreateDate.ToShamsi()
+                                    </td>
+                                    <td>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                            <a href="/Admin/Blogs/EditBlog/@blog.BlogId" class="text-primary LoadingDiv" uk-icon="create-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                            <a  ajax-url-button="@blog.BlogId"
+                                            href="/Admin/Blogs/Index/DeleteBlog?code=@blog.BlogId" 
+                                            class="text-danger" uk-icon="trash"></a>
+                                        </span>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <partial name="_PagingAdminPartial" model="@Model.FilterBlogDTO.GetCurrentPaging()" />
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.OnlineClass.OnlineClassOfDayModel
+@{
+ViewData["Title"] = " افزودن روزها و ساعت برگزاری این کلاس";
+}
+
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+
+            <div class="form-row mt-3">
+                <div class="form-group col-md-5 ">
+                    <label class="uk-text-bold mr-2">@ViewData["Title"]</label>
+                    <a onclick="saveOnlineClass()" class="btn btn-success btn-sm text-white">ذخیره</a>
+                    <a href="/Admin/OnlineClass" class="btn btn-primary btn-sm text-white  LoadingDiv">انصراف</a>
+                </div>
+                <div class="form-group col-md-2 mt-md-4 pt-2">
+                </div>
+            </div>
+            <hr class="uk-margin-remove" />
+            <div class="overflow-auto mr-2 mb-2">
+                <label class="mt-3 uk-text-bold">افزودن متن   </label>
+                &nbsp;<span onclick="SetNewInputGallery()" class="text-success cursor-pointer" uk-icon="add-circle-outline"></span>
+                &nbsp;<span onclick="RemoveInputGallery()" class="text-danger cursor-pointer" uk-icon="remove-circle-outline"></span>
+                <br />
+                <form  class="myFormOnlineClass" method="post" >
+                    <input id="id" name="id" type="hidden" value="@ViewData["id"]" />
+                    <div class="mb-2 OnlineClass">
+                        @if (Model != null)
+                        {
+                            int i = 1;
+                            foreach (var item in Model.OnlineClassOfDays)
+                            {
+                                <div class="form-inline col-md-12 mt-4 OnlineClass_@i">
+                                    <input name="OnlineClassId" type="hidden" value="@item.OnlineClassId" />
+                                    <input name="day" class="form-control form-control-sm col-md-3 col-9" value="@item.Day" maxlength="110" placeholder="روز (مثال: شنبه)">
+                                    <input name="startTime" class="form-control form-control-sm col-md-3 col-9" value="@item.StartTime" maxlength="110" placeholder="ساعت شروع کلاس">
+                                    <input name="endTime" class="form-control form-control-sm col-md-3 col-9" value="@item.EndTime" maxlength="110" placeholder="ساعت پایان کلاس">
+                                    <a onclick="Delete(@i)" class="text-danger mr-1" uk-icon="close-circle">
+                                    </a>
+                                    @{
+                                        i++;
+                                    }
+                                </div>
+                            }
+
+
+                        }
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+        function saveOnlineClass() {
+            $("#overlay").fadeIn(300);
+            $('.myFormOnlineClass').submit();
+        }
+        function SetNewInputGallery() {
+            $(".OnlineClass").append(`<div class="form-inline col-md-7 mt-4">
+            <input  maxlength="110" name="day" class="form-control form-control-sm col-md-3 col-9" placeholder="روز (مثال: شنبه)">
+            <input  maxlength="110" name="startTime" class="form-control form-control-sm col-md-3 col-9" placeholder="ساعت شروع کلاس">
+            <input  maxlength="110" name="endTime" class="form-control form-control-sm col-md-3 col-9" placeholder="ساعت پایان کلاس">
+            </div>`);
+        }
+         function Delete(id) {
+        $(".OnlineClass_" + id).remove();
+    }
+          function RemoveInputGallery() {
+        $(".OnlineClass div").last().remove();
+    }
+
+
+</script>
+
+
+
+

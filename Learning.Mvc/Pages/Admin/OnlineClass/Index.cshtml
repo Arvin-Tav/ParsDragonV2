@@ -1,0 +1,126 @@
+﻿@page  "{handler?}"
+@model Learning.Mvc.Pages.Admin.OnlineClass.IndexModel
+@{
+ ViewData["Title"] = "لیست کلاس ها";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+
+                    <form class="card-form filter-form">
+                        <input type="hidden" class="pageId" name="PageId" value="@Model.FilterOnlineClassDTO.PageId" />
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <input type="text" name="Search" value="@Model.FilterOnlineClassDTO.Search" class="form-control" placeholder="نام کلاس" />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="TeacherName" value="@Model.FilterOnlineClassDTO.TeacherName" class="form-control" placeholder="نام مدرس" />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+
+                                <a href="/Admin/OnlineClass" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+                                <a asp-page="CreateOnlineClass" class="btn btn-success btn-sm LoadingDiv"> افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>تصویر</th>
+                                <th>عنوان کلاس</th>
+                                <th>تعداد دانشجو</th>
+                                <th>مدرس </th>
+                                <th>قیمت </th>
+                                <th> تاریخ انتشار</th>
+                                <th> تاریخ برگزاری کلاس</th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var online in Model.FilterOnlineClassDTO.OnlineClasses)
+                            {
+                                <tr class="item_@online.OnlineClassId">
+                                    <td>
+                                        <img src="@online.GetOnlineClassImageThumbAddress()" class="thumbnail" style="max-width:50px" />
+                                    </td>
+                                    <td>
+                                        <a href="/ShowOnlineClass/@online.OnlineClassId/@online.Title.FixedNameCourse()">@online.Title</a>
+                                    </td>
+                                    <td>
+                                        @online.UserClassOnlines.Count
+                                    </td>
+                                    <td>
+                                        @online.User.UserName
+                                    </td>
+                                    <td>
+                                        @online.Price.ToString("#,0")
+                                    </td>
+                                    <td>
+                                        @online.CreateDate.ToShamsi()
+                                    </td>
+                                    <td>
+                                        @online.StartClass.ToShamsi()
+                                    </td>
+                                    <td>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" افزودن ویدیو">
+                                            <a href="/Admin/OnlineClassEpisode/Index/@online.OnlineClassId" class="text-primary LoadingDiv" uk-icon="add"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                            <a href="/Admin/OnlineClass/EditOnlineClass/@online.OnlineClassId" class="text-primary LoadingDiv" uk-icon="create-outline"></a>
+                                        </span>
+                                        @if (online.IsShow)
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="قایل نمایش و با کلیک نمایش داده نمیشود">
+                                                <a href="/Admin/OnlineClass/Index/IsShow?id=@online.OnlineClassId" class="text-danger LoadingDiv" uk-icon="ban-outline"></a>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" d data-original-title="غیرفعال است و با کلیک نمایش داده خواهد شد ">
+                                                <a href="/Admin/OnlineClass/Index/IsShow?id=@online.OnlineClassId" class="text-success LoadingDiv" uk-icon="checkmark-outline"></a>
+                                            </span>
+                                        }
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="   مشاهده کاربران این کلاس">
+                                            <a href="/Admin/Users/Index?OnlineClassId=@online.OnlineClassId" class="text-primary LoadingDiv" uk-icon="person-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" افزودن  مخاطبین و کسانی که به  کلاس نیاز دارند">
+                                            <a href="/Admin/OnlineClass/OnlineClassContact/@online.OnlineClassId" class="text-primary LoadingDiv" uk-icon="add"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" افزودن اهداف  ">
+                                            <a href="/Admin/OnlineClass/OnlineClassGoal/@online.OnlineClassId" class="text-primary LoadingDiv" uk-icon="add"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" افزودن سرفصل ها  ">
+                                            <a href="/Admin/OnlineClass/OnlineClassHeading/@online.OnlineClassId" class="text-primary LoadingDiv" uk-icon="add"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" افزودن پیش نیاز ها  ">
+                                            <a href="/Admin/OnlineClass/OnlineClassPrerequisite/@online.OnlineClassId" class="text-primary LoadingDiv" uk-icon="add"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" افزودن روزهاو ساعت  برگزاری  ">
+                                            <a href="/Admin/OnlineClass/OnlineClassOfDay/@online.OnlineClassId" class="text-primary LoadingDiv" uk-icon="add"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                            <a ajax-url-button="@online.OnlineClassId"
+                                            href="/Admin/OnlineClass/Index/DeleteOnlineClass?code=@online.OnlineClassId" 
+                                            class="text-danger" uk-icon="trash"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <partial name="_PagingAdminPartial" model="@Model.FilterOnlineClassDTO.GetCurrentPaging()" />
+
+        </div>
+    </div>
+</div>

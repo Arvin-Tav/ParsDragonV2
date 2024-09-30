@@ -1,0 +1,375 @@
+﻿.basket-preview .basket-items .item-row:after,
+.payment-way ul li label:before {
+    outline: medium none;
+    text-decoration: none;
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+    -ms-transition: all 0.2s linear 0s;
+    -o-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s
+}
+
+.basket-factor span:after,
+.discount-code:after,
+.basket-preview .basket-items .item-row:after,
+.basket-page:after {
+    display: block;
+    clear: both;
+    content: '';
+    visibility: hidden;
+    height: 0;
+    line-height: 0
+}
+
+.box-shadow {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0 0 7px 0 #eaeff4;
+    -moz-box-shadow: 0 0 7px 0 #eaeff4;
+    -webkit-box-shadow: 0 0 7px 0 #eaeff4;
+    position: relative;
+    border: 1px solid #ecf0f4;
+    background-color: #fff;
+}
+
+.basket-page {
+    margin-bottom: 65px
+}
+
+.basket-layer.empty {
+    padding: 50px 0 80px
+}
+
+    .basket-layer.empty img {
+        display: block;
+        width: 450px;
+        margin: 0 auto 20px;
+    }
+
+    .basket-layer.empty h1 {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 28px
+    }
+
+.basket-preview .basket-items .item-row {
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.basket-items .item-row .detail-lbl {
+    padding-left: 180px
+}
+
+    .basket-items .item-row .detail-lbl .title {
+        font-size: 16px;
+        line-height: 28px;
+        color: #1e2f38;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+        .basket-items .item-row .detail-lbl .title:hover {
+            color: #00bffe
+        }
+
+    .basket-items .item-row .detail-lbl .teacher-name {
+        font-size: 14px;
+        line-height: 28px;
+        display: block;
+        color: #686e71
+    }
+
+.basket-items .item-row .delete-row {
+    border-radius: 100%;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #b0b9be
+}
+
+    .basket-items .item-row .delete-row:hover {
+        color: #eb1460
+    }
+
+.basket-items .item-row .price-lbl {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    min-width: 160px;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: right;
+}
+
+    .basket-items .item-row .price-lbl del {
+        color: #f66565;
+        font-size: 14px;
+        line-height: 24px;
+        display: block;
+    }
+
+    .basket-items .item-row .price-lbl .off-price {
+        color: #9a9da9;
+        font-size: 13px;
+        line-height: 24px;
+        display: block;
+    }
+
+    .basket-items .item-row .price-lbl .price {
+        color: #61b832;
+        font-size: 15px;
+        line-height: 25px;
+        display: block;
+    }
+
+.basket-factor {
+    padding: 20px 25px;
+    margin-bottom: 30px
+}
+
+    .basket-factor span {
+        line-height: 28px;
+        margin-bottom: 5px;
+        font-size: 15px;
+        display: block;
+    }
+
+        .basket-factor span.main-payment {
+            color: #686e71
+        }
+
+        .basket-factor span.profit-amount {
+            color: #01ace5
+        }
+
+            .basket-factor span.main-payment i,
+            .basket-factor span.profit-amount i {
+                float: left;
+                font-style: normal;
+            }
+
+        .basket-factor span.final-payment {
+            border-top: 1px solid #edf1f4;
+            text-align: center;
+            padding: 18px 0;
+            margin-top: 18px;
+            font-size: 16px
+        }
+
+            .basket-factor span.final-payment i {
+                font-size: 18px;
+                font-style: normal;
+            }
+
+.discount-code {
+    margin-bottom: 20px;
+    padding: 20px
+}
+
+    .discount-code > span {
+        font-size: 14px;
+        line-height: 25px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .discount-code .input-layer {
+        position: relative;
+        width: 100%;
+        height: 45px;
+        border: 1px solid #edf1f4;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        overflow: hidden;
+    }
+
+        .discount-code .input-layer input {
+            position: relative;
+            width: 100%;
+            height: 43px;
+            border: 0;
+            line-height: 45px;
+            font-size: 13px;
+            color: #686e71;
+            padding: 0 10px 0 75px;
+        }
+
+        .discount-code .input-layer button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            line-height: 45px;
+            font-size: 13px;
+            height: 45px;
+            border-radius: 0;
+            -moz-border-radius: 0;
+            -webkit-border-radius: 0;
+        }
+
+    .discount-code .msg-layer {
+        font-size: 13px;
+        line-height: 23px;
+        margin-top: 10px;
+        display: block;
+    }
+
+        .discount-code .msg-layer.red {
+            color: #f81e6b
+        }
+
+        .discount-code .msg-layer.green {
+            color: #5fb430
+        }
+
+.payment-way {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px
+}
+
+    .payment-way > span {
+        font-size: 14px;
+        line-height: 25px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .payment-way ul li {
+        position: relative;
+        display: inline-table;
+        padding-left: 20px
+    }
+
+        .payment-way ul li:last-child {
+            padding-left: 0
+        }
+
+        .payment-way ul li input {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .payment-way ul li label {
+            display: block;
+            line-height: 25px;
+            font-size: 13px;
+            padding-right: 23px;
+            user-select: none;
+            /* supported by Chrome and Opera */
+            -webkit-user-select: none;
+            /* Safari */
+            -khtml-user-select: none;
+            /* Konqueror HTML */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+        }
+
+            .payment-way ul li label:before {
+                width: 16px;
+                height: 16px;
+                border: 2px solid #e3e9ed;
+                position: absolute;
+                right: -1px;
+                top: 5px;
+                content: "";
+                border-radius: 100%;
+                -moz-border-radius: 100%;
+                -webkit-border-radius: 100%;
+            }
+
+        .payment-way ul li input:checked + label:before {
+            border: 6px solid #5fb430;
+        }
+
+        .payment-way ul li label:hover:before {
+            border: 6px solid #e3e9ed;
+            cursor: pointer;
+        }
+
+        .payment-way ul li label:hover {
+            cursor: pointer;
+        }
+
+.payment-receipt {
+    padding: 25px;
+    margin-bottom: 25px
+}
+
+    .payment-receipt .msg {
+        font-size: 15px;
+        line-height: 25px;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+        .payment-receipt .msg.red {
+            color: #f81e6b
+        }
+
+        .payment-receipt .msg.green {
+            color: #5fb430
+        }
+
+    .payment-receipt ul li {
+        margin: 5px 0;
+        line-height: 25px
+    }
+
+@media screen and (max-width: 1199px) {
+    .basket-items .item-row .detail-lbl .title {
+        font-size: 14px
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .basket-layer.empty {
+        padding: 40px 0
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .basket-items .item-row .detail-lbl {
+        padding-left: 0
+    }
+
+    .basket-preview .basket-items .item-row {
+        padding: 18px
+    }
+
+    .basket-items .item-row .price-lbl {
+        position: static;
+        text-align: right;
+        margin-top: 10px
+    }
+
+    .basket-items .item-row .detail-lbl .teacher-name {
+        display: none
+    }
+
+    .basket-layer.empty {
+        padding: 25px 0
+    }
+
+        .basket-layer.empty img {
+            width: 250px
+        }
+}

@@ -1,0 +1,162 @@
+﻿@page
+@model Learning.Mvc.Pages.Admin.Config.IndexModel
+@{
+    ViewData["Title"] = "تنظیمات سایت";
+
+}
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class="card flex-div border-0 main-shadow">
+            <div class="modal-body row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        تنظیمات سایت
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-row">
+                            <input type="hidden" asp-for="ConfigDTO.AkseSafeyeAslyName" />
+                            <input type="hidden" asp-for="ConfigDTO.AksTamasBamaName" />
+                            <div class="form-group col-lg-12">
+                                <label>ایمیل</label>  <br />
+                                <input asp-for="ConfigDTO.Email" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.Email"></span>
+                            </div>
+
+
+
+                            <div class="form-group col-lg-12">
+                                <label>آدرس</label> <br />
+                                <input asp-for="ConfigDTO.Address" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.Address"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label>شماره تلفن</label> <br />
+                                <input asp-for="ConfigDTO.TellHome" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.TellHome"></span>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>شماره موبایل</label> <br />
+                                <input asp-for="ConfigDTO.TellMobile" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.TellMobile"></span>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label>تلگرام </label> <br />
+                                <input asp-for="ConfigDTO.Telegram" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.Telegram"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label>اینیستا </label> <br />
+                                <input asp-for="ConfigDTO.Inista" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.Inista"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label>واتساب </label> <br />
+                                <input asp-for="ConfigDTO.Whatsapp" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.Whatsapp"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label>متن ردیف اول صفحه اصلی </label> <br />
+                                <input asp-for="ConfigDTO.TextHome1" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.TextHome1"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label>متن ردیف دوم صفحه اصلی </label> <br />
+                                <input asp-for="ConfigDTO.TextHome2" class="form-control form-control-sm d-inline-block d-sm-block col-lg-10 float-left">
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.TextHome2"></span>
+                            </div>
+                            <div class="form-group col-lg-12 mt-lg-3">
+                                <label> قوانین خرید :</label>
+                                <textarea asp-for="ConfigDTO.GavaninKharid" class="form-control form-control-sm d-inline-block d-sm-block col-lg-12" placeholder="..."></textarea>
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.GavaninKharid"></span>
+                            </div>
+                            <div class="form-group col-lg-12 mt-lg-3">
+                                <label> همکاری با ما :</label>
+                                <textarea asp-for="ConfigDTO.HamkaryBama" class="form-control form-control-sm d-inline-block d-sm-block col-lg-12" placeholder="..."></textarea>
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.HamkaryBama"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12 mt-lg-3">
+                                <label> راهنمای خرید :</label>
+                                <textarea asp-for="ConfigDTO.RahnemyaKharid" class="form-control form-control-sm d-inline-block d-sm-block col-lg-12" placeholder="..."></textarea>
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.RahnemyaKharid"></span>
+                            </div>
+                            <div class="form-group col-lg-12 mt-lg-3">
+                                <label> مشاوره  :</label>
+                                <textarea asp-for="ConfigDTO.Consulting" class="form-control form-control-sm d-inline-block d-sm-block col-lg-12" placeholder="..."></textarea>
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.Consulting"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12 mt-lg-3">
+                                <label>  درباره ما :</label>
+                                <textarea asp-for="ConfigDTO.DarBareyeMa" class="form-control form-control-sm d-inline-block d-sm-block col-lg-12" placeholder="..."></textarea>
+                                <br /><span class="text-danger" asp-validation-for="ConfigDTO.DarBareyeMa"></span>
+                            </div>
+
+
+                            <div class="form-group col-lg-12 mt-lg-3">
+                                <img style="max-height:200px;margin:0 auto;display:block" src="@Model.ConfigDTO.AkseSafeyeAslyName.GetConfigImageAddress()" alt="Alternate Text" />
+                            </div>
+                            <label class="mt-2">تصویر  در صفحه اصلی </label>
+                            <br />
+                            <div class="custom-file col-md-12">
+                                <input type="file" name="akseSafeyeAsly" class="custom-file-input form-control form-control-sm" accept="image/x-png,image/gif,image/jpeg" onchange="inputChanged(this)">
+                                <label class="custom-file-label" for="Image" data-browse="انتخاب" id="FileName">انتخاب تصویر</label>
+                            </div>
+                            <div class="form-group col-lg-12 mt-lg-3">
+                                <img style="max-height:200px;margin:0 auto;display:block" src="@Model.ConfigDTO.AksTamasBamaName.GetConfigImageAddress()" alt="Alternate Text" />
+                            </div>
+                            <label class="mt-2">تصویر در تماس با ما </label>
+                            <br />
+                            <div class="custom-file col-md-12">
+                                <input type="file" name="aksTamasBama" class="custom-file-input form-control form-control-sm" accept="image/x-png,image/gif,image/jpeg" onchange="inputChanged(this)">
+                                <label class="custom-file-label" for="Image" data-browse="انتخاب" id="FileName">انتخاب تصویر</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer justify-content-end">
+                        <button type="submit" class="btn btn-success btn-sm text-white LoadingDiv">ذخیره اطلاعات<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+
+
+        CKEDITOR.replace('ConfigDTO_DarBareyeMa', {
+            customConfig: '/ckeditor/config.js'
+        });
+        CKEDITOR.replace('ConfigDTO_GavaninKharid', {
+            customConfig: '/ckeditor/config.js'
+        });
+        CKEDITOR.replace('ConfigDTO_HamkaryBama', {
+            customConfig: '/ckeditor/config.js'
+        });
+        CKEDITOR.replace('ConfigDTO_RahnemyaKharid', {
+            customConfig: '/ckeditor/config.js'
+        });
+        CKEDITOR.replace('ConfigDTO_Consulting', {
+            customConfig: '/ckeditor/config.js'
+        });
+    </script>
+
+}

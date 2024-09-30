@@ -1,0 +1,85 @@
+﻿@page "{handler?}"
+@model Learning.Mvc.Pages.Admin.CourseGroups.IndexModel
+@{
+    ViewData["Title"] = "دسته بندی ها";
+}
+
+
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class=" pt-2">
+                    <div class="form-group pb-0 mb-0">
+                        <a asp-page="CreateGroup" class="btn btn-success btn-sm LoadingDiv">افزودن گروه جدید<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>نام دسته بندی</th>
+                                <th>عنوان url  </th>
+                                <th>زیر مجموعه</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var group in Model.CourseGroups.Where(g => g.ParentId == null))
+                            {
+                                <tr class="item_@group.GroupId">
+                                    <td>@group.GroupTitle</td>
+                                    <td>@group.UrlName</td>
+                                    <td>
+                                        @if (group.CourseGroups.Any())
+                                        {
+                                            <ul>
+                                                @foreach (var sub in group.CourseGroups)
+                                                {
+                                                    <li class="item_@sub.GroupId">
+                                                        @sub.GroupTitle -
+                                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                                            <a href="/Admin/CourseGroups/EditGroup/@sub.GroupId" class="btn btn-outline  btn-xs LoadingDiv" uk-icon="create-outline"></a>
+                                                        </span>
+                                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                                            <a ajax-url-button="@sub.GroupId"
+                                                   href="/Admin/CourseGroups/Index/DeleteCourseGroups?code=@sub.GroupId"
+                                                   class="text-danger btn-xs" uk-icon="trash-outline"></a>
+                                                        </span>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                    </td>
+                                    <td>
+
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                            <a href="/Admin/CourseGroups/EditGroup/@group.GroupId" class="text-primary LoadingDiv" uk-icon="create-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="زیر گروه">
+                                            <a href="/Admin/CourseGroups/CreateGroup/@group.GroupId" class="text-info LoadingDiv" uk-icon="archive-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+
+                                            <a ajax-url-button="@group.GroupId"
+                                           href="/Admin/CourseGroups/Index/DeleteCourseGroups?code=@group.GroupId"
+                                           class="text-danger" uk-icon="trash-outline"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<input type="hidden" class="addressUrl" value="/Admin/CourseGroups/Index/DeleteCourseGroups?code=" />

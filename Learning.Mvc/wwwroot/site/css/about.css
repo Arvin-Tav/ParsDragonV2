@@ -1,0 +1,303 @@
+﻿
+/*{display: block; clear: both; content: ''; visibility: hidden; height: 0; line-height: 0}
+*/
+.about-page-content > .inside-content > a:after, .about-page-content > .inside-content > a:before {
+    outline: medium none;
+    text-decoration: none;
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+    -ms-transition: all 0.2s linear 0s;
+    -o-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s
+}
+
+
+
+.about-page-content {
+    padding: 20px 0 100px;
+    position: relative;
+}
+
+    .about-page-content > .inside-content {
+        position: relative;
+        padding-left: 20px
+    }
+
+        .about-page-content > .inside-content:after {
+            width: 200px;
+            height: 200px;
+            background: url('/images/about-1.svg') no-repeat 0 0;
+            background-size: 200px 200px;
+            position: absolute;
+            left: -140px;
+            top: 30px;
+            content: '';
+            z-index: 1
+        }
+
+        .about-page-content > .inside-content .inner {
+            position: relative;
+            z-index: 2;
+            width: 850px;
+            float: left;
+            min-height: 450px
+        }
+
+            .about-page-content > .inside-content .inner > div {
+                padding: 30px 35px;
+                display: none
+            }
+
+                .about-page-content > .inside-content .inner > div.active {
+                    display: block
+                }
+
+                .about-page-content > .inside-content .inner > div h1,
+                .about-page-content > .inside-content .inner > div h2 {
+                    font-size: 20px;
+                    color: #5fb430;
+                    line-height: 30px;
+                    margin-bottom: 22px;
+                }
+
+                .about-page-content > .inside-content .inner > div p {
+                    font-size: 14px;
+                    line-height: 32px;
+                    text-align: justify;
+                    margin-bottom: 15px
+                }
+
+                .about-page-content > .inside-content .inner > div ul {
+                    margin: 15px 0
+                }
+
+                    .about-page-content > .inside-content .inner > div ul li {
+                        font-size: 14px;
+                        line-height: 28px;
+                        margin: 7px 0;
+                        padding-right: 14px;
+                        position: relative;
+                    }
+
+                        .about-page-content > .inside-content .inner > div ul li:before {
+                            position: absolute;
+                            right: 0;
+                            top: 12px;
+                            width: 6px;
+                            height: 6px;
+                            border-radius: 100%;
+                            -moz-border-radius: 100%;
+                            -webkit-border-radius: 100%;
+                            background-color: #00b3e9;
+                            content: ''
+                        }
+
+                .about-page-content > .inside-content .inner > div p:last-child {
+                    margin-bottom: 0
+                }
+
+        .about-page-content > .inside-content > a {
+            width: 130px;
+            height: 130px;
+            position: absolute;
+            z-index: 1;
+            text-align: center;
+            color: #1e2f38;
+        }
+
+            .about-page-content > .inside-content > a:before {
+                width: 130px;
+                height: 130px;
+                background: url('../images/about.svg') no-repeat 0 0;
+                background-size: 130px 130px;
+                position: absolute;
+                content: '';
+                z-index: 1;
+                text-align: center;
+                transform: rotate(-30deg);
+                -moz-transform: rotate(-30deg);
+                -webkit-transform: rotate(-30deg);
+                opacity: 1;
+                right: 0;
+                top: 0
+            }
+
+            .about-page-content > .inside-content > a:after {
+                width: 130px;
+                height: 130px;
+                background: url('/images/about-2.svg') no-repeat 0 0;
+                background-size: 130px 130px;
+                position: absolute;
+                content: '';
+                z-index: 1;
+                text-align: center;
+                transform: rotate(-30deg);
+                -moz-transform: rotate(-30deg);
+                -webkit-transform: rotate(-30deg);
+                opacity: 0;
+                right: 0;
+                top: 0
+            }
+
+            .about-page-content > .inside-content > a.active:before,
+            .about-page-content > .inside-content > a:hover:before {
+                opacity: 0
+            }
+
+            .about-page-content > .inside-content > a.active:after,
+            .about-page-content > .inside-content > a:hover:after {
+                opacity: 1
+            }
+
+            .about-page-content > .inside-content > a:hover,
+            .about-page-content > .inside-content > a.active {
+                color: #5fb430
+            }
+
+            .about-page-content > .inside-content > a span {
+                position: relative;
+                z-index: 2
+            }
+
+            .about-page-content > .inside-content > a.history-item {
+                right: 110px;
+                top: 0
+            }
+
+                .about-page-content > .inside-content > a.history-item:before,
+                .about-page-content > .inside-content > a.history-item:after {
+                    width: 120px;
+                    height: 120px;
+                    background-size: 120px 120px;
+                }
+
+                .about-page-content > .inside-content > a.history-item span {
+                    top: 42px;
+                    right: 2px
+                }
+
+            .about-page-content > .inside-content > a.working-item:before,
+            .about-page-content > .inside-content > a.working-item:after {
+                width: 160px;
+                height: 160px;
+                background-size: 160px 160px;
+            }
+
+            .about-page-content > .inside-content > a.working-item {
+                right: 0px;
+                top: 100px;
+            }
+
+                .about-page-content > .inside-content > a.working-item span {
+                    top: 60px;
+                    right: 20px;
+                    word-spacing: -2px;
+                    text-align: center;
+                }
+
+            .about-page-content > .inside-content > a.why-toplearn-item {
+                right: 130px;
+                top: 200px;
+            }
+
+                .about-page-content > .inside-content > a.why-toplearn-item span {
+                    top: 45px;
+                    right: 6px
+                }
+
+            .about-page-content > .inside-content > a.contact-ways-item:before,
+            .about-page-content > .inside-content > a.contact-ways-item:after {
+                width: 155px;
+                height: 155px;
+                background-size: 155px 155px;
+            }
+
+            .about-page-content > .inside-content > a.contact-ways-item {
+                right: 50px;
+                top: 320px
+            }
+
+                .about-page-content > .inside-content > a.contact-ways-item span {
+                    top: 58px;
+                    right: 18px
+                }
+
+
+
+@media screen and (max-width : 1199px) {
+    .about-page-content > .inside-content .inner {
+        width: 650px
+    }
+}
+
+@media screen and (max-width : 991px) {
+    .about-page-content > .inside-content .inner {
+        width: 100%;
+        clear: both;
+        min-height: 50px
+    }
+
+    .about-page-content > .inside-content {
+        padding-left: 0
+    }
+
+        .about-page-content > .inside-content:after {
+            display: none;
+        }
+
+        .about-page-content > .inside-content > a {
+            position: relative;
+            float: right;
+            margin-left: 25px;
+            margin-bottom: 35px;
+        }
+
+            .about-page-content > .inside-content > a.history-item,
+            .about-page-content > .inside-content > a.why-toplearn-item,
+            .about-page-content > .inside-content > a.contact-ways-item {
+                right: 15px;
+                top: 0
+            }
+
+            .about-page-content > .inside-content > a.working-item {
+                right: -10px;
+                top: 0
+            }
+}
+
+@media screen and (max-width : 700px) {
+    .about-page-content > .inside-content > a {
+        display: none
+    }
+
+    .about-page-content > .inside-content .inner {
+        padding-bottom: 20px
+    }
+
+        .about-page-content > .inside-content .inner > div {
+            display: block;
+            padding-bottom: 15px
+        }
+
+            .about-page-content > .inside-content .inner > div ul {
+                margin-bottom: 0
+            }
+
+    .about-page-content > .inside-content:after {
+        display: block;
+        top: -100px;
+        left: -50px
+    }
+}
+
+@media screen and (max-width : 480px) {
+    .about-page-content > .inside-content .inner > div {
+        padding: 25px
+    }
+}
+
+@media screen and (max-width : 400px) {
+    .about-page-content > .inside-content .inner > div {
+        padding: 20px
+    }
+}

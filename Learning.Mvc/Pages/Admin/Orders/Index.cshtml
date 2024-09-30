@@ -1,0 +1,141 @@
+﻿@page
+@using Learning.Domain.DTO.Order
+@model Learning.Mvc.Pages.Admin.Orders.IndexModel
+@{
+    ViewData["Title"] = "فاکتورهای فروش";
+}
+
+
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+                    <form class="card-form filter-form">
+                        <input type="hidden" name="UserId" value="@Model.FilterOrderDTO.UserId" />
+                        <input type="hidden" class="pageId" name="PageId" value="@Model.FilterOrderDTO.PageId" />
+
+                        <div class="row form-row">
+                            <div class="col-md-3">
+                                <input type="text" name="OrderId" value="@Model.FilterOrderDTO.OrderId" class="form-control" placeholder="شماره فاکنور" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="Search" value="@Model.FilterOrderDTO.Search" class="form-control" placeholder="مشخصات کاربری یا اسم دوره" />
+                            </div>
+                            <div class="col-md-3">
+                                @foreach (var item in Html.GetEnumSelectList<FilterOrderState>())
+                                {
+                                    <input type="radio" name="FilterOrderState" style="margin:0 10px 0 0" value="@item.Value" @((Convert.ToInt32(Model.FilterOrderDTO.FilterOrderState) == Convert.ToInt32(item.Value) ? "checked" : "")) /> <span class="text-info">@item.Text</span>
+                                }
+                            </div>
+                            <div class="col-md-3">
+                                @foreach (var item in Html.GetEnumSelectList<FilterOrderType>())
+                                {
+                                    <input type="radio" name="FilterOrderType" style="margin:0 10px 0 0" value="@item.Value" @((Convert.ToInt32(Model.FilterOrderDTO.FilterOrderType) == Convert.ToInt32(item.Value) ? "checked" : "")) /> <span class="text-info">@item.Text</span>
+                                }
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+
+                                <a href="/Admin/Orders" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-header bg-white row">
+                 <div class="col-md-4">
+                <span>جمع تخفیف داده شده </span>@Model.FilterOrderDTO.DiscountPrice.ToString("#,0 تومان")
+                </div>
+                <div class="col-md-4">
+                <span>جمع خریداری شده </span>@Model.FilterOrderDTO.OrderSum.ToString("#,0 تومان")
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>شماره فاکتور </th>
+                                <th>توسط کاربر</th>
+                                <th>مبلغ کل </th>
+                                <th> میزان تخفیف </th>
+                                <th>  مبلغ پرداختی </th>
+                                <th>آی پی </th>
+                                <th>تاریخ خرید </th>
+                                <th> کلاس  </th>
+                                <th> وضعیت </th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.FilterOrderDTO.Orders)
+                            {
+                                <tr>
+                                    <td>@order.OrderId</td>
+                                    <td>@order.User.UserName</td>
+                                    <td>@order.OrderDetails.Sum(i => i.Price * i.Count).ToString("#,0")</td>
+                                    <td>@order.DiscountPrice.ToString("#,0")</td>
+                                    <td>@order.OrderSum.ToString("#,0")</td>
+                                    <td>
+                                        @order.Ip
+                                    </td>
+                                    <td>
+                                        @order.CreateDate.ToShamsi()
+                                    </td>
+                                    <td>
+                                        @if (order.IsOnlineClass)
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="کلاس میباشد ">
+                                                <a href="#" class="text-success" uk-icon="checkmark-outline"></a>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="دوره میباشد ">
+                                                <a href="#" class="text-danger" uk-icon="ban-outline"></a>
+                                            </span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (order.IsFinaly)
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="پرداخت شده">
+                                                <a href="#" class="text-success" uk-icon="checkmark-outline"></a>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="پرداخت نشده">
+                                                <a href="#" class="text-danger" uk-icon="ban-outline"></a>
+                                            </span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (order.IsOnlineClass)
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="مشاهده کلاس  خریداری شده">
+                                                <a href="/ShowOnlineClass/@order.OrderDetails.FirstOrDefault().OnlineClassId/@order.OrderDetails.FirstOrDefault().OnlineClass.Title.FixedNameCourse()" class="text-primary LoadingDiv" uk-icon="eye"></a>
+                                            </span>
+                                        }
+                                        else
+                                        {
+
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="مشاهده دوره خریداری شده">
+                                                <a href="/Admin/Orders/ShowOrderDetails/@order.OrderId" class="text-primary LoadingDiv" uk-icon="eye"></a>
+                                            </span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <partial name="_PagingAdminPartial" model="@Model.FilterOrderDTO.GetCurrentPaging()" />
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@using Learning.Domain.DTO.Course
+@model IEnumerable<ShowCourseListItemDTO>
+@if (Model != null && Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 course-col">
+            <partial name="_BoxCourse" model="@item" />
+        </div>
+    }
+}

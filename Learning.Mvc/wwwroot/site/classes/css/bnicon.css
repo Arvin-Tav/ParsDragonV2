@@ -1,0 +1,131 @@
+﻿@font-face {
+    font-family: bnicon;
+    src: url("fonts/bnicon.eot");
+    src: url("fonts/bnicon.eot?#iefix") format("embedded-opentype"),url("fonts/bnicon.woff2") format("woff2"),url("fonts/bnicon.woff") format("woff"),url("fonts/bnicon.ttf") format("truetype"),url("fonts/bnicon.svg#bnicon") format("svg");
+    font-weight: 400;
+    font-style: normal
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family: bnicon;
+        src: url("fonts/bnicon.svg#bnicon") format("svg")
+    }
+}
+
+[class*=" icon-"]:after, [class*=" icon-"]:before, [class^=icon-]:after, [class^=icon-]:before {
+    font-family: bnicon;
+    font-style: normal
+}
+
+.icon-whatsapp:before {
+    content: "\f100"
+}
+
+.icon-instagram:before {
+    content: "\f101"
+}
+
+.icon-telegram:before {
+    content: "\f102"
+}
+
+.icon-aparat:before {
+    content: "\f103"
+}
+
+.icon-study:before {
+    content: "\f104"
+}
+
+.icon-books:before {
+    content: "\f105"
+}
+
+.icon-facebook:before {
+    content: "\f106"
+}
+
+.icon-googleplus:before {
+    content: "\f107"
+}
+
+.icon-linkedin:before {
+    content: "\f108"
+}
+
+.icon-twitter:before {
+    content: "\f109"
+}
+
+.icon-skype:before {
+    content: "\f10a"
+}
+
+.icon-book:before {
+    content: "\f10b"
+}
+
+.icon-search:before {
+    content: "\f10c"
+}
+
+.icon-waze:before {
+    content: "\f10d"
+}
+
+.icon-gps:before {
+    content: "\f10e"
+}
+
+.icon-plus:before {
+    content: "\f10f"
+}
+
+.icon-expand:before {
+    content: "\f110"
+}
+
+.icon-zoom-in-1:before {
+    content: "\f111"
+}
+
+.icon-zoom-in:before {
+    content: "\f112"
+}
+
+.icon-writing:before {
+    content: "\f113"
+}
+
+.icon-contract:before {
+    content: "\f114"
+}
+
+.icon-document:before {
+    content: "\f115"
+}
+
+.icon-copy:before {
+    content: "\f116"
+}
+
+.icon-foreign:before {
+    content: "\f117"
+}
+
+.icon-link:before {
+    content: "\f118"
+}
+
+.icon-bank:before {
+    content: "\f119"
+}
+
+.icon-wallet-1:before {
+    content: "\f11a"
+}
+
+.icon-wallet:before {
+    content: "\f11b"
+}

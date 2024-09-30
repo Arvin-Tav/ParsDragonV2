@@ -1,0 +1,20 @@
+﻿@using Learning.Application.Convertors
+@using Learning.Domain.Models.OnlineClass
+@model OnlineClass
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 article-col">
+    <div class="box-shadow">
+        <div class="img-layer img-classes">
+            <img class="lazy" src="/images/LazyLoad.png" data-src="@Model.GetOnlineClassImageThumbAddress()">
+            <a  asp-controller="OnlineClass" asp-action="ShowOnlineClass"
+            asp-route-id="@Model.OnlineClassId" asp-route-name="@Model.Title.FixedNameCourse()"> <h1>@Model.Title</h1> </a>
+        </div>
+        <h2><a asp-controller="OnlineClass" asp-action="ShowOnlineClass"
+            asp-route-id="@Model.OnlineClassId" asp-route-name="@Model.Title.FixedNameCourse()">@Model.Title</a></h2>
+        <p>
+            @Model.Description
+        </p>
+        <div class="detail">
+            <a href="#"><i class="zmdi zmdi-account"></i> @Model.User.UserName </a>
+        </div>
+    </div>
+</div>

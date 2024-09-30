@@ -1,0 +1,217 @@
+﻿@page
+@model Learning.Mvc.Pages.Admin.OnlineClass.CreateOnlineClassModel
+@{
+    ViewData["Title"] = "افزودن کلاس  جدید";
+}
+
+<link href="~/datePersionDate/persian-datepicker.css" rel="stylesheet" />
+<link href="~/datePersionDate/style.css" rel="stylesheet" />
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class=" card flex-div border-0 main-shadow">
+            <div class="modal-body row">
+                <div class="col-md-8 col-lg-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات کلاس
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عنوان کلاس</label>
+                                    <input type="text" asp-for="CreateOnlineClassDTO.Title" class="form-control" placeholder="زبان....">
+                                    <span asp-validation-for="CreateOnlineClassDTO.Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>گروه اصلی</label>
+                                    <select class="form-control" asp-for="CreateOnlineClassDTO.GroupId" asp-items="@(ViewData["Groups"] as SelectList)"></select>
+                                    <span asp-validation-for="CreateOnlineClassDTO.GroupId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>گروه فرعی</label>
+                                    <select class="form-control" asp-for="CreateOnlineClassDTO.SubGroup" asp-items="@(ViewData["SubGroups"] as SelectList)"></select>
+                                    <span asp-validation-for="CreateOnlineClassDTO.SubGroup" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>مدرس کلاس</label>
+                                    <select class="form-control" asp-for="CreateOnlineClassDTO.TeacherId" asp-items="@(ViewData["Teachers"] as SelectList)"></select>
+                                    <span asp-validation-for="CreateOnlineClassDTO.TeacherId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>توضیح مختصر </label>
+                                    <textarea class="form-control" asp-for="CreateOnlineClassDTO.Description" rows="5"></textarea>
+                                    <span asp-validation-for="CreateOnlineClassDTO.Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>شرح </label>
+                                    <textarea class="form-control" asp-for="CreateOnlineClassDTO.BodyHtml" rows="10"></textarea>
+                                    <span asp-validation-for="CreateOnlineClassDTO.BodyHtml" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>قیمت کلاس</label>
+                                    <input type="number" asp-for="CreateOnlineClassDTO.Price" class="form-control" />
+                                    <span asp-validation-for="CreateOnlineClassDTO.Price" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>کلمات کلیدی کلاس</label>
+                                    <input type="text" asp-for="CreateOnlineClassDTO.Tags" class="form-control" placeholder="تست یک - تست دو">
+                                    <p class="help-block text-warning">کلمات را با - جدا کنید</p>
+                                    <span asp-validation-for="CreateOnlineClassDTO.Tags" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>شماره تلفن ها  </label>
+                                    <input type="text" asp-for="CreateOnlineClassDTO.Tell" class="form-control" placeholder="09123456789 - 09351234567">
+                                    <p class="help-block text-warning">تلفن ها را با - جدا کنید</p>
+                                    <span asp-validation-for="CreateOnlineClassDTO.Tell" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>آدرس</label>
+                                    <input type="text" asp-for="CreateOnlineClassDTO.Address" class="form-control">
+                                    <span asp-validation-for="CreateOnlineClassDTO.Address" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4  col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            تصویر کلاس
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <img id="imgCourse" class="thumbnail" src="@PathExtensions.DefaultCourse" />
+                            <div class="form-row">
+
+                                <div class="form-group">
+                                    <label>انتخاب تصویر</label><br />
+                                    <input type="file" name="imageName" id="imageName">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>تاریخ شروع کلاس </label>
+                                    <input readonly type="text" asp-for="CreateOnlineClassDTO.StartClass" class="form-control datePersion">
+                                    <span asp-validation-for="CreateOnlineClassDTO.StartClass" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>تعداد  کل جلسات  </label>
+                                    <input type="text" asp-for="CreateOnlineClassDTO.NumberSessions" class="form-control" placeholder="10">
+                                    <span asp-validation-for="CreateOnlineClassDTO.NumberSessions" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>زمان طول کلاس(کل ساعت) </label>
+                                    <input type="text" asp-for="CreateOnlineClassDTO.TimeSessions" class="form-control" placeholder="10">
+                                    <span asp-validation-for="CreateOnlineClassDTO.TimeSessions" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>لینک کلاس</label>
+                                    <input type="text" asp-for="CreateOnlineClassDTO.Link" dir="ltr" class="form-control" placeholder="https://..........">
+                                    <span asp-validation-for="CreateOnlineClassDTO.Link" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="submit" class="btn btn-success btn-sm text-white">افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+
+
+    <script src="~/datePersionDate/persian-date.js"></script>
+    <script src="~/datePersionDate/persian-datepicker.js"></script>
+    <script src="~/datePersionDate/script.js"></script>
+    <script src="~/datePersionDate/holidays.js"></script>
+
+
+    <script>
+        $("#CreateOnlineClassDTO_GroupId").change(function () {
+            $("#CreateOnlineClassDTOSubGroup").empty();
+            $.getJSON("/home/GetSubGroups/" + $("#CreateOnlineClassDTO_GroupId :selected").val(),
+                function (data) {
+
+                    $.each(data,
+                        function () {
+                            $("#CreateOnlineClassDTO_SubGroup").append('<option value=' + this.value + '>' + this.text + '</option>');
+
+                        });
+
+                });
+
+
+        });
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgCourse').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imageName").change(function () {
+            readURL(this);
+        });
+    </script>
+
+
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    @*<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>*@
+    <script>
+
+        CKEDITOR.replace('CreateOnlineClassDTO_BodyHtml', {
+            customConfig: '/ckeditor/config.js'
+        });
+
+    </script>
+}
+

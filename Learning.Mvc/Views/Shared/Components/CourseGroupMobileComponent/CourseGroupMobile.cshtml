@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Learning.Domain.Models.Course.CourseGroup>
+<ul>
+
+    @foreach (var group in Model.Where(g => g.ParentId == null))
+    {
+        <li>
+
+            <a href="/Course?selectedGroups=@group.GroupId"> @group.GroupTitle  </a>
+
+            @if (Model.Any(g => g.ParentId == group.GroupId))
+            {
+                <ul>
+                    @foreach (var sub in Model.Where(g => g.ParentId == group.GroupId))
+                    {
+                        <li>
+                            <a asp-controller="Course" asp-action="Index" asp-route-SelectedGroups="@sub.GroupId"> @sub.GroupTitle </a>
+
+                        </li>
+                    }
+                </ul>
+            }
+        </li>
+    }
+
+</ul>

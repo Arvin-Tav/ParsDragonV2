@@ -1,0 +1,122 @@
+﻿@model LoginDTO
+@{
+    ViewData["Title"] = "ورود به سایت";
+}
+@section Scripts
+    {
+    <partial name="_CaptchaScripts" />
+}
+    @section StylePage{
+    <link href="/Site/css/client.css" rel="stylesheet" />
+   }
+
+
+    <div class="client-page">
+        <div class="container">
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet   </span></a></li>
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  ورود </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+
+            <div class="client-form">
+
+                <div class="inner">
+
+                    <form asp-action="Login" method="post" asp-route-returnUrl="@ViewData["returnUrl"]">
+                        <h1> ورود به سایت </h1>
+                        @* @if (ViewBag.IsSuccess != null)
+                    {
+                    <div class="alert alert-success">
+                    <p class="help-block">ورود با موفقیت انجام شد</p>
+                    </div>
+
+                    <script>
+                    // Your delay in milliseconds
+                    var delay = 3000;
+                    setTimeout(function () { window.location = "/UserPanel"; }, delay);
+                    </script>
+                    }*@
+                        @if (ViewBag.ActiveAccount == true)
+                    {
+                        <div class="alert alert-success">
+                            ثبت نام شما با موفقیت انجام شد  و حساب شما فعال شد میتوانید وارد حساب خود شوید
+                        </div>
+                    }
+                    @if (ViewBag.EditProfile == true)
+                    {
+                        <div class="alert alert-warning">
+                            بدلیل ویرایش پروفایل و بارگزاری مجدد اطلاعات لطفا مجدد لاگین کنید
+                        </div>
+                    }
+                    @if (ViewBag.EditPassword == true)
+                    {
+                        <div class="alert alert-success">
+                            رمز جدید برای شما ارسال گردید میتوانید وارد حساب خود شوید
+                        </div>
+                        <div class="alert alert-warning">
+                            لطفا بعد از ورود از قسمت حساب کاربری اقدام به تغیر رمز خود نمایید
+                        </div>
+                    }
+
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            <div class="input-element">
+                                <i class="zmdi zmdi-account"></i>
+                                <input asp-for="EmailOrMobile" type="text" class="form-control" placeholder="ایمیل یا شماره موبایل">
+                                <span asp-validation-for="EmailOrMobile" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="input-element">
+                                <i class="zmdi zmdi-lock"></i>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="رمز عبور " aria-describedby="password">
+
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 col-sm-6 col-xs-5 pull-right">
+                            <div class="checkbox-remember">
+
+                                <input type="checkbox" id="chk-remember" data-val="true" data-val-required="The RememberMe field is required." name="RememberMe" value="true">
+                                <label for="chk-remember"> مرا بخاطر بسپار </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <partial name="_CaptchaInput" />
+
+                        <div class="col-xs-12">
+                            <button class="button-st blue pull-left"> ورود به سایت </button>
+                        </div>
+                      @*  <div class="validation-summary-errors" asp-validation-summary="All" data-valmsg-summary="true">
+                        </div>*@
+                    </div>
+                    <br>
+
+                    @if (ViewBag.EditProfile == false && ViewBag.EditPassword == false && ViewBag.ActiveAccount == false)
+                    {
+                        <div class="alert alert-warning">
+                            در صورت  فعال نبودن حساب کاربری از قسمت فراموشی کلمه عبور اقدام نمایید
+                        </div>
+                    }
+
+                    <div class="other-link">
+                        <a asp-area="" asp-controller="Account" asp-action="Register"><i class="zmdi zmdi-account-add"></i> عضویت در سایت </a>
+                        <a asp-area="" asp-controller="Account" asp-action="ForgotPassword"><i class="zmdi zmdi-lock"></i> رمز عبور خود را فراموش کرده ام ! </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+

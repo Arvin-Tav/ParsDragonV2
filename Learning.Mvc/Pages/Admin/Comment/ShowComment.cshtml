@@ -1,0 +1,44 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Comment.ShowCommentModel
+@{
+    ViewData["Title"] = " نمایش نظر " + @Model.CourseComment.User.UserName + " برای دوره  " + @Model.CourseComment.Course.CourseTitle;
+
+}
+<div class="modal-header">
+    <h6 class="modal-title" id="modalCenterTitle">
+        جزئیات نظر @Model.CourseComment.CommentId
+    </h6>
+</div>
+<div class="modal-body">
+    <div id="card-table" class="card-body flex-div">
+        <div class="alert alert-success alertCodeCommentIsDelete" style="display: none">
+            <p class="text-success">نظر حذف شد</p>
+        </div>
+        <div class="alert alert-danger alertCodeCommentNotIsDelete" style="display:none ">
+            <p class="text-muted">نظر حذف نشد</p>
+        </div>
+        <div class="form-row ">
+
+            <div class="form-group col-md-4">
+                <label>نام کاربری:</label>
+                <span>@Model.CourseComment.User.UserName</span>
+            </div>
+            <div class="form-group col-md-4">
+                <label>تاریخ ثبت:</label>
+                <span>@Model.CourseComment.CreateDate.ToShamsi()</span>
+            </div>
+
+            <div class="form-group col-12">
+                <label>متن:</label>
+                <div class="bg-light p-3 uk-border-rounded">
+                    @Model.CourseComment.Comment
+                </div>
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button
+                     ajax-url-button="@Model.CourseComment.CommentId" href="/Admin/Comment/Index/DeleteComment?code=@Model.CourseComment.CommentId"
+                    class="btn btn-danger btn-sm text-white">حذف<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+            </div>
+        </div>
+    </div>
+</div>

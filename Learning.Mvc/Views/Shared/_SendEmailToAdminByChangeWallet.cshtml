@@ -1,0 +1,19 @@
+﻿@using Learning.Domain.DTO.Wallet
+@model ChangeWalletByAdminDTO
+@{
+    var withdraw = "";
+    if (Model.IsCharge)
+    {
+        withdraw = $"کیف پول کاربر  {Model.UserName}({Model.Mobile}) به مبلغ {Model.Amount.ToString("#,0")} تومان از طرف مدیریت  {Model.AdminName}({Model.AdminMobile}) شارژ شد";
+    }
+    else
+    {
+        withdraw = $"از کیف پول کاربر  {Model.UserName}({Model.Mobile}) مبلغ {Model.Amount.ToString("#,0")} تومان از طرف مدیریت   {Model.AdminName}({Model.AdminMobile}) کسر شد";
+    }
+}
+
+<div style="direction: rtl; padding: 20px">
+
+    <h2>@withdraw</h2>
+
+</div>

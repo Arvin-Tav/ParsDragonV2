@@ -1,0 +1,577 @@
+﻿.checkbox-layer .checkbox-option label:before, .multi-checkbox-in-row .checkbox-option label:before, .multi-radio-in-row .radio-option label:before {
+    outline: medium none;
+    text-decoration: none;
+    -webkit-transition: all .2s linear 0s;
+    -moz-transition: all .2s linear 0s;
+    -ms-transition: all .2s linear 0s;
+    -o-transition: all .2s linear 0s;
+    transition: all .2s linear 0s
+}
+
+.form-style .radio-selected:after, .multi-checkbox-in-row:after, .multi-radio-in-row:after {
+    display: block;
+    clear: both;
+    content: '';
+    visibility: hidden;
+    height: 0;
+    line-height: 0
+}
+
+.form-style {
+    padding: 10px 0
+}
+
+.msg-layer {
+    font-size: 12px;
+    word-spacing: -1px;
+    line-height: 24px;
+    padding: 5px 0;
+    color: #90adbf
+}
+
+    .msg-layer.red {
+        color: #f86262
+    }
+
+.form-style .input-layer, .form-style .select-layer, .form-style .textarea-layer {
+    width: 100%;
+    position: relative;
+    margin-bottom: 25px
+}
+
+.form-style .input-select-layer {
+    margin-bottom: 40px
+}
+
+.form-style .input-layer span, .form-style .select-layer span, .form-style .textarea-layer span {
+    font-size: 13px;
+    line-height: 22px;
+    padding: 5px 0;
+    color: #fa6060
+}
+
+.form-style .input-layer label, .form-style .select-layer label, .form-style .textarea-layer label {
+    display: block;
+    line-height: 22px;
+    font-size: 14px;
+    word-spacing: -2px;
+    color: #6e8ea4;
+    margin-bottom: 2px
+}
+
+.form-style .input-select-layer label {
+    display: block;
+    line-height: 22px;
+    font-size: 13px;
+    word-spacing: -2px;
+    color: #6e8ea4;
+    margin-bottom: 10px
+}
+
+    .form-style .input-layer label i, .form-style .input-select-layer label i, .form-style .select-layer label i, .form-style .textarea-layer label i {
+        position: relative;
+        top: 2px;
+        color: #cedbe3;
+        margin-left: 6px;
+        font-size: 18px
+    }
+
+.form-style .input-layer > input, .form-style .select-layer select {
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+    font-size: 14px;
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid #e4ecef;
+    color: #56707c;
+    font-size: 14px;
+    word-spacing: -1px;
+    margin-top: 8px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px
+}
+
+    .form-style .input-layer > input[type=file] {
+        padding: 0;
+        height: 40px;
+        border: 0;
+        margin: 10px 0 5px
+    }
+
+.form-style .select-layer select {
+    height: 40px;
+    padding-left: 0
+}
+
+.form-style .textarea-layer textarea {
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+    font-size: 13px;
+    width: 100%;
+    line-height: 23px;
+    padding: 10px;
+    color: #7f93ac;
+    font-size: 14px;
+    word-spacing: -1px;
+    height: 100px;
+    resize: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border: 1px solid #e4ecef;
+    margin-top: 8px
+}
+
+.form-style .select-option-link {
+    position: absolute;
+    left: 0;
+    bottom: 7px;
+    color: #0aa1f4;
+    font-size: 13px;
+    word-spacing: -1px;
+    border-right: 2px solid #e5ecf0;
+    padding-right: 12px;
+    line-height: 20px
+}
+
+    .form-style .select-option-link:hover {
+        color: #82bb1f
+    }
+
+    .form-style .select-option-link i {
+        font-size: 18px;
+        margin-left: 6px;
+        position: relative;
+        top: 2px
+    }
+
+.form-style button {
+    margin: 15px 0
+}
+
+.multi-checkbox-in-row {
+    margin: 7px 0;
+    position: relative
+}
+
+    .multi-checkbox-in-row .checkbox-option {
+        width: auto;
+        float: right;
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative
+    }
+
+        .checkbox-layer .checkbox-option input, .multi-checkbox-in-row .checkbox-option input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: hidden
+        }
+
+        .checkbox-layer .checkbox-option label, .multi-checkbox-in-row .checkbox-option label {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            padding-right: 27px
+        }
+
+            .checkbox-layer .checkbox-option label:before, .multi-checkbox-in-row .checkbox-option label:before {
+                width: 17px;
+                height: 17px;
+                line-height: 15px;
+                text-align: center;
+                border-radius: 2px;
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                border: 1px solid #d1dce2;
+                position: absolute;
+                right: 0;
+                top: 0;
+                content: '\f26b';
+                color: #fff;
+                font-family: Material-icon;
+                background: #fff
+            }
+
+        .checkbox-layer .checkbox-option input:checked + label:before, .multi-checkbox-in-row .checkbox-option input:checked + label:before {
+            content: '\f26b';
+            color: #7ec857;
+            font-weight: 700;
+            border-color: #8ac81f
+        }
+
+        .checkbox-layer .checkbox-option:hover label:before, .multi-checkbox-in-row .checkbox-option:hover label:before {
+            content: '\f26b';
+            color: #7fbb00;
+            font-weight: 700;
+            border-color: #7fbb00
+        }
+
+.checkbox-layer {
+    margin: 10px 0;
+    position: relative
+}
+
+    .checkbox-layer .checkbox-option {
+        display: block;
+        margin: 4px 0 4px 25px;
+        position: relative
+    }
+
+.multi-radio-in-row, .radio-layer {
+    position: relative;
+    margin: 10px 0
+}
+
+    .multi-radio-in-row .radio-option {
+        width: auto;
+        float: right;
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative
+    }
+
+    .radio-layer .radio-option {
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative
+    }
+
+        .multi-radio-in-row .radio-option input, .radio-layer .radio-option input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: hidden
+        }
+
+        .multi-radio-in-row .radio-option label, .radio-layer .radio-option label {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            padding-right: 27px
+        }
+
+            .multi-radio-in-row .radio-option label:before, .radio-layer .radio-option label:before {
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                position: absolute;
+                right: 0;
+                top: -1px;
+                content: '\f26c';
+                color: #c3d1d8;
+                font-size: 22px;
+                font-family: Material-icon
+            }
+
+            .multi-radio-in-row .radio-option label:hover:before, .radio-layer .radio-option label:hover:before {
+                color: #cedbe2;
+                content: '\f26e'
+            }
+
+        .multi-radio-in-row .radio-option input:checked + label:before, .radio-layer .radio-option input:checked + label:before {
+            color: #7ec857;
+            content: '\f26f'
+        }
+
+.form-style .radio-selected {
+    margin: 25px 0
+}
+
+    .form-style .radio-selected span {
+        float: right;
+        margin-left: 15px;
+        position: relative;
+        margin: 10px 0 12px 15px;
+        min-width: 300px
+    }
+
+    .form-style .radio-selected .select {
+        width: 120px;
+        height: 40px;
+        background: #f8fafd;
+        border-radius: 50px;
+        position: relative;
+        float: right;
+        border: 1px solid #d4dfec
+    }
+
+        .form-style .radio-selected .select:before {
+            content: 'Ø¨Ù„Ù‡';
+            position: absolute;
+            top: 10px;
+            left: 13px;
+            height: 2px;
+            color: #374a61;
+            font-size: 14px
+        }
+
+        .form-style .radio-selected .select:after {
+            content: 'Ø®ÛŒØ±';
+            position: absolute;
+            top: 10px;
+            left: 84px;
+            height: 2px;
+            color: #728dae;
+            font-size: 14px
+        }
+
+        .form-style .radio-selected .select label {
+            display: block;
+            width: 52px;
+            height: 22px;
+            border-radius: 50px;
+            transition: all .5s ease;
+            -moz-transition: all .5s ease;
+            -webkit-transition: all .5s ease;
+            cursor: pointer;
+            position: absolute;
+            top: 9px;
+            z-index: 1;
+            left: 12px;
+            background: #728dae
+        }
+
+    .form-style .radio-selected input[type=checkbox] {
+        visibility: hidden
+    }
+
+    .form-style .radio-selected .select input[type=checkbox]:checked + label {
+        left: 60px;
+        background: #7ec857
+    }
+
+.multi-checkbox-in-row {
+    margin: 7px 0;
+    position: relative
+}
+
+    .multi-checkbox-in-row .checkbox-option {
+        width: auto;
+        float: right;
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative
+    }
+
+        .checkbox-layer .checkbox-option input, .multi-checkbox-in-row .checkbox-option input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: hidden
+        }
+
+        .checkbox-layer .checkbox-option label, .multi-checkbox-in-row .checkbox-option label {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            padding-right: 27px
+        }
+
+            .checkbox-layer .checkbox-option label:before, .multi-checkbox-in-row .checkbox-option label:before {
+                width: 17px;
+                height: 17px;
+                line-height: 15px;
+                text-align: center;
+                border-radius: 2px;
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                border: 1px solid #d1dce2;
+                position: absolute;
+                right: 0;
+                top: 2px;
+                content: '\f26b';
+                color: #fff;
+                font-family: material
+            }
+
+        .checkbox-layer .checkbox-option input:checked + label:before, .multi-checkbox-in-row .checkbox-option input:checked + label:before {
+            content: '\f26b';
+            color: #76bd58;
+            font-weight: 700;
+            border-color: #8ac81f
+        }
+
+        .checkbox-layer .checkbox-option:hover label:before, .multi-checkbox-in-row .checkbox-option:hover label:before {
+            content: '\f26b';
+            color: #7fbb00;
+            font-weight: 700;
+            border-color: #7fbb00
+        }
+
+.checkbox-layer {
+    margin: 10px 0;
+    position: relative
+}
+
+    .checkbox-layer .checkbox-option {
+        display: block;
+        margin: 4px 0 4px 25px;
+        position: relative
+    }
+
+.multi-radio-in-row, .radio-layer {
+    position: relative;
+    margin: 10px 0
+}
+
+    .multi-radio-in-row .radio-option {
+        width: auto;
+        float: right;
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative
+    }
+
+    .radio-layer .radio-option {
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative
+    }
+
+        .multi-radio-in-row .radio-option input, .radio-layer .radio-option input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: hidden
+        }
+
+        .multi-radio-in-row .radio-option label, .radio-layer .radio-option label {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            padding-right: 27px
+        }
+
+            .multi-radio-in-row .radio-option label:before, .radio-layer .radio-option label:before {
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                position: absolute;
+                right: 0;
+                top: -1px;
+                content: '\f26c';
+                color: #c3d1d8;
+                font-size: 22px;
+                font-family: material
+            }
+
+            .multi-radio-in-row .radio-option label:hover:before, .radio-layer .radio-option label:hover:before {
+                color: #cedbe2;
+                content: '\f26e'
+            }
+
+        .multi-radio-in-row .radio-option input:checked + label:before, .radio-layer .radio-option input:checked + label:before {
+            color: #76bd58;
+            content: '\f26f'
+        }
+
+.form-style .radio-selected {
+    margin: 25px 0
+}
+
+    .form-style .radio-selected span {
+        float: right;
+        margin-left: 15px;
+        position: relative;
+        margin: 10px 0 12px 15px;
+        min-width: 300px
+    }
+
+    .form-style .radio-selected .select {
+        width: 120px;
+        height: 40px;
+        background: #f8fafd;
+        border-radius: 50px;
+        position: relative;
+        float: right;
+        border: 1px solid #d4dfec
+    }
+
+        .form-style .radio-selected .select:before {
+            content: 'Ø¨Ù„Ù‡';
+            position: absolute;
+            top: 10px;
+            left: 13px;
+            height: 2px;
+            color: #374a61;
+            font-size: 14px
+        }
+
+        .form-style .radio-selected .select:after {
+            content: 'Ø®ÛŒØ±';
+            position: absolute;
+            top: 10px;
+            left: 84px;
+            height: 2px;
+            color: #728dae;
+            font-size: 14px
+        }
+
+        .form-style .radio-selected .select label {
+            display: block;
+            width: 52px;
+            height: 22px;
+            border-radius: 50px;
+            transition: all .5s ease;
+            -moz-transition: all .5s ease;
+            -webkit-transition: all .5s ease;
+            cursor: pointer;
+            position: absolute;
+            top: 9px;
+            z-index: 1;
+            left: 12px;
+            background: #728dae
+        }
+
+    .form-style .radio-selected input[type=checkbox] {
+        visibility: hidden
+    }
+
+    .form-style .radio-selected .select input[type=checkbox]:checked + label {
+        left: 60px;
+        background: #76bd58
+    }
+
+.form-style .button-st {
+    margin-bottom: 30px
+}
+
+@media screen and (max-width :600px) {
+    .form-style {
+        padding: 0
+    }
+
+        .form-style .input-layer, .form-style .select-layer, .form-style .textarea-layer {
+            margin-bottom: 25px
+        }
+
+    .checkbox-layer .checkbox-option label, .multi-checkbox-in-row .checkbox-option label {
+        font-size: 13px;
+        word-spacing: -1px
+    }
+}
+
+@media screen and (max-width :480px) {
+    .form-style .select-option-link {
+        position: static;
+        padding-right: 0;
+        border: 0;
+        padding-top: 15px
+    }
+
+    .form-style .radio-selected span {
+        min-width: 100%;
+        margin-bottom: 20px
+    }
+}

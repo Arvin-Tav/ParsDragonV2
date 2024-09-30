@@ -1,0 +1,138 @@
+﻿@page "{handler?}"
+@model Learning.Mvc.Pages.Admin.Courses.IndexModel
+@{
+    ViewData["Title"] = "لیست دوره ها";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+
+                    <form class="card-form filter-form">
+                        <input type="hidden" class="pageId" name="PageId" value="@Model.FilterCourseDTO.PageId" />
+                        <input type="hidden" name="TeacherId" value="@Model.FilterCourseDTO.TeacherId" />
+                        <input type="hidden" name="UserId" value="@Model.FilterCourseDTO.UserId" />
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <input type="text" name="Search" value="@Model.FilterCourseDTO.Search" class="form-control" placeholder="نام دوره" />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="TeacherName" value="@Model.FilterCourseDTO.TeacherName" class="form-control" placeholder="نام مدرس" />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+
+                                <a href="/Admin/Courses" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+                                <a asp-page="CreateCourse" class="btn btn-success btn-sm LoadingDiv"> افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>تصویر</th>
+                                <th>عنوان دوره</th>
+                                <th>تعداد جلسه</th>
+                                <th>تعداد دانشجو</th>
+                                <th>مدرس </th>
+                                <th>قیمت </th>
+                                <th> تاریخ انتشار</th>
+                                <th> تاریخ بروزرسانی</th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var course in Model.FilterCourseDTO.Courses)
+                            {
+                                <tr class="item_@course.CourseId">
+                                    <td>
+                                        <img src="@course.GetCourseImageThumbAddress()" class="thumbnail" style="max-width: 120px" />
+                                    </td>
+                                    <td>
+                                        <a href="/ShowCourse/@course.CourseId/@course.CourseTitle.FixedNameCourse()">
+                                            @course.CourseTitle
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @course.CourseEpisodes.Count
+                                    </td>
+                                    <td>
+                                        @course.UserCourses.Count
+                                    </td>
+                                    <td>
+                                        @course.User.UserName
+                                    </td>
+                                    <td>
+                                        @course.CoursePrice.ToString("#,0")
+                                    </td>
+                                    <td>
+                                        @course.CreateDate.ToShamsi()
+                                    </td>
+                                    <td>
+                                        @course.UpdateDate.ToShamsi()
+                                    </td>
+                                    <td>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                            <a href="/Admin/Courses/EditCourse/@course.CourseId" class="text-primary LoadingDiv" uk-icon="create-outline"></a>
+                                        </span>
+                                        @if (course.IsShow)
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="قایل نمایش و با کلیک نمایش داده نمیشود">
+                                                <a href="/Admin/Courses/Index/IsShow?id=@course.CourseId" class="text-danger LoadingDiv" uk-icon="ban-outline"></a>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" d data-original-title="غیرفعال است و با کلیک نمایش داده خواهد شد ">
+                                                <a href="/Admin/Courses/Index/IsShow?id=@course.CourseId" class="text-success LoadingDiv" uk-icon="checkmark-outline"></a>
+                                            </span>
+                                        }
+                                        @if (course.IsSuggested)
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="  لغو پیشنهادی ">
+                                                <a href="/Admin/Courses/Index/IsSuggested?id=@course.CourseId" class="text-primary LoadingDiv" uk-icon="bookmark"></a>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" پیشنهاد برای کاربر ">
+                                                <a href="/Admin/Courses/Index/IsSuggested?id=@course.CourseId" class="text-primary LoadingDiv" uk-icon="bookmark-outline"></a>
+                                            </span>
+                                        }
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" افزودن بخش">
+                                            <a href="/Admin/Courses/IndexEpisode/@course.CourseId" class="text-primary LoadingDiv" uk-icon="add"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="   مشاهده کاربران این دوره">
+                                            <a href="/Admin/Users/Index?CourseId=@course.CourseId" class="text-primary LoadingDiv" uk-icon="person-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="  مشاهده سوالات ">
+                                            <a href="/Admin/Question/Questions?courseId=@course.CourseId" class="text-primary LoadingDiv" uk-icon="help-circle-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="  مشاهده نظرات">
+                                            <a href="/Admin/Comment/Index?courseId=@course.CourseId" class="text-primary LoadingDiv" uk-icon="chatbubble-ellipses"></a>
+                                        </span>
+
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                            <a ajax-url-button="@course.CourseId"
+                                           href="/Admin/Courses/Index/DeleteCourse?code=@course.CourseId" class="text-danger" uk-icon="trash"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <partial name="_PagingAdminPartial" model="@Model.FilterCourseDTO.GetCurrentPaging()" />
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,280 @@
+﻿.banner-layer {
+    width: 100%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    display: block
+}
+
+.all-courses-list article ul:after {
+    display: block;
+    clear: both;
+    content: '';
+    visibility: hidden;
+    height: 0;
+    line-height: 0
+}
+
+.branch-courses-layer .right-content {
+    width: 75%;
+    float: right;
+    padding-left: 25px
+}
+
+.branch-courses-layer .left-content .categories-sidebar {
+    margin-bottom: 25px
+}
+
+    .branch-courses-layer .left-content .categories-sidebar .heading {
+        line-height: 50px;
+        height: 50px;
+        border-bottom: 1px solid #eff2f5;
+        padding: 0 20px;
+        font-size: 15px;
+        font-weight: 700;
+        position: relative
+    }
+
+        .branch-courses-layer .left-content .categories-sidebar .heading:before {
+            position: absolute;
+            right: -8px;
+            width: 16px;
+            height: 5px;
+            border-radius: 10px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            background-color: #2196f3;
+            content: '';
+            top: 23px;
+            z-index: 2
+        }
+
+    .branch-courses-layer .left-content .categories-sidebar .inner {
+        padding: 15px 20px
+    }
+
+        .branch-courses-layer .left-content .categories-sidebar .inner > ul > li > a {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2d3339;
+            display: block;
+            line-height: 30px;
+            padding-right: 12px;
+            position: relative
+        }
+
+            .branch-courses-layer .left-content .categories-sidebar .inner > ul > li > a:before {
+                width: 6px;
+                height: 6px;
+                border-radius: 100%;
+                -moz-border-radius: 100%;
+                -webkit-border-radius: 100%;
+                background-color: #2196f3;
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 12px
+            }
+
+        .branch-courses-layer .left-content .categories-sidebar .inner > ul > li ul {
+            padding: 4px 15px 5px 5px
+        }
+
+            .branch-courses-layer .left-content .categories-sidebar .inner > ul > li ul li a {
+                line-height: 25px;
+                padding: 3px 0;
+                font-size: 14px;
+                color: #5f6973
+            }
+
+        .branch-courses-layer .left-content .categories-sidebar .inner a:hover {
+            color: #2196f3
+        }
+
+.branch-courses-layer .left-content {
+    width: 25%;
+    float: left
+}
+
+.filters-layer .heading {
+    line-height: 50px;
+    height: 50px;
+    border-bottom: 1px solid #eff2f5;
+    padding: 0 20px;
+    font-size: 15px;
+    font-weight: 700;
+    position: relative
+}
+
+    .filters-layer .heading:before {
+        position: absolute;
+        right: -8px;
+        width: 16px;
+        height: 5px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        background-color: #2196f3;
+        content: '';
+        top: 23px;
+        z-index: 2
+    }
+
+.filters-layer .inner {
+    padding: 5px 25px 0
+}
+
+.filters-layer button {
+    line-height: 45px;
+    height: 45px
+}
+
+.all-courses-list {
+    padding: 25px 0
+}
+
+    .all-courses-list .heading {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 35px;
+        color: #2d3339;
+        margin-bottom: 20px
+    }
+
+    .all-courses-list article {
+        padding: 10px 230px 15px 15px;
+        margin-bottom: 25px;
+        position: relative
+    }
+
+        .all-courses-list article .img-layer {
+            width: 200px;
+            display: block;
+            position: absolute;
+            right: 9px;
+            top: 10px
+        }
+
+        .all-courses-list article h2 a {
+            font-size: 15px;
+            margin: 5px 0;
+            display: block;
+            line-height: 28px;
+            color: #2196f3;
+            margin-bottom: 8px
+        }
+
+            .all-courses-list article h2 a:hover {
+                color: #7db20d
+            }
+
+        .all-courses-list article ul li {
+            width: 50%;
+            float: right;
+            padding: 5px 0 6px 5px
+        }
+
+            .all-courses-list article ul li .title {
+                color: #8899a0;
+                padding-left: 3px
+            }
+
+            .all-courses-list article ul li .content {
+                color: #2d3339
+            }
+
+                .all-courses-list article ul li .content i {
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #7fbb00;
+                    font-style: normal
+                }
+
+@media screen and (max-width :1200px) {
+    .branch-courses-layer .left-content .categories-sidebar .inner {
+        padding: 12px 18px
+    }
+
+    .branch-courses-layer .right-content {
+        width: 73%
+    }
+
+    .branch-courses-layer .left-content {
+        width: 27%
+    }
+
+    .all-courses-list article {
+        padding: 10px 200px 10px 10px
+    }
+
+        .all-courses-list article .img-layer {
+            width: 170px
+        }
+
+        .all-courses-list article ul {
+            margin-bottom: 2px
+        }
+
+            .all-courses-list article ul li {
+                padding: 3px 0 3px 3px
+            }
+
+        .all-courses-list article h2 a {
+            margin: 3px 0 6px
+        }
+}
+
+@media screen and (max-width :992px) {
+    .branch-courses-layer .right-content {
+        width: 100%;
+        float: none;
+        padding-left: 0
+    }
+
+    .branch-courses-layer .left-content {
+        display: none
+    }
+}
+
+@media screen and (max-width :700px) {
+    .all-courses-list article {
+        padding: 12px
+    }
+
+        .all-courses-list article .img-layer {
+            position: static;
+            width: 100%;
+            margin-bottom: 15px
+        }
+
+        .all-courses-list article ul {
+            padding: 5px 10px 10px
+        }
+
+            .all-courses-list article ul li {
+                padding: 5px 0 5px 5px
+            }
+
+        .all-courses-list article h2 a {
+            padding: 0 10px
+        }
+}
+
+@media screen and (max-width :600px) {
+    .filters-layer .inner {
+        padding: 15px 20px 0
+    }
+
+    .all-courses-list article ul li {
+        width: 100%;
+        float: none
+    }
+}
+
+@media screen and (max-width :480px) {
+    .all-courses-list article h2 a, .all-courses-list article ul {
+        padding: 0
+    }
+}

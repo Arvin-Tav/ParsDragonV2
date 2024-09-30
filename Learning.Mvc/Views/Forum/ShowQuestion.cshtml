@@ -1,0 +1,187 @@
+﻿@inject IPermissionService _PermissionService;
+@inject IForumService _forumService;
+@using System.Security.Claims
+@using Learning.Domain.DTO.Forum
+@model Learning.Domain.DTO.Forum.CreateAnswerDTO
+@{
+    ShowQuestionByAnswersDTO question = ViewBag.ShowQuestions as ShowQuestionByAnswersDTO;
+    ViewData["Title"] = question.Question.Title;
+    bool isAdmin = await _PermissionService.CheckPermission("Courses",User.GetUserId());
+    bool IsUserTypeQuestion = await _forumService.IsUserTypeQuestion(question.Question.QuestionId, User.GetUserId());
+}
+
+@section StylePage{
+    <link rel="stylesheet" type="text/css" href="/site/css/question.css">
+    <link rel="stylesheet" type="text/css" href="/site/css/course.css">
+}
+
+
+<div class="container">
+    <br>
+
+    <header class="course-page-header">
+        <div class="right-side">
+
+            <h1><a>مشکل در .net6</a></h1>
+
+            <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/Forum"><span itemprop="name"> پرسش و پاسخ </span></a></li>
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/Forum?courseId=@question.Question.CourseId&courseTitle=@question.Question.Course.CourseTitle.Replace(" ","-")"><span itemprop="name">  @question.Question.Course.CourseTitle </span></a></li>
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  مشکل در @question.Question.Title </span></a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="left-side">
+        </div>
+    </header>
+    <!-- /breadcrumb -->
+    <!-- main content -->
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+            <!-- main Question -->
+            <section class="main-question-content box-shadow">
+                <header class="question-page-header">
+                    <br>
+                    <ul>
+                        <li><span>@question.Question.CreateDate.ToShamsi()</span></li>
+                    </ul>
+                    <!-- این دکمه رو فقط کسی که سوال رو مطرح کرده میبینه ، وقتی بزنه تو فرم زیر اطلاعاتش میاد و میتونه ویرایش کنه  -->
+                    @*<a class="edit-question" href="/questions/EditQuestion/62384"><i class="zmdi zmdi-edit"></i></a>*@
+                    <!-- این دکمه رو فقط کسی که سوال رو مطرح کرده میبینه ، وقتی بزنه تو فرم زیر اطلاعاتش میاد و میتونه ویرایش کنه  -->
+                    @if (IsUserTypeQuestion || isAdmin)
+                    {
+                        <a onclick="Confirmation(event)" class="delete-question confirmation" href="/Forum/DeleteQuestion/@question.Question.QuestionId?courseId=@question.Question.CourseId"><i class="zmdi zmdi-delete"></i></a>
+                    }
+
+
+                </header>
+
+                <div class="inner">
+                    <!-- عنوان سوال رو تو تگ h2 در این قسمت هم قرار بدید -->
+                    <h2> مشکل در @question.Question.Title : </h2>
+
+                    <!-- /عنوان سوال رو تو تگ h2 در این قسمت هم قرار بدید -->
+                    <!-- متن پرسش در این لایه قرار میگیره -->
+                    <div class="content-layer">
+
+                        @Html.Raw(question.Question.Body)
+                    </div>
+
+                    <div class="detail-layer">
+                        <div class="author">
+                            <a href="" class="img-layer box-shadow">
+                                <img src="@question.Question.User.GetUserImageThumbAddress()" alt="@question.Question.User.UserName">
+                            </a>
+                            <h3><a href=""> @question.Question.User.UserName </a></h3>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /main Question -->
+            <!-- answers -->
+            <div class="question-answers-layer">
+                @foreach (var item in question.Answers)
+                {
+                    <!-- each answer -->
+                    <div class="answer-row  ">
+                        <div class="content-col box-shadow">
+                            <div class="author-col">
+                                <a href="#" class="img-layer box-shadow">
+                                    <img src="@question.Question.User.GetUserImageThumbAddress()" alt="AdminUser">
+                                </a>
+                                <a href="">@item.User.UserName </a>
+                            </div>
+
+                            <div class="detail-items">
+                                <ul>
+                                    <li><span>@item.CreateDate.ToShamsi()</span></li>
+                                    @*<li><span>ساعت 11:25</span></li>*@
+                                    @*<li><a class="edit-question" href="/questions/EditAnswer/107601"><i class="zmdi zmdi-edit"></i></a></li>*@
+                                    @if (IsUserTypeQuestion || isAdmin)
+                                    {
+                                        <li><a class="edit-question" onclick="Confirmation(event)" href="/Forum/DeleteAnswer/@item.AnswerId?questionId=@item.QuestionId"><i class="zmdi zmdi-delete"></i></a></li>
+                                    }
+
+
+
+                                </ul>
+                            </div>
+
+                            <p>
+                                @Html.Raw(item.BodyAnswer)
+                            </p>
+
+                            <!-- امتیاز به پرسش -->
+
+
+                        </div>
+                    </div>
+                    <!-- /each answer -->
+                }
+
+            </div>
+            <!-- /answers -->
+            <div id="form-div">
+                <section class="main-question-content box-shadow">
+                    <header class="question-page-header">
+                        <h1><a href="">افزودن پاسخ جدید</a></h1>
+                    </header>
+
+                    <div class="inner">
+                        <div class="content-layer">
+                            <div class="comments-layer">
+                                <form method="post" id="submitForm" asp-action="ShowQuestion" novalidate="novalidate">
+                                    <input type="hidden" asp-for="QuestionId" value="@question.Question.QuestionId" />
+                                    <input type="hidden" asp-for="CourseId" value="@question.Question.CourseId" />
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <textarea asp-for="Body" placeholder=" پاسخ خود را بنویسید " style="display: none;"></textarea>
+                                            <span asp-validation-for="Body" class="field-validation-valid" data-valmsg-for="Body" data-valmsg-replace="true"></span>
+
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12 captcha-col">
+                                            <partial name="_CaptchaInput" />
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12 pull-left">
+                                            <button class="button-st green"> ثبت پاسخ شما </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <cache expires-after="@TimeSpan.FromMinutes(15)">
+                @await Component.InvokeAsync("LastQuestions")
+            </cache>
+        </div>
+    </div>
+    <!-- /main content -->
+
+</div>
+
+@section Scripts
+{
+
+    <script src="/site/js/custom.js"></script>
+    <script src="/site/js/clipboard.min.js"></script>
+    <script src="/site/js/question.js"></script>
+    <script src="/site/js/Recorder/Recorder.js"></script>
+    <script src="/site/js/CustomJs/CustomRecorder.js"></script>
+
+    <script src="~/site/ckeditor5/ckeditor.js"></script>
+    <script src="~/site/ckeditor5/config.js"></script>
+
+}

@@ -1,0 +1,100 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Sliders.EditSliderModel
+@{
+    ViewData["Title"] = "ویرایش اسلایدر ";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class=" card flex-div border-0 main-shadow">
+            <input type="hidden" asp-for="EditSliderDTO.SliderImageName" />
+            <input type="hidden" asp-for="EditSliderDTO.SliderId" />
+            <div class="modal-body row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات اسلایدر
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>نام اسلایدر </label>
+                                    <input type="text" asp-for="EditSliderDTO.Name" class="form-control">
+                                    <span asp-validation-for="EditSliderDTO.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>گروه اصلی</label>
+                                    <select class="form-control" asp-for="EditSliderDTO.GroupId" asp-items="@(ViewData["Groups"] as SelectList)"></select>
+                                    <span asp-validation-for="EditSliderDTO.GroupId"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>گروه فرعی</label>
+                                    <select class="form-control" asp-for="EditSliderDTO.SubGroup" asp-items="@(ViewData["SubGroups"] as SelectList)"></select>
+                                    <span asp-validation-for="EditSliderDTO.SubGroup"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>در صورتی که جز کلاس می باشد گزینه زیر را انتخاب کنبد </label>
+                                    <br />
+                                    <input type="checkbox" asp-for="EditSliderDTO.IsOnlineClass" class="uk-checkbox" />مربوط به کلاس می باشد
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عکس اسلایدر </label>
+                                    <img id="imgCourse" class="thumbnail" src="@Model.EditSliderDTO.GetSliderImageThumbAddress()" style="max-height:200px;" />
+
+                                    <div class="form-group ">
+                                        <label>انتخاب تصویر</label>
+                                        <input type="file" name="imageSlider" id="imageSlider">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-end">
+                            <button type="submit" class="btn btn-success btn-sm text-white">ویرایش<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+<script>
+
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imgCourse').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imageSlider").change(function () {
+        readURL(this);
+    });
+</script>
+
+
+}

@@ -1,0 +1,84 @@
+﻿@using Learning.Domain.DTO.Course
+@model IEnumerable<ShowCoursesUserDTO>
+@{
+    ViewData["Title"] = "پنل کاربری " + User.Identity.Name;
+}
+
+
+<div class="account-page-style">
+    <div class="container">
+        <div class="container">
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  دوره های من  </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+        </div>
+        <div class="account-page">
+
+            <div class="row">
+
+                <partial name="_SideBar" />
+
+
+
+                <!-- left side -->
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="left-content">
+
+
+                        <section class="section-style box-shadow">
+                            <header><h2> دوره های من </h2></header>
+                            <div class="inner">
+
+
+                                <div class="course-tbl-layer">
+                                    <!-- head -->
+                                    <div class="course-tbl-head">
+                                        <ul>
+                                            <li><span> عنوان آموزش </span></li>
+                                            <li><span> وضعیت </span></li>
+                                        </ul>
+                                    </div>
+                                    <!-- /head -->
+                                    <div class="course-tbl-body">
+                                        @foreach (var item in Model)
+                                        {
+                                            <!-- row -->
+                                            <div class="course-tbl-row">
+                                                <ul>
+                                                    <li>
+                                                        <span class="title"> عنوان آموزش : </span> <span class="value">
+                                                            <a href="/ShowCourse/@item.CourseId/@item.Title.FixedNameCourse()">@item.Title</a>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="send-request"> @(item.CoursePrice!=0?"خریداری شده":"رایگان") </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        }
+                                        <!-- /row -->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </section>
+
+
+
+                    </div>
+                </div>
+                <!-- /left side -->
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

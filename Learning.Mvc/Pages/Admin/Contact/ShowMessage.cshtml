@@ -1,0 +1,43 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Contact.ShowMessageModel
+@{
+    ViewData["Title"] = " نمایش پیام " + @Model.Contact.Name;
+}
+
+<div class="modal-header">
+    <h6 class="modal-title" id="modalCenterTitle">
+        جزئیات پیام @Model.Contact.ContactId
+    </h6>
+</div>
+<div class="modal-body">
+    <div id="card-table" class="card-body flex-div">
+
+        <div class="form-row ">
+            <div class="form-group col-md-3">
+                <label>نام :</label>
+                <span> @Model.Contact.Name</span>
+            </div>
+            <div class="form-group col-md-3">
+                <label>شماره تلفن :</label>
+                <span> @Model.Contact.TellNo</span>
+            </div>
+            <div class="form-group col-md-3">
+                <label>ایمیل :</label>
+                <span> @Model.Contact.Email</span>
+            </div>
+            <div class="form-group col-md-3">
+                <label>تاریخ ارسال:</label>
+                <span>@Model.Contact.CreateDate.ToShamsi()</span>
+            </div>
+
+            <div class="form-group col-12">
+                <label>متن:</label>
+                <div class="bg-light p-3 uk-border-rounded">
+                    @Model.Contact.Message
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

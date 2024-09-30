@@ -1,0 +1,22 @@
+﻿@using Learning.Domain.Models.Blog;
+@model Blog
+
+
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 article-col">
+    <div class="box-shadow">
+        <div class="img-layer">
+            <img class="lazy" src="/images/LazyLoad.png" data-src="@Model.GetBlogImageThumbAddress()">
+            <a href="/blog/@Model.BlogId/@Model.Title.FixedNameCourse()"> <span><i>مشاهده کامل مقاله</i></span> </a>
+        </div>
+        <h2><a href="/blog/@Model.BlogId/@Model.Title.FixedNameCourse()">@Model.Title</a></h2>
+        <p>
+            @Model.Description
+        </p>
+        <div class="detail">
+            @*<span><i class="zmdi zmdi-eye"></i> 605 </span>
+            <span><i class="zmdi zmdi-comments"></i> 2 </span>*@
+            <a href="#"><i class="zmdi zmdi-account"></i> @Model.User.UserName </a>
+        </div>
+    </div>
+
+</div>

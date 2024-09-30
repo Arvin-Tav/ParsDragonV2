@@ -1,0 +1,157 @@
+﻿@page
+
+@model Learning.Mvc.Pages.Admin.Users.CreateUserModel
+@{
+    ViewData["Title"] = "افزودن کاربر";
+    List<Role> Roles = ViewData["Roles"] as List<Role>;
+}
+
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class=" card flex-div border-0 main-shadow">
+            <div class="modal-body row">
+                <div class="col-md-8 col-lg-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات کاربر
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>نام </label>
+                                    <input type="text" asp-for="CreateUserByAdminDTO.FirstName" class="form-control">
+                                    <span asp-validation-for="CreateUserByAdminDTO.FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>نام خانوادگی</label>
+                                    <input type="text" asp-for="CreateUserByAdminDTO.LastName" class="form-control">
+                                    <span asp-validation-for="CreateUserByAdminDTO.LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>نام کاربری</label>
+                                    <input type="text" asp-for="CreateUserByAdminDTO.UserName" class="form-control">
+                                    <span asp-validation-for="CreateUserByAdminDTO.UserName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>شماره موبایل </label>
+                                    <input type="text" asp-for="CreateUserByAdminDTO.Mobile" class="form-control">
+                                    <span asp-validation-for="CreateUserByAdminDTO.Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>ایمیل</label>
+                                    <input type="email" asp-for="CreateUserByAdminDTO.Email" class="form-control">
+                                    <span asp-validation-for="CreateUserByAdminDTO.Email" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>کلمه عبور</label>
+                                    <input type="text" asp-for="CreateUserByAdminDTO.Password" class="form-control">
+                                    <span asp-validation-for="CreateUserByAdminDTO.Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>کبف پول </label>
+                                    <input asp-for="CreateUserByAdminDTO.Wallet" class="form-control">
+                                    <span asp-validation-for="CreateUserByAdminDTO.Wallet" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>بیوگرافی(اختیاری) </label>
+                                    <textarea class="form-control" asp-for="CreateUserByAdminDTO.AboutMe"></textarea>
+                                    <span asp-validation-for="CreateUserByAdminDTO.AboutMe" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>انتخاب نقش کاربر</label>
+
+
+
+                                    @foreach (Role item in Roles)
+                                    {
+                                        <div class="checkbox">
+                                            <label>
+                                                <input style="margin:5px" type="checkbox" name="selectedRoles" value="@item.RoleId">@item.RoleTitle
+                                            </label>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4  col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            تصویر کاربر
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <img id="imgAvatar" class="thumbnail" src="@PathExtensions.DefaultAvatar" />
+
+                            <div class="form-group">
+                                <label>انتخاب تصویر</label><br />
+                                <input type="file"  name="imageUser" id="imageUser">
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="submit" class="btn btn-success btn-sm text-white">افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imageUser").change(function () {
+            readURL(this);
+        });
+    </script>
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+
+        CKEDITOR.replace('CreateUserByAdminDTO_AboutMe', {
+            customConfig: '/ckeditor/config.js'
+        });
+
+    </script>
+}

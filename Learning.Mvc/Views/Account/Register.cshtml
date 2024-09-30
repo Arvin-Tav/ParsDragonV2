@@ -1,0 +1,105 @@
+﻿@model RegisterDTO
+@{
+    ViewData["Title"] = "ثبت نام";
+}
+
+@section StylePage{
+    <link href="/site/css/client.css" rel="stylesheet" />
+   }
+
+    <!-- main content page -->
+    <div class="client-page">
+        <div class="container">
+            <!-- breadcrumb -->
+          <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet   </span></a></li>
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  ثبت نام </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+
+            <div class="client-form">
+                <div class=inner>
+                    <form asp-action="Register" method="post">
+                        <input type="hidden" id="captchaInput" name="GoogleReCaptchaResponse" value="" />
+                        <h1> ثبت نام در سایت </h1>
+                        <p>
+
+                        </p>
+
+                        @*<img src="/images/.svg">*@
+
+                        <div class="row">
+
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="input-element">
+                                    <i class="zmdi zmdi-account"></i>
+                                    <input type="text" placeholder="نام کاربری" asp-for="UserName" maxlength="100">
+                                </div>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="input-element">
+                                    <i class="zmdi zmdi-phone"></i>
+                                    <input asp-for="Mobile" placeholder="موبایل" data-val="true" data-val-maxlength-max="100" data-val-regex="موبایل را بدرستی وارد کنید" data-val-regex-pattern="^[0][9][0-9][0-9]{8,8}$">
+                                </div>
+                                <span asp-validation-for="Mobile" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="input-element">
+                                    <i class="zmdi zmdi-email"></i>
+                                    <input type="email" placeholder="ایمیل" asp-for="Email" maxlength="100">
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="input-element">
+                                    <i class="zmdi zmdi-lock"></i>
+                                    <input type="password" placeholder="رمز عبور" asp-for="Password" maxlength="100">
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                                <div class="input-element">
+                                    <i class="zmdi zmdi-lock"></i>
+                                    <input type="password" asp-for="RePassword" placeholder="تکرار رمز عبور" maxlength="100">
+                                </div>
+                                <span asp-validation-for="RePassword" class="text-danger"></span>
+
+                            </div>
+                            <div class="clearfix"></div>
+                            <partial name="_CaptchaInput" />
+
+                            <div class="clearfix"></div>
+
+
+                            <div class="col-xs-12">
+                                <button class="button-st blue pull-left"> ثبت نام در سایت </button>
+                            </div>
+                        </div>
+
+
+                        <div class="other-link">
+                            <a  asp-area="" asp-controller="Account" asp-action="Login"><i class="zmdi zmdi-account"></i> ورود به سایت </a>
+                            <a asp-area="" asp-controller="Account" asp-action="ForgotPassword"><i class="zmdi zmdi-lock"></i> رمز عبور خود را فراموش کرده ام ! </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /main content page -->
+    @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <partial name="_CaptchaScripts" />
+
+}

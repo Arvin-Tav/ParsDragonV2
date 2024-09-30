@@ -1,0 +1,93 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Roles.EditRoleModel
+@{
+    ViewData["Title"] = "ویرایش نقش";
+    List<Permission> permissions = ViewData["Permission"] as List<Permission>;
+}
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class=" card flex-div border-0 main-shadow">
+            <input type="hidden" asp-for="EditRoleDTO.RoleId" />
+            <div class="modal-body row">
+                <div class="col-md-8 col-lg-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات نقش
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <div class="form-group">
+                                        <label>عنوان نقش</label>
+                                        <input type="text" asp-for="EditRoleDTO.RoleTitle" class="form-control">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                                    </div>
+                                </div>
+                                <div class="justify-content-end">
+                                    <button type="submit" class="btn btn-success btn-sm text-white">ویرایش<span class="icon-holder uk-margin-small-left" uk-icon="add-circle-outline"></span></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4  col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            دسترسی های نقش
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            @{
+                                List<int> SelectedPermissions = Model.EditRoleDTO.SelectedPermission as List<int>;
+                            }
+                            <ul>
+                                @foreach (var permission in permissions.Where(p => p.ParentID == null))
+                                {
+                                    <li>
+                                        <input type="checkbox" name="SelectedPermission" @((SelectedPermissions.Any(p => p == permission.PermissionId) ? "checked" : "")) value="@permission.PermissionId" /> @permission.PermissionTitle
+
+                                        @if (permissions.Any(p => p.ParentID == permission.ParentID))
+                                        {
+                                            <ul>
+                                                @foreach (var sub in permissions.Where(p => p.ParentID == permission.PermissionId))
+                                                {
+                                                    <li>
+                                                        <input type="checkbox" @((SelectedPermissions.Any(p => p == sub.PermissionId) ? "checked" : "")) name="SelectedPermission" value="@sub.PermissionId" /> @sub.PermissionTitle
+                                                        @if (permissions.Any(p => p.ParentID == sub.ParentID))
+                                                        {
+                                                            <ul>
+
+                                                                @foreach (var sub2 in permissions.Where(p => p.ParentID == sub.PermissionId))
+                                                                {
+                                                                    <li>
+                                                                        <input type="checkbox" @((SelectedPermissions.Any(p => p == sub2.PermissionId) ? "checked" : "")) name="SelectedPermission" value="@sub2.PermissionId" /> @sub2.PermissionTitle
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </form>
+    </div>
+</div>

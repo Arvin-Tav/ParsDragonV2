@@ -1,0 +1,53 @@
+﻿@page "{handler?}"
+@model Learning.Mvc.Pages.Admin.Roles.IndexModel
+@{
+    ViewData["Title"] = "لیست نقش ها";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+                    <div class="form-group pb-0 mb-0 mr-1 mr-md-3">
+                        <a asp-page="CreateRole" class="btn btn-success btn-sm LoadingDiv"> افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>عنوان نقش</th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var role in Model.RolesList)
+                            {
+                                <tr class="item_@role.RoleId">
+                                    <td>@role.RoleTitle</td>
+                                    <td>
+
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                            <a href="/Admin/Roles/EditRole/@role.RoleId" class="text-primary LoadingDiv" uk-icon="create-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                            <a ajax-url-button="@role.RoleId"
+                                           href="/Admin/Roles/Index/DeleteRole?code=@role.RoleId"
+                                           class="text-danger" uk-icon="trash"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

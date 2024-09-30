@@ -1,0 +1,584 @@
+﻿@model Course
+@inject ICourseService couserService;
+@inject IPermissionService _PermissionService;
+@{
+
+    ViewData["Title"] = Model.CourseTitle;
+    bool isUserInCourse = false;
+    bool isAdmin = false;
+    bool isMasterInCourse = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        isUserInCourse = await couserService.IsUserInCourse(User.GetUserId(), Model.CourseId);
+        isMasterInCourse = await couserService.IsMasterInCourse(User.GetUserId(), Model.CourseId);
+        isAdmin = await _PermissionService.CheckPermission("AccessToCourses", User.GetUserId());
+    }
+
+    TimeSpan time = new TimeSpan(Model.CourseEpisodes.Sum(e => e.EpisodeTime.Ticks));
+
+}
+@section StylePage{
+    <link rel="stylesheet" type="text/css" href="/site/css/course.css">
+    <link rel="stylesheet" type="text/css" href="/site/css/video-js.min.css">
+    <link rel="stylesheet" type="text/css" href="/site/css/page.css">
+    <link href="/site/css/star-rating.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/site/css/course1.css">
+}
+
+    @section MetaTag
+    {
+
+    <link rel="canonical" href="https://MoneyMagnet.com/ShowCourse/@Model.CourseId/@Model.CourseTitle" />
+
+    <meta name="keywords" content="MoneyMagnet، آموزش زبان های خارجی، زبان، @Model.Tags">
+    <meta name="author" content="MoneyMagnet ">
+    <meta http-equiv="refresh" content="43200">
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta name=description content="@Model.CourseTitle">
+    <meta property=og:site_name value="خودآموزش MoneyMagnet">
+    <meta property=og:title content="@Model.CourseTitle">
+    <meta property=og:url content="https://MoneyMagnet.com/Course/ShowCourse/@Model.CourseId/@Model.CourseTitle" />
+    <meta property=og:image content="@Model.GetCourseImageAddress()">
+    <meta property=og:image:url content="@Model.GetCourseImageAddress()" />
+    <meta property=og:image:width content="700">
+    <meta property="og:image:height" content="500">
+    <meta property=og:image:type content="image/jpg">
+    <meta property=og:description content="@Model.CourseTitle">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+    <meta name="twitter:title" content="@Model.CourseTitle">
+    <meta name="twitter:description" content="@Model.CourseTitle" />
+    <meta name="twitter:image" content="https://MoneyMagnet.com/images/logo.png">
+    <meta name="twitter:card" content=summary_large_image>
+    <meta name="twitter:site" content="@Model.CourseDescription">
+}
+
+
+
+    <div class="container">
+        <input type="hidden" value="@Model.CourseId" id="CourseId">
+        <header class="course-page-header">
+            <div class="right-side">
+
+                <h1><a>@Model.CourseTitle </a></h1>
+
+                <!-- breadcrumb -->
+                <div class="breadcrumb">
+                    <ul itemtype="http://schema.org/BreadcrumbList">
+                        <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                        <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" asp-controller="Course" asp-action="Index"><span itemprop="name"> دوره های آموزشی </span></a></li>
+                        <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" asp-controller="Course" asp-action="Index" asp-route-selectedGroups="@Model.CourseGroup.GroupId"><span itemprop="name">  @Model.CourseGroup.GroupTitle </span></a></li>
+                        <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  @Model.CourseTitle </span></a></li>
+                    </ul>
+                </div>
+                <!-- /breadcrumb -->
+
+            </div>
+
+        </header>
+
+
+
+
+        <!-- main content -->
+        <!-- left -->
+
+
+
+        <div class="main-content">
+            <!-- course details in responsive -->
+
+
+            <div class="box-shadow course-details-layer">
+
+
+
+                @if (Model.CoursePrice != 0)
+            {
+                <span class="course-price notShowInRecording">
+
+                    <i class="zmdi zmdi-money"></i>
+
+                    قیمت این دوره:
+                    <span class="price-amount"><i> @Model.CoursePrice.ToString("#,0") </i> تومان </span>
+
+                </span>
+
+            }
+            else
+            {
+                <span class="course-price notShowInRecording">
+
+                    <i class="zmdi zmdi-money"></i>
+                    قیمت این دوره:                                <span class="price-amount"><i> رایگانــ </i> </span>
+
+                </span>
+
+            }
+
+
+            <ul>
+                <li><i class="zmdi zmdi-account"></i> مدرس دوره : <span> @Model.User.UserName </span> <a rel="author" href="#">  </a></li>
+                <li class="notShowInRecording"><i class="zmdi zmdi-videocam"></i> تعداد ویدیوها : <span> @Model.CourseEpisodes.Count ویدیو </span></li>
+                <li class="notShowInRecording"><i class="zmdi zmdi-time"></i> مدت زمان دوره : <span> @time  </span></li>
+
+                <li><i class="zmdi zmdi-layers"></i> سطح دوره : <span>  @Model.CourseLevel.LevelTitle </span></li>
+                <li><i class="zmdi zmdi-info"></i> وضعیت دوره : <span class="blue-lbl"> @Model.CourseStatus.StatusTitle  </span></li>
+                <li class="notShowInRecording"><i class="zmdi zmdi-calendar-alt notShowInRecording"></i> تاریخ ثبت این دوره : <span> @Model.CreateDate.ToShamsi() </span></li>
+                <li class="notShowInRecording"><i class="zmdi zmdi-calendar-alt notShowInRecording"></i> تاریخ آخرین بروزرسانی : <span> @Model.UpdateDate.ToShamsi() </span></li>
+            </ul>
+            @if (Model.CoursePrice != 0)
+            {
+
+
+                @if (isUserInCourse)
+                {
+                    <span class="text-success notShowInRecording"><i class="zmdi zmdi-check-all">&nbsp;</i>این دوره قبلا خریداری شده.</span>
+                }
+                else if (isAdmin || isMasterInCourse)
+                {
+                    <span class="text-success notShowInRecording"><i class="zmdi zmdi-check-all">&nbsp;</i>شما به این دوره دسترسی دارید</span>
+                }
+                else if (!isUserInCourse)
+                {
+                    <a class="button-st green registration-button notShowInRecording" href="/Course/BuyCourse/@Model.CourseId">ثبتـــ نام در این دوره </a>
+                }
+
+            }
+
+
+
+        </div>
+
+
+        <!-- /course details in responsive -->
+        <!-- course content -->
+        <article class="course-content-layer box-shadow">
+            <div class="img-layer"><img src="@Model.GetCourseImageAddress()" alt=" @Model.CourseTitle"></div>
+            <h2><a href=""> @Model.CourseTitle</a></h2>
+
+
+            <p>
+                @Html.Raw(Model.CourseDescription)
+            </p>
+
+            @*            <div class="alerts green">
+            لطفا سوالات خود را راجع به این آموزش در این بخش <a href="/questions/Cat/ask-question/5776">پرسش و پاسخ</a>  مطرح کنید به سوالات در قسمت نظرات پاسخ داده نخواهد شد و آن نظر حذف میشود.
+            </div>*@
+
+            <br>
+            <div id="vot">
+            </div>
+            @if (Model.CoursePrice != 0)
+            {
+                @if (!isUserInCourse && (!isAdmin && !isMasterInCourse))
+                {
+                    <div class="alert alert-info">
+                        <p> بعد از ثبت نام و تائید فاکتور لینک های دانلود برای شما فعال خواهد شد</p>
+                    </div>
+                }
+            }
+
+            @if (ViewBag.NotSucces == true)
+            {
+
+                <div class="alert alert-danger">
+                    <p> شما این دوره رو خریداری نکرده اید</p>
+                </div>
+            }
+            @if (ViewBag.NotSuccesEpisodes == true)
+            {
+
+                <div class="alert alert-warning">
+                    <p>
+                        ویدیو مورد نظر شما یافت نشد
+
+                    </p>
+                </div>
+            }
+        </article>
+        <!-- /course content -->
+
+
+
+
+        <br>
+
+        <!-- video list -->
+        <div class="video-list-layer box-shadow">
+            <div class="heading">
+                <span class="bullet"><i class="zmdi zmdi-play"></i></span>
+                <h3> فهرستـــ ویدیوها </h3>
+                <span class="course-time"> مدت زمان دوره <i> @time </i></span>
+            </div>
+
+
+            <style>
+                .r1_iframe_embed {
+                    position: relative;
+                    overflow: hidden;
+                    width: 100%;
+                    height: auto;
+                    padding-top: 56.25%;
+                }
+
+                    .r1_iframe_embed iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border: 0;
+                    }
+            </style>
+
+            @if (!string.IsNullOrEmpty(Model.DemoFileName) && ViewBag.Episode == null)
+            {
+                <video style="width:100%" controls poster="@Model.GetCourseImageAddress()">
+                    <source src="@PathExtensions.CourseDemoFile + Model.DemoFileName" />
+                </video>
+            }
+            else if (ViewBag.Episode != null && User.Identity.IsAuthenticated)
+            {
+
+                CourseEpisode episode = ViewBag.Episode as CourseEpisode;
+                string filePath = ViewBag.filePath;
+
+                <h2 class="h2-Style" id="episode-Div">
+                    @episode.EpisodeTitle
+                </h2>
+                <video style="width:100%" controls poster="@Model.GetCourseImageAddress()">
+                    <source src="@filePath" />
+                </video>
+            }
+            <!-- video list Item -->
+            <div class="video-items-layer ">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="video-item alert alert-info">
+                        <span class="video-num"><span class="text-info zmdi zmdi-info-outline"></span></span>
+                        <ul>
+                            <li>
+                                <h2>  برای مشاهده آنلاین ویدیو لطفا وارد حساب کاربری خود شوید  </h2>
+                            </li>
+                        </ul>
+                    </div>
+                }
+
+
+                @{
+                    int i = 1;
+                }
+                @foreach (var item in Model.CourseEpisodes.Where(i => i.IsShow))
+                {
+
+
+                    <!-- item -->
+                    <div class="video-item">
+                        <span class="video-num">@i</span>
+                        <ul class="view-Live">
+                            <li class="view-Live">
+                                <h2 class="view-Live"> @item.EpisodeTitle </h2>
+                            </li>
+                            @if (Model.CoursePrice != 0 && isUserInCourse && isAdmin && isMasterInCourse && !item.IsFree)
+                            {
+                                <span class="UnLock-Episode" title="دسترسی به این بخش آزاد میباشد"><i class="zmdi zmdi-lock-open"></i></span>
+
+                            }
+                            else if (Model.CoursePrice != 0 && !isUserInCourse && !isAdmin && !isMasterInCourse && !item.IsFree)
+                            {
+                                <span class="Lock-Episode" title="این دوره را خریداری نکرده اید"><i class="zmdi zmdi-lock"></i></span>
+                            }
+
+                        </ul>
+
+                        @if (item.IsFree || isUserInCourse || isAdmin || isMasterInCourse)
+                        {
+
+                            @*<a href="/ShowCourse/@Model.CourseId?episode=@item.EpisodeId" class="UnLock-Episode show-video" title="تماشای آنلاین"><i class="zmdi zmdi-tv-list"></i></a>*@
+                            <a asp-controller="Course"
+                       asp-action="ShowCourse"
+                       asp-route-id="@Model.CourseId"
+                       asp-route-episode="@item.EpisodeId"
+                       asp-route-name="@Model.CourseTitle.FixedNameCourse()"
+                       class="UnLock-Episode show-video" title="تماشای آنلاین"><i class="zmdi zmdi-tv-list"></i></a>
+
+                            <a class="show-video view-Live " href="/DownloadFile/@item.EpisodeId"><i class="zmdi zmdi-download"></i></a>
+                        }
+                        else
+                        {
+                            @*<a href="/ShowCourse/@Model.CourseId?episode=@item.EpisodeId" class="show-video btn-mute" title="تماشای آنلاین(این دوره رو خریداری نکرده اید)"><i class="zmdi zmdi-tv-list"></i></a>*@
+                            <a asp-controller="Course"
+                       asp-action="ShowCourse"
+                       asp-route-id="@Model.CourseId"
+                       asp-route-episode="@item.EpisodeId"
+                       asp-route-name="@Model.CourseTitle.FixedNameCourse()" class="show-video btn-mute" title="تماشای آنلاین(این دوره رو خریداری نکرده اید)"><i class="zmdi zmdi-tv-list"></i></a>
+                            <a class="show-video view-Live btn-mute" title="این دوره را خریداری نکرده اید" href="#)"><i class="zmdi zmdi-download"></i></a>
+                        }
+
+                        <div class="course-time-left"><span>@item.EpisodeTime</span></div>
+
+
+
+                        <div class="video-description-layer">
+                            <p>
+                                @item.EpisodeTitle
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /item -->
+                    i += 1;
+
+
+                }
+
+
+            </div>
+            <!-- /video list Item -->
+
+        </div>
+        <!-- /video list -->
+        <!-- comment list -->
+        <div class="comments-layer box-shadow">
+            <div class="heading">
+                <span class="bullet"><i class="zmdi zmdi-comments"></i></span>
+                <h3> نظرات کاربران در رابطه با این دوره </h3>
+            </div>
+
+            <div class="alert alert-success">
+                لطفا سوالات خود را راجع به این آموزش در این بخش <a asp-controller="Forum" asp-action="Index" asp-route-courseId="@Model.CourseId" asp-route-courseTitle="@Model.CourseTitle.FixedNameCourse()">پرسش و پاسخ</a>  مطرح کنید به سوالات در قسمت نظرات پاسخ داده نخواهد شد و آن نظر حذف میشود.
+            </div>
+
+            <div id="CommentForm">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form asp-controller="Course" asp-action="CreateComment"
+                      data-ajax="true"
+                      data-ajax-method="post"
+                      data-ajax-mode="replace"
+                      data-ajax-update="#listComment"
+                      data-ajax-success="Success">
+                        <input type="hidden" name="comment.CourseId" value="@Model.CourseId">
+                        <div class="row" id="TextEditorPlace">
+                            <div class="col-xs-12">
+                                <h3 id="commentTitle">نظر خودرا وارد کنید!</h3>
+                                <br>
+                            </div>
+                            <div class="col-xs-12">
+
+                                <textarea required class="form-control" id="comment_Comment" name="comment.Comment" placeholder="متن نظر"></textarea>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            @*       <div class="col-md-12 col-sm-12 col-xs-12 captcha-col">
+                        <div class="g-recaptcha" data-sitekey="6LfaBAgaAAAAACrtdAbwWPjdL0gnhxyO6sZoSFRW"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfaBAgaAAAAACrtdAbwWPjdL0gnhxyO6sZoSFRW&amp;co=aHR0cHM6Ly90b3BsZWFybi5jb206NDQz&amp;hl=fa&amp;v=dPctOHA2ifhWm5WzFM_B5TjT&amp;size=normal&amp;cb=nfh0liwq53v6" width="304" height="78" role="presentation" name="a-veglihrc5wxx" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div>
+                        <span class="field-validation-valid" data-valmsg-for="GoogleReCaptchaResponse" data-valmsg-replace="true"></span>
+                        </div>*@
+                            <div class="col-md-4 col-sm-5 col-xs-12 pull-left">
+                                <button class="button-st green"> ثبت دیدگاه شما </button>
+                            </div>
+                        </div>
+
+                    </form>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        جهت درج نظر باید وارد سایت شوید
+                    </div>
+                }
+            </div>
+
+
+            <!-- list -->
+            <div class="comments-list-layer" id="listComment">
+                <div class="items"></div>
+
+
+
+
+
+
+            </div>
+            @*            <button class="btn btn-primary Display-None" id="view-comment-more-button" style="" onclick="loadComments()">مشاهده نظرات بیشتر ...</button>
+            *@            <!-- /list -->
+
+
+        </div>
+        <!-- /comment list -->
+
+    </div>
+    <!-- /left -->
+    <!-- right -->
+    <div class="sidebar-content">
+        <aside id="rightSideCourse">
+
+            <!-- course details -->
+            <div class="box-shadow course-details-layer">
+
+                @if (Model.CoursePrice != 0)
+                {
+
+                    <span class="course-price notShowInRecording">
+
+                        <i class="zmdi zmdi-money"></i>
+
+                        قیمت این دوره:
+                        <span class="price-amount"><i> @Model.CoursePrice.ToString("#,0") </i> تومان </span>
+
+                    </span>
+                }
+                else
+                {
+
+                    <span class="course-price notShowInRecording">
+
+                        <i class="zmdi zmdi-money"></i>
+                        قیمت این دوره:                                <span class="price-amount"><i> رایگانــ </i> </span>
+
+                    </span>
+                }
+
+
+                <ul>
+                    <li><i class="zmdi zmdi-account"></i> مدرس دوره : <span> @Model.User.UserName </span> <a rel="author" href="#">  </a></li>
+
+
+
+
+                    <li class="notShowInRecording"><i class="zmdi zmdi-videocam"></i> تعداد ویدیوها : <span> @Model.CourseEpisodes.Count ویدیو </span></li>
+                    <li class="notShowInRecording"><i class="zmdi zmdi-time"></i> مدت زمان دوره : <span> @time  </span></li>
+
+                    <li><i class="zmdi zmdi-layers"></i> سطح دوره : <span>  @Model.CourseLevel.LevelTitle </span></li>
+                    <li><i class="zmdi zmdi-info"></i> وضعیت دوره : <span class="blue-lbl"> @Model.CourseStatus.StatusTitle  </span></li>
+                    <li class="notShowInRecording"><i class="zmdi zmdi-calendar-alt notShowInRecording"></i> تاریخ ثبت این دوره : <span> @Model.CreateDate.ToShamsi() </span></li>
+                    <li class="notShowInRecording"><i class="zmdi zmdi-calendar-alt notShowInRecording"></i> تاریخ آخرین بروزرسانی : <span> @Model.UpdateDate.ToShamsi() </span></li>
+                </ul>
+                @if (Model.CoursePrice != 0)
+                {
+
+
+                    @if (isUserInCourse)
+                    {
+                        <span class="text-success notShowInRecording"><i class="zmdi zmdi-check-all">&nbsp;</i>شما در این دوره شرکت کرده اید</span>
+                    }
+                    else if (isAdmin || isMasterInCourse)
+                    {
+                        <span class="text-success notShowInRecording"><i class="zmdi zmdi-check-all">&nbsp;</i>شما به این دوره دسترسی دارید</span>
+                    }
+                    else if (!isUserInCourse)
+                    {
+                        <a class="button-st green registration-button notShowInRecording" href="/Course/BuyCourse/@Model.CourseId">ثبتـــ نام در این دوره </a>
+                    }
+
+                }
+
+            </div>
+            <!-- /course details -->
+            @*            <div class="box-shadow share-socials " id="bellBox">
+            <span> اطلاع از بروز رسانی دوره </span>
+            <a onclick="ChangeUserNotificationsStatus('5776')" class="box-shadow">
+            <i style="color: #eb1460" id="NotificationBell" class="zmdi zmdi-notifications-active"></i>
+            </a>
+            </div>
+            *@
+            <!-- sharing -->
+            <div class="box-shadow share-socials">
+                <span> به اشتراک گذاری</span>
+                <a href="https://t.me/share/url?url=https://www.MoneyMagnet.com/ShowCourse/@Model.CourseId/@Model.CourseTitle.FixedNameCourse()" class="box-shadow"><img src="/images/telegram-dark.svg"></a>
+                <a href="https://twitter.com/intent/tweet?url=https://www.MoneyMagnet.com/ShowCourse/@Model.CourseId/@Model.CourseTitle.FixedNameCourse()" class="box-shadow"><i class="zmdi zmdi-twitter"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.MoneyMagnet.com/ShowCourse/@Model.CourseId/@Model.CourseTitle.FixedNameCourse()" class="box-shadow"><i class="zmdi zmdi-facebook"></i></a>
+            </div>
+            <!-- /sharing -->
+            <!-- tags -->
+            @if (Model.Tags != null)
+            {
+                <div class="box-shadow tags-layer">
+                    <span> <i class="zmdi zmdi-tag"></i> برچسب ها : </span>
+
+                    @foreach (string tag in Model.Tags.Split('-', StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        <a rel="tag" asp-controller="Course" asp-action="Index" asp-route-Search="@tag"> @tag </a>
+                    }
+                </div>
+            }
+            <!-- /tags -->
+            <a class="ask-question-button" asp-controller="Forum" asp-action="Index" asp-route-courseId="@Model.CourseId" asp-route-courseTitle="@Model.CourseTitle.FixedNameCourse()"> پرسش سوال در رابطه با این دوره </a>
+
+
+        </aside>
+
+
+
+
+
+    </div>
+    <!-- /right -->
+
+    <div class="clearfix"></div>
+    <!-- /main content -->
+
+</div>
+
+@section Scripts
+    {
+    @*<script src="/Site/js/site.SingleCourse.min.js" class="5798"></script>*@
+
+    @*<script src="/js/jquery.unobtrusive-ajax.min.js"></script>*@
+
+
+
+
+    <script>
+        function Success() {
+            $("#comment_Comment").val("");
+            swal("عملیات موفق!", "با موفقیت انجام شد.!", "success");
+        }
+
+        $(function() {
+            $("#listComment").load("/Course/ShowComment?CourseId=" + @Model.CourseId);
+        });
+
+        function FillPageId(pageid) {
+            $("#listComment").load("/Course/ShowComment/" + @Model.CourseId+"?PageId=" + pageid);
+        }
+        $(function() {
+            $('#vot').load("/Course/CourseVote/" + @Model.CourseId);
+        });
+        function vote(vote) {
+            $("#vot").fadeOut('slow');
+            $("#vot").load("/Course/AddVote/@(Model.CourseId)?vote=" + vote);
+            $("#vot").fadeIn('slow');
+        }
+    </script>
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

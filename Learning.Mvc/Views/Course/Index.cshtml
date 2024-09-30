@@ -1,0 +1,178 @@
+﻿@using Learning.Domain.DTO.Course
+@using Learning.Domain.Models.Course
+@using Learning.Application.Extentions
+@model FilterCourseDTO
+
+@{
+    ViewData["Title"] = "دوره های آموزشی MoneyMagnet";
+}
+
+
+
+@section StylePage {
+
+    <link href="/site/css/new-style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/site/noUiSlider/nouislider.min.css">
+    <link rel="stylesheet" type="text/css" href="/site/css/course-archive.css">
+}
+
+
+
+
+
+<!-- main content page -->
+<div class="course-archive-page">
+    <div class="container">
+
+        <section class="course-archive-content">
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a title="دوره های آموزشی" itemprop="item" href="/courses"><span itemprop="name"> دوره های آموزشی </span></a></li>
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name"> @ViewData["Title"] </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+
+            <header><h1> دوره های آموزشی </h1> <span> ( @Model.AllEntitiesCount ) </span></header>
+
+            <div class="clearfix"></div>
+
+            <form method="get" class="filter-form">
+                <div class="filter-items-layer box-shadow">
+                    <!-- search -->
+                    <div class="search-form">
+                        <div class="form">
+                            <input type="hidden" asp-for="PageId" />
+                            <input type="text" asp-for="Search" placeholder="عنوان مورد نظر ...">
+                            <button><i class="zmdi zmdi-search"></i></button>
+                        </div>
+                    </div>
+                    <!-- /search -->
+                    <!-- order by -->
+                    <div class="order-layer">
+
+                        <div class="select-layer">
+
+                            <select asp-for="FilterCourseSort" class="formInput">
+                                @foreach (var item in Html.GetEnumSelectList<FilterCourseSort>())
+                                {
+                                    <option value="@item.Value" selected="@(Model.FilterCourseSort.ToString() == @item.Value ? true:false)"> مرتب سازی بر اساس  @item.Text </option>
+
+                                }
+                            </select>
+                        </div>
+
+
+                    </div>
+                    <!-- /order by -->
+                </div>
+
+                <div class="main-content-page">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                            <aside>
+                                <!-- filter by price -->
+                                <div class="section-aside box-shadow">
+                                    <div class="heading"><span> فیلتر بر اساس قیمت </span> <i class="zmdi zmdi-chevron-up"></i></div>
+                                    <div class="inner">
+
+                                        <div class="multiple-choice">
+                                            @foreach (var item in Html.GetEnumSelectList<FilterCourseState>())
+                                            {
+
+                                                <div class="item">
+                                                    <input type="radio" class="formInput" value="@item.Value" name="FilterCourseState" @((Convert.ToInt32(Model.FilterCourseState) == Convert.ToInt32(item.Value) ? "checked" : "")) id="@item.Value">
+                                                    <label for="@item.Value"> @item.Text </label>
+
+                                                </div>
+                                            }
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <!-- /filter by price -->
+                                <!-- filter by category -->
+                                <div class="section-aside box-shadow">
+                                    <div class="heading"><span> فیلتر بر اساس دسته بندی </span> <i class="zmdi zmdi-chevron-up"></i></div>
+                                    <div class="inner">
+                                        <nav class="aside-categories">
+                                            @{
+                                                List<CourseGroup> groups = ViewBag.Groups as List<CourseGroup>;
+                                                List<int> selected = Model.SelectedGroups as List<int>;
+                                            }
+                                            <ul>
+                                                <li>
+                                                    <input type="checkbox" class="formInput" id="cat-0" @(selected != null ? "" : "checked")>
+                                                    <label for="cat-0"> همه دسته بندی ها </label>
+                                                </li>
+
+                                                @foreach (var group in groups.Where(g => g.ParentId == null))
+                                                {
+                                                    <li>
+                                                        <input type="checkbox" @((selected != null && selected.Any(s => s == group.GroupId) ? "checked" : "")) name="selectedGroups" class="formInput" value="@group.GroupId" id="cat-@group.GroupId"> <label for="cat-@group.GroupId"> @group.GroupTitle </label>
+
+                                                        @if (groups.Any(g => g.ParentId == group.GroupId))
+                                                        {
+                                                            <ul>
+                                                                @foreach (var sub in groups.Where(g => g.ParentId == group.GroupId))
+                                                                {
+                                                                    <li>
+
+                                                                        <input type="checkbox" @((selected != null && selected.Any(s => s == sub.GroupId) ? "checked" : "")) name="selectedGroups" class="formInput" value="@sub.GroupId" id="cat-@sub.GroupId"> <label for="cat-@sub.GroupId"> @sub.GroupTitle</label>
+
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        }
+
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- /filter by category -->
+                            </aside>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 courses-view">
+                            <div class="row">
+                                @await Component.InvokeAsync("ShowCourseListItem", Model.Courses)
+                            </div>
+
+
+                            <!-- pagination -->
+                            <partial name="_PagingPartial" model="@Model.GetCurrentPaging()" />
+                            <!-- /pagination -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>
+<!-- /main content page -->
+
+
+
+@section Scripts
+{
+
+    <script src="/site/js/custom.js"></script>
+    <script src="/site/noUiSlider/nouislider.min.js"></script>
+    <script src="/site/js/course-archive.js"></script>
+    <script>
+        $(".formInput").change(function () {
+            $(".filter-form").submit();
+        })
+    </script>
+
+}

@@ -1,0 +1,120 @@
+﻿@using Learning.Domain.DTO.UserPanel
+@model EditProfileDTO
+@inject IPermissionService _permissionService
+@{
+    ViewData["Title"] = "ویرایش حساب کاربری";
+}
+
+<link rel="stylesheet" type="text/css" href="/Site/css/account.css">
+
+
+@section StylePage{
+
+    <link rel="stylesheet" type="text/css" href="/Site/css/account.css">
+
+
+}
+
+    <div class="account-page-style">
+        <div class="container">
+            <div class="container">
+                <!-- breadcrumb -->
+                <div class="breadcrumb">
+                    <ul itemtype="http://schema.org/BreadcrumbList">
+                        <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                        <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  ویرایش پروفایل  </span></a></li>
+                    </ul>
+                </div>
+                <!-- /breadcrumb -->
+            </div>
+            <div class="account-page">
+
+                <div class="row">
+
+                    <partial name="_SideBar" />
+
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="left-content">
+
+                            <section class="section-style box-shadow">
+                                <header><h2> ویرایش حساب کاربری </h2></header>
+                                <div class="inner">
+
+                                    <form asp-action="EditProfile" class="form-style" method="post" enctype="multipart/form-data">
+                                    @if (ViewBag.IsSuccess != null)
+                                    {
+                                        <div class="alert alert-success">
+                                            اطلاعات کاربری شما با موفقیت ویرایش شد
+                                        </div>
+                                    }
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12 col-xs-12">
+                                            <div class="input-layer">
+                                                <label><i class="zmdi zmdi-account"></i>  نام </label>
+                                                <input type="text" class="" data-val="true" data-val-required="لطفا فیلد نام را وارد کنید" asp-for="FirstName">
+                                                <span asp-validation-for="FirstName" class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 col-xs-12">
+                                            <div class="input-layer">
+                                                <label><i class="zmdi zmdi-account"></i>  نام خانوادگی </label>
+                                                <input type="text" class="" data-val="true" data-val-required="لطفا فیلد نام خوانوادگی را وارد کنید" asp-for="LastName">
+                                                <span asp-validation-for="LastName" class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <!-- textarea -->
+                                            <div class="textarea-layer">
+                                                <label><i class="zmdi zmdi-assignment"></i>  بیوگرافی </label>
+                                                @if (await _permissionService.CheckPermission("Master", User.GetUserId()))
+                                                {
+                                                    <textarea id="Body" asp-for="AboutMe"></textarea>
+                                                }
+                                                else
+                                                {
+                                                    <textarea asp-for="AboutMe"></textarea>
+                                                }
+                                                <span asp-validation-for="LastName" class="field-validation-valid" data-valmsg-for="AboutMe" data-valmsg-replace="true"></span>
+                                            </div>
+                                            <!-- /textarea -->
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-3 col-xs-12 pull-left">
+                                            <button class="button-st green pull-left"> ویرایش حساب کاربری </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+
+    <script src="~/Site/ckeditor5/ckeditor.js"></script>
+    <script src="~/Site/ckeditor5/config.js"></script>
+}

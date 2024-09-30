@@ -1,0 +1,122 @@
+﻿@using Learning.Domain.DTO.CourseEpisode
+@model IEnumerable<CourseEpidoeForMaster>
+
+@{
+    ViewData["Title"] = "مدیریت قسمت ها";
+}
+
+
+
+
+
+
+<div class="account-page-style">
+    <div class="container">
+        <div class="container">
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">MoneyMagnet</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> @ViewData["Title"] </li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+        </div>
+        <div class="account-page">
+
+            <div class="row">
+
+
+                <partial name="_SideBar" />
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="left-content">
+
+
+                        <section class="section-style box-shadow">
+                            <header>
+                                <h1> @ViewData["Title"] </h1>
+                                <a style="color:white" asp-action="AddEpisode" asp-controller="Master" asp-route-courseId="@ViewBag.CourseId" class="btn btn-success">
+                                    افزودن قسمت جدید
+                                </a>
+                            </header>
+                            <div class="inner">
+                                <div class="row charge-wallet">
+                                    <div class="col-xs-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-browed table-hover dataTable table-striped text-center" role="grid">
+                                                <tbody>
+                                                    <tr class="active">
+                                                        <th>عنوان</th>
+                                                        <th>زمان</th>
+                                                        <th>وضعیت</th>
+                                                        <th>دستورات</th>
+                                                    </tr>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @item.EpisodeTitle
+                                                            </td>
+                                                            <td>
+                                                                @item.EpisodeTime
+                                                            </td>
+                                                            <td>
+                                                                @if (item.IsFree)
+                                                                {
+                                                                    <span class="success">رایگان</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="danger">پولی</span>
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-success" asp-action="DownloadFile" asp-controller="Course" asp-route-episodeId="@item.EpisodeId">دانلود</a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <!-- /left side -->
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

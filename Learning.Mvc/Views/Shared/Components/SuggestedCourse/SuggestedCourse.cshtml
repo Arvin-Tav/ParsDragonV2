@@ -1,0 +1,23 @@
+﻿@using Learning.Domain.DTO.Course
+@model IEnumerable<ShowCourseListItemDTO>
+@if (Model != null && Model.Any())
+{
+    <section class="suggested-courses-layer courses-view">
+        <div class="container">
+            <header class="heading">
+                <h2> دوره های پیشنهادی MoneyMagnet </h2>
+            </header>
+
+            <div class="inner">
+                <div class="suggested-courses-carousel owl-carousel">
+                    @foreach (var item in Model)
+                    {
+                        <partial name="_BoxCourseSuggested" model="@item" />
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+

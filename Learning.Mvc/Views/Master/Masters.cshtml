@@ -1,0 +1,63 @@
+﻿@model Learning.Domain.DTO.Permission.FilterMasterDTO
+@{
+    ViewData["Title"] = "معرفی مدرسین MoneyMagnet";
+}
+@section StylePage{
+
+    <link rel="stylesheet" type="text/css" href="/site/css/teacher.css">
+    <link rel="stylesheet" type="text/css" href="/site/css/teacher-list.css">
+}
+    <div class="teacher-page">
+        <div class="container">
+
+            <section class="teachers-list">
+
+                <header><h1> @ViewData["Title"] </h1></header>
+
+                <!-- breadcrumb -->
+                <div class="breadcrumb">
+                    <ul itemtype="http://schema.org/BreadcrumbList">
+                        <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                        <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name"> @ViewData["Title"]</span></a></li>
+                    </ul>
+                </div>
+                <!-- /breadcrumb -->
+
+                <div class="clearfix"></div>
+                <div class="Part_Background_Inp_search box-shadow">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="get" action="/Masters">
+                                <div class="Main_part_Inp_Search_Name_teacher">
+                                    <label for="Search" class="label_page_teacher_list">نام مدرس مورد نظر را وارد کنید</label>
+                                    <input type="text" class="form-control Inp_Search_Name_teacher" name="Search" id="Search" value="@Model.Search" placeholder="نام مدرس ...">
+                                    <div class="Part_Btn_Search">
+                                        <button type="submit" class="btn  Btn_Search"><i class="zmdi zmdi-search icon_Btn_Search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var master in Model.MastersDTOs)
+                {
+                    string nameMaster = (master.Name == "" || string.IsNullOrEmpty(master.Name)) ? master.UserName : master.Name;
+                    <!-- item -->
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 teacher-item">
+                        <div class="box-shadow teacher-box-size">
+                            <a class="img-layer" href="/InfoMaster?name=@master.UserName"><img class="" src="@master.GetMasterImageThumbAddress()" data-src="@master.GetMasterImageThumbAddress()" alt="@nameMaster"></a>
+                            <h2><a title="استاد @nameMaster" href="/InfoMaster?name=@master.UserName"> <i class="zmdi zmdi-account"></i> @nameMaster </a></h2>
+                            <span></span>
+                        </div>
+                    </div>
+                    <!-- /item -->
+                }
+
+
+            </div>
+
+        </section>
+
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿@page
+@model Learning.Mvc.Pages.Admin.Banners.CreateBannerModel
+@{
+    ViewData["Title"] = "افزودن بنر جدید";
+
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class="card flex-div border-0 main-shadow">
+            <div class="modal-body row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات بنر
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>نام بنر </label>
+                                    <input type="text" asp-for="CreateBannerDTO.Name" class="form-control">
+                                    <span asp-validation-for="CreateBannerDTO.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>لینک بنر </label>
+                                    <input type="text" asp-for="CreateBannerDTO.Link" class="form-control">
+                                    <span asp-validation-for="CreateBannerDTO.Link" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عکس بنر </label>
+                                    <img id="imgCourse" class="thumbnail"  style="max-height:200px;" />
+
+                                    <div class="form-group ">
+                                        <label>انتخاب تصویر</label>
+                                        <input type="file"  name="imageBanner">
+                                        <span asp-validation-for="CreateBannerDTO.BannerImageName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-end">
+                            <button type="submit" class="btn btn-success btn-sm text-white">افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts
+{
+<script>
+
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imgCourse').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#CreateBannerDTO_BannerImageName").change(function () {
+        readURL(this);
+    });
+</script>
+
+
+}

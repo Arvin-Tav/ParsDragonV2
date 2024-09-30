@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "MoneyMagnet  ";
+}
+
+
+
+
+
+    @section SearchBox
+    {
+    <div class="landing-content">
+
+
+
+        <div class="landing-search">
+            <form action="/Course" method="get">
+
+                <input type="text" name="filter" id="autFilters" placeholder=" چی میخوای یاد بگیری ؟ " class="autocomplete">
+                <button><i class="zmdi zmdi-search"></i></button>
+            </form>
+        </div>
+
+        @await Component.InvokeAsync("CourseInformation")
+
+
+    </div>
+}
+
+
+    @*<cache expires-after="@TimeSpan.FromMinutes(15)">*@
+    @await Component.InvokeAsync("Banner")
+    @*</cache>*@
+
+
+    <!-- last courses  آخرین دوره های MoneyMagnet-->
+    @*<cache expires-after="@TimeSpan.FromMinutes(15)">*@
+    @await Component.InvokeAsync("LatesCourse")
+    @*</cache>*@
+
+
+    <!-- suggested courses دوره های پیشنهادی MoneyMagnet-->
+
+    <cache expires-after="@TimeSpan.FromMinutes(15)">
+        @await Component.InvokeAsync("SuggestedCourse")
+    </cache>
+
+    <!-- /suggested courses دوره های پیشنهادی MoneyMagnet-->
+    <!-- last articles آخرین مقالات MoneyMagnet-->
+    @*<cache expires-after="@TimeSpan.FromMinutes(15)">*@
+    @await Component.InvokeAsync("Blog")
+    @*</cache>*@
+
+    <!-- /last articles آخرین مقالات MoneyMagnet--> 
+    <!-- Free courses دوره های  محبوب MoneyMagnet-->
+
+    <cache expires-after="@TimeSpan.FromMinutes(15)">
+        @await Component.InvokeAsync("PopularCourse")
+    </cache>
+
+    <!-- /Free courses دوره های  محبوب MoneyMagnet-->
+    @section Scripts
+    {
+    <script src="/site/js/site.Index.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $("#autFilters").autocomplete({
+                source: 'api/courseapi/search'
+            });
+        });
+    </script>
+}
+

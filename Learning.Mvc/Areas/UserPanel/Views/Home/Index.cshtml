@@ -1,0 +1,104 @@
+﻿@using Learning.Domain.DTO.UserPanel
+@model InformationUserDTO
+@{
+    ViewData["Title"] = "پنل کاربری " + User.Identity.Name;
+    string nameUser = string.IsNullOrEmpty(Model.FirstName) ? Model.UserName : Model.FirstName + Model.LastName;
+}
+
+
+<div class="account-page-style">
+    <div class="container">
+        <div class="container">
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  پنل کاربری </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+        </div>
+        <div class="account-page">
+
+            <div class="row">
+
+
+                <partial name="_SideBar" />
+
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="left-content">
+
+
+
+                        <section class="section-style box-shadow">
+                            <header><h2> اطلاعات حساب کاربری </h2></header>
+                            <div class="inner">
+
+                                <form  class="form-style">
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="input-layer">
+                                                <label><i class="zmdi zmdi-account"></i>  نام و نام خانوادگی یا نام کاربری :@nameUser </label>
+
+                                            </div>
+                                        </div>
+                                        @*   <div class="col-md-6 col-sm-12 col-xs-12">
+                                            <div class="input-layer">
+                                            <label><i class="zmdi zmdi-globe-alt"></i>  آدرس وبسایت : </label>
+                                            </div>
+                                            </div>*@
+                                        <div class="col-xs-12">
+                                            <div class="input-layer">
+                                                <label><i class="zmdi zmdi-phone-in-talk"></i>  شماره تماس  :  @Model.Mobile</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <!-- input -->
+                                            <div class="input-layer">
+                                                <label><i class="zmdi zmdi-email"></i>  ایمیل : @Model.Email</label>
+                                            </div>
+                                            <!--/ input -->
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <!-- input -->
+                                            <div class="input-layer">
+                                                <label><i class="zmdi zmdi-calendar-check"></i>  تاریخ عضویت :  @Model.CreateDate.ToShamsi()</label>
+                                            </div>
+                                            <!--/ input -->
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <!-- input -->
+                                            <div class="input-layer">
+                                                <label><i class="zmdi zmdi-money"></i>  موجودی حساب : @Model.Wallet.ToString("#,0") تومان </label>
+                                            </div>
+                                            <!--/ input -->
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <!-- textarea -->
+                                            @*                                     <div class="textarea-layer">
+                                                <label><i class="zmdi zmdi-assignment"></i>  بیوگرافی </label>
+
+                                                </div>*@
+                                            <!-- /textarea -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /left side -->
+
+        </div>
+
+    </div>
+
+</div>
+
+

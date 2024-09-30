@@ -1,0 +1,116 @@
+﻿@using Learning.Domain.Models.OnlineClass
+@model IEnumerable<OnlineClassEpisode>
+
+@{
+
+    ViewData["Title"] = "لیست جلسات ";
+}
+@section StylePage{
+
+
+    <link rel="stylesheet" type="text/css" href="/site/classes/css/account.css">
+
+}
+
+
+
+<div class="account-page-style">
+    <div class="container">
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  @ViewData["Title"]  </span></a></li>
+            </ul>
+        </div>
+        <!-- /breadcrumb -->
+
+        <div class="account-page">
+
+            <div class="row">
+
+
+                <partial name="_SideBar" />
+
+                <!-- left side -->
+
+
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="left-content">
+
+
+                        <section class="section-style shadow-style">
+                            <header><h2>  @ViewData["Title"]   </h2></header>
+                            <div class="inner">
+                                <div class="inner">
+
+                                    <div class="course-tbl-layer">
+                                        <!-- head -->
+                                        <div class="course-tbl-head">
+                                            <ul>
+                                                <li><span> عنوان </span></li>
+                                                <li><span> تاریخ </span></li>
+                                                <li><span> دستورات </span></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /head -->
+                                        <div class="course-tbl-body">
+                                            @foreach (var item in Model)
+                                            {
+                                                <div class="course-tbl-row">
+                                                    <ul>
+                                                        <li><span class="title"> عنوان : </span> <span class="value ellipsis-style"> @item.Title  </span></li>
+                                                        <li><span class="title"> تاریخ : </span> <span class="value"> <i> @item.CreateDate.ToShamsi() </i> </span></li>
+                                                        <li><a href="javascript:void(0)" class="view-more"><i class="zmdi zmdi-chevron-down"></i> </a></li>
+                                                    </ul>
+
+                                                    <div class="course-detail" style="display: none;">
+                                                        <ul>
+                                                            <li><span> عنوان : </span> <i>  @item.Title </i></li>
+                                                            <li><span> تاریخ : </span> <i> @item.CreateDate.ToShamsi() </i></li>
+                                                            <li><i><a class="btn btn-success" href="/UserPanel/OnlineClass/SessionsList?id=@item.OnlineClassId&episodeId=@item.OnlineClassEpisodeId">نمایش</a></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            }
+
+
+
+                                        </div>
+
+                                        <div>
+                                            @if (ViewBag.filePath != null)
+                                            {
+                                                string filePath = ViewBag.filePath;
+                                                <video style="width:100%" controls="controls">
+                                                    <source src="@filePath" type="video/mp4" />
+                                                </video>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+                <!-- /left side -->
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts{
+    <script src="/site/classes/js/account.js"></script>
+    <script src="/site/classes/js/custom.js"></script>
+
+}

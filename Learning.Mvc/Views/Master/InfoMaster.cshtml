@@ -1,0 +1,76 @@
+﻿@model Learning.Domain.DTO.Master.InfoMasterDTO
+@{
+    string nameMaster = (Model.Name == "" || string.IsNullOrEmpty(Model.Name)) ? Model.UserName : Model.Name;
+
+    ViewData["Title"] = "استاد " + nameMaster;
+
+}
+@section StylePage{
+
+    <link rel="stylesheet" type="text/css" href="/site/css/teacher.css">
+}
+    <div class="teacher-page">
+        <div class="container">
+
+            <section class="teacher-profile">
+
+                <header><h1>  @nameMaster </h1></header>
+
+                <!-- breadcrumb -->
+                <div class="breadcrumb">
+                    <ul itemtype="http://schema.org/BreadcrumbList">
+                        <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                        <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a itemprop="item" href="/Masters"><span itemprop="name"> معرفی مدرسین </span></a></li>
+                        <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name"> @nameMaster </span></a></li>
+                    </ul>
+                </div>
+                <!-- /breadcrumb -->
+
+                <div class="clearfix"></div>
+
+                <div class="teacher-profile-content">
+                    <!-- top -->
+                    <div class="top-layer box-shadow">
+                        <div class="right-col">
+                            <div class="img-layer box-shadow"><img src="@Model.GetMasterImageThumbAddress()"></div>
+                            <div class="teacher-name">
+                                <h2>پروفایل @nameMaster</h2>
+                                <span> </span>
+                                <p>
+
+                                </p>
+                                <p>
+                                    @Html.Raw(Model.AboutMe)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="left-col">
+                        </div>
+                    </div>
+                    <!-- /top -->
+                    <!-- bottom -->
+                    <div class="profile-content">
+                        <div id="teacher-videos" class="courses-view active">
+
+                            <div class="row">
+                                <h2>دوره های استاد @nameMaster</h2>
+                                <hr>
+                                @foreach (var item in Model.Courses)
+                            {
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 course-col">
+                                    <partial name="_BoxCourse" model="@item" />
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /bottom -->
+            </div>
+
+        </section>
+
+    </div>
+</div>
+

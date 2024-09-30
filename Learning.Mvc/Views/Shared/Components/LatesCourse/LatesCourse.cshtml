@@ -1,0 +1,29 @@
+﻿@using Learning.Domain.DTO.Course
+@model IEnumerable<ShowCourseListItemDTO>
+@if (Model != null && Model.Any())
+{
+    <section class="last-courses-layer courses-view">
+        <div class="container">
+            <header class="heading">
+                <h2> آخرین دوره های MoneyMagnet </h2>
+                <a class="view-more" asp-controller="Course" asp-action="Index"> مشاهده همه دوره ها  <i class="zmdi zmdi-arrow-left"></i></a>
+            </header>
+
+            <div class="clearfix"></div>
+
+            <div class="inner">
+                <div class="row active">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 course-col">
+                            <partial name="_BoxCourse" model="@item" />
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </section>
+}
+
+

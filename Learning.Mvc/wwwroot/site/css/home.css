@@ -1,0 +1,95 @@
+﻿/*{ outline: medium none;  text-decoration: none; -webkit-transition : all 0.2s linear 0s; -moz-transition : all 0.2s linear 0s; -ms-transition : all 0.2s linear 0s; -o-transition : all 0.2s linear 0s; transition : all 0.2s linear 0s}
+
+{display: block; clear: both; content: ''; visibility: hidden; height: 0; line-height: 0}*/
+
+.last-courses-layer {
+    padding: 70px 0 30px
+}
+
+.suggested-courses-layer {
+    padding: 20px 0 70px
+}
+
+.free-courses-layer {
+    padding: 80px 0 70px
+}
+
+.last-articles-layer {
+    width: 100%;
+    padding: 85px 0 60px;
+    position: relative;
+    background: url('/images/article-pattern.png') repeat 0 0 #f6f9fa;
+}
+
+    .last-articles-layer .right-parallax {
+        width: 205px;
+        height: 470px;
+        background: url('/images/right-parallax.svg') no-repeat center right;
+        background-size: 205px 470px;
+        position: absolute;
+        right: -10px;
+        top: 450px;
+        z-index: 1;
+        content: ''
+    }
+
+    .last-articles-layer .left-parallax {
+        width: 160px;
+     /*   height: 500px;
+        background: url('/images/left-parallax.svg') no-repeat center left;*/
+        background-size: 160px 500px;
+        position: absolute;
+        left: -5px;
+        top: 120px;
+        z-index: 1;
+        content: ''
+    }
+
+    .last-articles-layer .left-parallax {
+        width: 160px;
+        height: 500px;
+        background: url('/images/left-parallax.svg') no-repeat center left;
+        background-size: 160px 500px;
+        position: absolute;
+        left: -5px;
+        top: 120px;
+        z-index: 1;
+        content: ''
+    }
+
+
+
+@media screen and (max-width :991px) {
+    .last-articles-layer .right-parallax {
+        top: 700px
+    }
+}
+
+@media screen and (max-width :980px) {
+    .last-articles-layer .left-parallax,
+    .last-articles-layer .right-parallax {
+        display: none
+    }
+}
+
+@media screen and (max-width :760px) {
+    .last-courses-layer {
+        padding: 50px 0 30px;
+    }
+
+    .suggested-courses-layer {
+        padding: 0 0 40px
+    }
+
+    .free-courses-layer {
+        padding: 50 0 30px
+    }
+
+    .last-articles-layer {
+        padding: 60px 0 40px
+    }
+
+    .free-courses-layer {
+        padding: 55px 0 40px
+    }
+}

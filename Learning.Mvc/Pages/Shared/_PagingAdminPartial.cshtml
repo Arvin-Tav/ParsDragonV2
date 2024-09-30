@@ -1,0 +1,37 @@
+﻿@using Learning.Domain.DTO.Paging
+@model BasePaging
+
+<div class="">
+    <div class=" text-center">
+        <!-- pagination -->
+        <!-- /pagination -->
+        <ul class="pagination">
+            @if (Model.StartPage < Model.PageId)
+            {
+                <li >
+                    <a href="javascript:void(0)" onclick="FillPageId(@(Model.PageId - 1))">
+                        <span uk-icon="chevron-forward-circle-outline"></span>
+                    </a>
+                </li>
+            }
+
+            @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+            {
+                <li class="paginate_button LoadingDiv  @((i==Model.PageId)?"active":"")" aria-controls="dataTables-example" tabindex="0">
+                    <a onclick="FillPageId(@i)" href="javascript:void(0)">@i</a>
+                </li>
+            }
+
+            @if (Model.EndPage > Model.PageId)
+            {
+                <li>
+
+                    <a href="javascript:void(0)" onclick="FillPageId(@(Model.PageId + 1))">
+                        <span  uk-icon="chevron-back-circle-outline"></span>
+                    </a>
+                </li>
+
+            }
+        </ul>
+    </div>
+</div>

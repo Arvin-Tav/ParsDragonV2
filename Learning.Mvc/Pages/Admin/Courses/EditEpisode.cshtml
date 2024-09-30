@@ -1,0 +1,76 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Courses.EditEpisodeModel
+@{
+    ViewData["Title"] = "ویرایش";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class="card flex-div border-0 main-shadow">
+            <input type="hidden" asp-for="EditCourseEpisodeDTO.CourseId" />
+            <input type="hidden" asp-for="EditCourseEpisodeDTO.EpisodeFileName" />
+            <input type="hidden" asp-for="EditCourseEpisodeDTO.EpisodeId" />
+            <div class="modal-body row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات بخش
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عنوان بخش</label>
+                                    <input type="text" asp-for="EditCourseEpisodeDTO.EpisodeTitle" class="form-control">
+                                    <span asp-validation-for="EditCourseEpisodeDTO.EpisodeTitle"  class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>زمان بخش</label>
+                                    <input type="text" asp-for="EditCourseEpisodeDTO.EpisodeTime" class="form-control">
+                                    <span asp-validation-for="EditCourseEpisodeDTO.EpisodeTime" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>فایل بخش</label>
+                                    <input type="file" name="fileEpisode">
+                                    @if (ViewData["IsExistFile"] != null)
+                                    {
+                                        <div class="alert alert-danger">
+                                            نام فایل معتبر نیست ، لطفا تغییر دهید
+                                        </div>
+                                    }
+                                    <span asp-validation-for="EditCourseEpisodeDTO.EpisodeFileName" class="text-danger"></span>
+                                    <p class="help-block"> پسوند فایل .rar باشد</p>
+                                    <p class="help-block">    برای نامگذاری فایل از * # & ، و .... استفاده نکنید</p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>دسترسی</label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" asp-for="EditCourseEpisodeDTO.IsFree">
+                                            رایگان است
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-end">
+                            <button type="submit" class="btn btn-success btn-sm text-white LoadingDiv">ویرایش<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+

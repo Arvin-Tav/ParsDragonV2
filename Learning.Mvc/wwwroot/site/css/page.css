@@ -1,0 +1,1263 @@
+﻿/********** Transition ************/
+.multi-checkbox-in-row .checkbox-option label:before, .checkbox-layer .checkbox-option label:before,
+.multi-radio-in-row .radio-option label:before, .comments-list-layer .comment-item .right-col button {
+    outline: medium none;
+    text-decoration: none;
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+    -ms-transition: all 0.2s linear 0s;
+    -o-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s
+}
+
+/*********** clearFix ************/
+.multi-checkbox-in-row:after, .multi-radio-in-row:after, .form-style .radio-selected:after,
+.comments-layer .heading:after, .comments-list-layer .comment-item:after, .page-style .main-page-content header ul:after {
+    display: block;
+    clear: both;
+    content: '';
+    visibility: hidden;
+    height: 0;
+    line-height: 0
+}
+
+.form-style {
+    padding: 10px 0
+}
+
+.msg-layer {
+    font-size: 12px;
+    word-spacing: -1px;
+    line-height: 24px;
+    padding: 5px 0;
+    color: #90adbf
+}
+
+    .msg-layer.red {
+        color: #f86262
+    }
+
+.form-style .input-layer,
+.form-style .select-layer,
+.form-style .textarea-layer {
+    width: 100%;
+    position: relative;
+    margin-bottom: 25px
+}
+
+.form-style .input-select-layer {
+    margin-bottom: 40px
+}
+
+.form-style .input-layer span,
+.form-style .select-layer span,
+.form-style .textarea-layer span {
+    font-size: 13px;
+    line-height: 22px;
+    padding: 5px 0;
+    color: #fa6060
+}
+
+.form-style .input-layer label,
+.form-style .select-layer label,
+.form-style .textarea-layer label {
+    display: block;
+    line-height: 22px;
+    font-size: 14px;
+    word-spacing: -2px;
+    color: #686e71;
+    margin-bottom: 2px
+}
+
+.form-style .input-select-layer label {
+    display: block;
+    line-height: 22px;
+    font-size: 13px;
+    word-spacing: -2px;
+    color: #686e71;
+    margin-bottom: 10px
+}
+
+    .form-style .input-select-layer label i,
+    .form-style .input-layer label i,
+    .form-style .select-layer label i,
+    .form-style .textarea-layer label i {
+        position: relative;
+        top: 2px;
+        color: #c1cbd1;
+        margin-left: 6px;
+        font-size: 15px
+    }
+
+.form-style .input-layer > input,
+.form-style .select-layer select {
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+    font-size: 14px;
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid #e4ecef;
+    color: #56707c;
+    font-size: 14px;
+    word-spacing: -1px;
+    margin-top: 8px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+    .form-style .input-layer > input[type="file"] {
+        padding: 0;
+        height: 40px;
+        border: 0;
+        margin: 10px 0 5px
+    }
+
+.form-style .select-layer select {
+    height: 40px;
+    padding-left: 0
+}
+
+.form-style .textarea-layer textarea {
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+    font-size: 13px;
+    width: 100%;
+    line-height: 23px;
+    padding: 10px;
+    color: #7f93ac;
+    font-size: 14px;
+    word-spacing: -1px;
+    height: 100px;
+    resize: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border: 1px solid #e4ecef;
+    margin-top: 8px
+}
+
+.form-style .select-option-link {
+    position: absolute;
+    left: 0;
+    bottom: 7px;
+    color: #0aa1f4;
+    font-size: 13px;
+    word-spacing: -1px;
+    border-right: 2px solid #e5ecf0;
+    padding-right: 12px;
+    line-height: 20px
+}
+
+    .form-style .select-option-link:hover {
+        color: #82bb1f
+    }
+
+    .form-style .select-option-link i {
+        font-size: 18px;
+        margin-left: 6px;
+        position: relative;
+        top: 2px
+    }
+
+.form-style button {
+    margin: 15px 0
+}
+
+.multi-checkbox-in-row {
+    margin: 7px 0;
+    position: relative;
+}
+
+    .multi-checkbox-in-row .checkbox-option {
+        width: auto;
+        float: right;
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative;
+    }
+
+        .multi-checkbox-in-row .checkbox-option input,
+        .checkbox-layer .checkbox-option input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: hidden;
+        }
+
+        .multi-checkbox-in-row .checkbox-option label,
+        .checkbox-layer .checkbox-option label {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            padding-right: 27px;
+        }
+
+            .multi-checkbox-in-row .checkbox-option label:before,
+            .checkbox-layer .checkbox-option label:before {
+                width: 17px;
+                height: 17px;
+                line-height: 15px;
+                text-align: center;
+                border-radius: 2px;
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                border: 1px solid #d1dce2;
+                position: absolute;
+                right: 0;
+                top: 0;
+                content: '\f26b';
+                color: #fff;
+                font-family: 'Material-icon';
+                background: #fff
+            }
+
+        .multi-checkbox-in-row .checkbox-option input:checked + label:before,
+        .checkbox-layer .checkbox-option input:checked + label:before {
+            content: '\f26b';
+            color: #7ec857;
+            font-weight: bold;
+            border-color: #8ac81f;
+        }
+
+        .multi-checkbox-in-row .checkbox-option:hover label:before,
+        .checkbox-layer .checkbox-option:hover label:before {
+            content: '\f26b';
+            color: #7fbb00;
+            font-weight: bold;
+            border-color: #7fbb00;
+        }
+
+.checkbox-layer {
+    margin: 10px 0;
+    position: relative;
+}
+
+    .checkbox-layer .checkbox-option {
+        display: block;
+        margin: 4px 0 4px 25px;
+        position: relative;
+    }
+
+.multi-radio-in-row,
+.radio-layer {
+    position: relative;
+    margin: 10px 0
+}
+
+    .multi-radio-in-row .radio-option {
+        width: auto;
+        float: right;
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative;
+    }
+
+    .radio-layer .radio-option {
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative;
+    }
+
+        .multi-radio-in-row .radio-option input,
+        .radio-layer .radio-option input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: hidden;
+        }
+
+        .multi-radio-in-row .radio-option label,
+        .radio-layer .radio-option label {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            padding-right: 27px;
+        }
+
+            .multi-radio-in-row .radio-option label:before,
+            .radio-layer .radio-option label:before {
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                position: absolute;
+                right: 0;
+                top: -1px;
+                content: '\f26c';
+                color: #c3d1d8;
+                font-size: 22px;
+                font-family: 'Material-icon';
+            }
+
+            .multi-radio-in-row .radio-option label:hover:before,
+            .radio-layer .radio-option label:hover:before {
+                color: #cedbe2;
+                content: '\f26e';
+            }
+
+        .multi-radio-in-row .radio-option input:checked + label:before,
+        .radio-layer .radio-option input:checked + label:before {
+            color: #7ec857;
+            content: '\f26f';
+        }
+
+.form-style .radio-selected {
+    margin: 25px 0
+}
+
+    .form-style .radio-selected span {
+        float: right;
+        margin-left: 15px;
+        position: relative;
+        margin: 10px 0 12px 15px;
+        min-width: 300px
+    }
+
+    .form-style .radio-selected .select {
+        width: 120px;
+        height: 40px;
+        background: #f8fafd;
+        border-radius: 50px;
+        position: relative;
+        float: right;
+        border: 1px solid #d4dfec;
+    }
+
+        .form-style .radio-selected .select:before {
+            content: 'Ø¨Ù„Ù‡';
+            position: absolute;
+            top: 10px;
+            left: 13px;
+            height: 2px;
+            color: #374a61;
+            font-size: 14px;
+        }
+
+        .form-style .radio-selected .select:after {
+            content: 'Ø®ÛŒØ±';
+            position: absolute;
+            top: 10px;
+            left: 84px;
+            height: 2px;
+            color: #728dae;
+            font-size: 14px;
+        }
+
+        .form-style .radio-selected .select label {
+            display: block;
+            width: 52px;
+            height: 22px;
+            border-radius: 50px;
+            transition: all .5s ease;
+            -moz-transition: all .5s ease;
+            -webkit-transition: all .5s ease;
+            cursor: pointer;
+            position: absolute;
+            top: 9px;
+            z-index: 1;
+            left: 12px;
+            background: #728dae;
+        }
+
+    .form-style .radio-selected input[type=checkbox] {
+        visibility: hidden;
+    }
+
+    .form-style .radio-selected .select input[type=checkbox]:checked + label {
+        left: 60px;
+        background: #7ec857;
+    }
+
+.multi-checkbox-in-row {
+    margin: 7px 0;
+    position: relative;
+}
+
+    .multi-checkbox-in-row .checkbox-option {
+        width: auto;
+        float: right;
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative;
+    }
+
+        .multi-checkbox-in-row .checkbox-option input,
+        .checkbox-layer .checkbox-option input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: hidden;
+        }
+
+        .multi-checkbox-in-row .checkbox-option label,
+        .checkbox-layer .checkbox-option label {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            padding-right: 27px;
+        }
+
+            .multi-checkbox-in-row .checkbox-option label:before,
+            .checkbox-layer .checkbox-option label:before {
+                width: 17px;
+                height: 17px;
+                line-height: 15px;
+                text-align: center;
+                border-radius: 2px;
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                border: 1px solid #d1dce2;
+                position: absolute;
+                right: 0;
+                top: 2px;
+                content: '\f26b';
+                color: #fff;
+                font-family: 'material';
+            }
+
+        .multi-checkbox-in-row .checkbox-option input:checked + label:before,
+        .checkbox-layer .checkbox-option input:checked + label:before {
+            content: '\f26b';
+            color: #76bd58;
+            font-weight: bold;
+            border-color: #8ac81f;
+        }
+
+        .multi-checkbox-in-row .checkbox-option:hover label:before,
+        .checkbox-layer .checkbox-option:hover label:before {
+            content: '\f26b';
+            color: #7fbb00;
+            font-weight: bold;
+            border-color: #7fbb00;
+        }
+
+.checkbox-layer {
+    margin: 10px 0;
+    position: relative;
+}
+
+    .checkbox-layer .checkbox-option {
+        display: block;
+        margin: 4px 0 4px 25px;
+        position: relative;
+    }
+
+.multi-radio-in-row,
+.radio-layer {
+    position: relative;
+    margin: 10px 0
+}
+
+    .multi-radio-in-row .radio-option {
+        width: auto;
+        float: right;
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative;
+    }
+
+    .radio-layer .radio-option {
+        display: table;
+        margin: 5px 0 5px 25px;
+        position: relative;
+    }
+
+        .multi-radio-in-row .radio-option input,
+        .radio-layer .radio-option input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            visibility: hidden;
+        }
+
+        .multi-radio-in-row .radio-option label,
+        .radio-layer .radio-option label {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            padding-right: 27px;
+        }
+
+            .multi-radio-in-row .radio-option label:before,
+            .radio-layer .radio-option label:before {
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                position: absolute;
+                right: 0;
+                top: -1px;
+                content: '\f26c';
+                color: #c3d1d8;
+                font-size: 22px;
+                font-family: 'material';
+            }
+
+            .multi-radio-in-row .radio-option label:hover:before,
+            .radio-layer .radio-option label:hover:before {
+                color: #cedbe2;
+                content: '\f26e';
+            }
+
+        .multi-radio-in-row .radio-option input:checked + label:before,
+        .radio-layer .radio-option input:checked + label:before {
+            color: #76bd58;
+            content: '\f26f';
+        }
+
+.form-style .radio-selected {
+    margin: 25px 0
+}
+
+    .form-style .radio-selected span {
+        float: right;
+        margin-left: 15px;
+        position: relative;
+        margin: 10px 0 12px 15px;
+        min-width: 300px
+    }
+
+    .form-style .radio-selected .select {
+        width: 120px;
+        height: 40px;
+        background: #f8fafd;
+        border-radius: 50px;
+        position: relative;
+        float: right;
+        border: 1px solid #d4dfec;
+    }
+
+        .form-style .radio-selected .select:before {
+            content: 'Ø¨Ù„Ù‡';
+            position: absolute;
+            top: 10px;
+            left: 13px;
+            height: 2px;
+            color: #374a61;
+            font-size: 14px;
+        }
+
+        .form-style .radio-selected .select:after {
+            content: 'Ø®ÛŒØ±';
+            position: absolute;
+            top: 10px;
+            left: 84px;
+            height: 2px;
+            color: #728dae;
+            font-size: 14px;
+        }
+
+        .form-style .radio-selected .select label {
+            display: block;
+            width: 52px;
+            height: 22px;
+            border-radius: 50px;
+            transition: all .5s ease;
+            -moz-transition: all .5s ease;
+            -webkit-transition: all .5s ease;
+            cursor: pointer;
+            position: absolute;
+            top: 9px;
+            z-index: 1;
+            left: 12px;
+            background: #728dae;
+        }
+
+    .form-style .radio-selected input[type=checkbox] {
+        visibility: hidden;
+    }
+
+    .form-style .radio-selected .select input[type=checkbox]:checked + label {
+        left: 60px;
+        background: #76bd58;
+    }
+
+.form-style .button-st {
+    margin-bottom: 30px;
+}
+
+
+.page-style {
+    margin-bottom: 60px
+}
+
+    .page-style .main-page-content header {
+        padding: 18px 0 10px;
+        border-bottom: 1px solid #eff2f5
+    }
+
+        .page-style .main-page-content header h1 {
+            position: relative;
+            padding-right: 30px;
+            line-height: 28px;
+            z-index: 2
+        }
+
+            .page-style .main-page-content header h1:before {
+                width: 60px;
+                height: 60px;
+                background: url('../images/course-bg.svg') no-repeat right bottom;
+                content: '';
+                position: absolute;
+                right: -24px;
+                top: -16px;
+                transform: scaleX(-1);
+                -moz-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                z-index: 0
+            }
+
+            .page-style .main-page-content header h1 a {
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 28px;
+                color: #00b3e9;
+                overflow: hidden;
+                position: relative;
+                z-index: 2
+            }
+
+        .page-style .main-page-content header ul {
+            position: absolute;
+            left: 20px;
+            top: 22px;
+        }
+
+            .page-style .main-page-content header ul li {
+                display: inline-table;
+                float: left;
+                margin-right: 25px
+            }
+
+                .page-style .main-page-content header ul li:last-child {
+                    margin-right: 0
+                }
+
+                .page-style .main-page-content header ul li span {
+                    line-height: 20px;
+                    font-size: 13px;
+                    color: #82959d
+                }
+
+                    .page-style .main-page-content header ul li span i {
+                        font-size: 17px;
+                        margin-left: 5px;
+                        position: relative;
+                        top: 2px;
+                        color: #c1d0d7
+                    }
+
+    .page-style .page-content .inner {
+        padding: 10px 25px;
+        position: relative;
+    }
+
+        .page-style .page-content .inner p {
+            margin: 8px 0;
+            line-height: 30px;
+            font-size: 14px;
+            text-align: justify;
+            color: #222b30;
+        }
+
+        .page-style .page-content .inner ul {
+            margin: 18px 0;
+        }
+
+            .page-style .page-content .inner ul li {
+                line-height: 25px;
+                padding: 3px 12px 3px 0;
+                font-size: 14px;
+                position: relative;
+            }
+
+                .page-style .page-content .inner ul li:before {
+                    width: 5px;
+                    height: 5px;
+                    border-radius: 100%;
+                    -moz-border-radius: 100%;
+                    -webkit-border-radius: 100%;
+                    background-color: #7fbb00;
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 14px;
+                }
+
+        .page-style .page-content .inner a {
+            color: #5fb430;
+        }
+
+            .page-style .page-content .inner a:hover {
+                color: #00b3e9;
+            }
+
+        .page-style .page-content .inner h2 {
+            font-size: 17px;
+            line-height: 32px;
+            margin: 18px 0 2px;
+            color: #00b3e9;
+            word-spacing: -2px;
+        }
+
+        .page-style .page-content .inner h3, .page-style .page-content .inner h4, .page-style .page-content .inner h5 {
+            font-size: 17px;
+            line-height: 32px;
+            margin: 18px 0 10px;
+            color: #5fb430;
+        }
+
+    .page-style .table-responsive {
+        margin: 30px 0 15px
+    }
+
+    .page-style .alert {
+        margin: 20px 0
+    }
+
+.section-aside {
+    margin-bottom: 25px
+}
+
+    .section-aside .heading {
+        font-size: 16px;
+        line-height: 25px;
+        padding: 16px 20px;
+        border-bottom: 1px solid #edf1f4;
+        color: #1e2f38
+    }
+
+    .section-aside .inner {
+        padding: 15px 20px 18px
+    }
+
+        .section-aside .inner.links-list {
+            padding: 10px 20px 14px
+        }
+
+    .section-aside .categories-list > ul li {
+        margin: 6px 0;
+    }
+
+    .section-aside .categories-list > ul > li a {
+        font-size: 14px;
+        line-height: 25px;
+        padding: 0 10px;
+        position: relative;
+        color: #1e2f38
+    }
+
+    .section-aside .categories-list > ul > li > a {
+        font-weight: bold
+    }
+
+    .section-aside .categories-list > ul > li a:hover {
+        color: #00b3e9
+    }
+
+    .section-aside .categories-list > ul > li a:before {
+        position: absolute;
+        right: 0;
+        top: 2px;
+        content: '\f2f4';
+        font-family: 'material';
+        color: #00b3e9;
+        font-size: 15px
+    }
+
+    .section-aside .categories-list > ul > li ul li a:before {
+        color: #b0b9be;
+    }
+
+    .section-aside .categories-list > ul > li ul {
+        padding-right: 18px;
+        margin: 5px 0
+    }
+
+    .section-aside.last-blog-post .inner {
+        padding: 20px 20px 0
+    }
+
+    .section-aside.last-blog-post .item {
+        margin-bottom: 25px;
+    }
+
+        .section-aside.last-blog-post .item .img-layer {
+            width: 100%;
+            display: block;
+            margin-bottom: 15px;
+            -webkit-border-radius: 50px;
+            -webkit-border-top-right-radius: 2px;
+            -webkit-border-bottom-left-radius: 2px;
+            -moz-border-radius: 50px;
+            -moz-border-radius-topright: 2px;
+            -moz-border-radius-bottomleft: 2px;
+            border-radius: 50px;
+            border-top-right-radius: 2px;
+            border-bottom-left-radius: 2px;
+            overflow: hidden;
+        }
+
+        .section-aside.last-blog-post .item:hover .img-layer {
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+        }
+
+        .section-aside.last-blog-post .item .img-layer img {
+            width: 100%;
+            display: block;
+        }
+
+        .section-aside.last-blog-post .item h2 a {
+            font-size: 14px;
+            color: #1e2f38;
+            line-height: 25px;
+            display: block;
+            margin-bottom: 7px;
+            position: relative;
+        }
+
+        .section-aside.last-blog-post .item span {
+            font-size: 13px;
+            display: inline-table;
+            margin-left: 15px;
+            line-height: 25px;
+            color: #686e71
+        }
+
+            .section-aside.last-blog-post .item span i {
+                font-size: 15px;
+                margin-left: 4px;
+                position: relative;
+                top: 2px;
+                color: #c1cacf
+            }
+
+                .section-aside.last-blog-post .item span i.zmdi-eye {
+                    font-size: 16px
+                }
+
+        .section-aside.last-blog-post .item:hover h2 a {
+            color: #5fb430
+        }
+
+    .section-aside .links-list > ul li {
+        margin: 10px 0;
+    }
+
+    .section-aside .links-list > ul > li a {
+        font-size: 14px;
+        line-height: 25px;
+        padding: 0 14px 0 5px;
+        position: relative;
+        color: #1e2f38
+    }
+
+        .section-aside .links-list > ul > li a:hover {
+            color: #00b3e9
+        }
+
+        .section-aside .links-list > ul > li a:before {
+            position: absolute;
+            right: -2px;
+            top: 9px;
+            content: '';
+            border: 2px solid #00b3e9;
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+            -moz-border-radius: 100%;
+            -webkit-border-radius: 100%;
+        }
+
+    .section-aside .links-list > ul > li ul li a:before {
+        color: #b0b9be;
+    }
+
+    .section-aside .links-list > ul > li ul {
+        padding-right: 18px;
+        margin: 5px 0
+    }
+
+.tags-layer {
+    padding: 20px;
+    margin-bottom: 25px
+}
+
+    .tags-layer span {
+        line-height: 20px;
+        font-size: 14px;
+        color: #1e2f38;
+        display: block;
+        margin-bottom: 15px;
+        padding-right: 5px
+    }
+
+        .tags-layer span i {
+            font-size: 15px;
+            position: relative;
+            top: 3px;
+            margin-left: 4px;
+            color: #b0b9be
+        }
+
+    .tags-layer a {
+        background-color: #f1f5f8;
+        margin: 6px 5px;
+        font-size: 13px;
+        color: #1e2f38;
+        padding: 3px 6px;
+        line-height: 18px;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+    }
+
+        .tags-layer a:hover {
+            background-color: #dce4e9
+        }
+
+
+.comments-layer {
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+    .comments-layer .alert-info {
+        margin: 8px 0 25px
+    }
+
+    .comments-layer > .heading {
+        padding: 10px 0 12px;
+        position: relative;
+        z-index: 2;
+    }
+
+        .comments-layer > .heading .bullet {
+            width: 42px;
+            height: 37px;
+            position: relative;
+            background: url('../images/bullet-3.svg') no-repeat 0 0;
+            background-size: 42px 37px;
+            top: -1px;
+            margin-left: 12px;
+            float: right;
+            display: table;
+            text-align: left;
+        }
+
+            .comments-layer > .heading .bullet i {
+                font-size: 16px;
+                color: #b0b9be;
+                position: relative;
+                left: 7px;
+                top: 9px
+            }
+
+        .comments-layer > .heading h3 {
+            width: auto;
+            display: table;
+            line-height: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e2f38;
+            float: right;
+        }
+
+    .comments-layer form {
+        margin: 10px 0 25px
+    }
+
+        .comments-layer form button {
+            width: 100%
+        }
+
+        .comments-layer form textarea {
+            width: 100%;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 13px;
+            line-height: 26px;
+            text-align: justify;
+            border: 1px solid #edf1f4;
+            height: 150px;
+            resize: none;
+            margin-bottom: 15px
+        }
+
+.comments-list-layer {
+    padding: 25px 0 0
+}
+
+    .comments-list-layer .comment-item {
+        padding-right: 100px;
+        position: relative;
+        margin-bottom: 20px
+    }
+
+        .comments-list-layer .comment-item .right-col {
+            width: 85px;
+            position: absolute;
+            right: 0;
+            top: 0
+        }
+
+            .comments-list-layer .comment-item .right-col img {
+                width: 85px;
+                height: 85px;
+                border: 3px solid #e8ebf2;
+                border-radius: 100%;
+                -moz-border-radius: 100%;
+                -webkit-border-radius: 100%;
+                box-shadow: 0 0 6px 0 #e7ebf2;
+                -moz-box-shadow: 0 0 6px 0 #e7ebf2;
+                -webkit-box-shadow: 0 0 6px 0 #e7ebf2
+            }
+
+            .comments-list-layer .comment-item .right-col button {
+                font-size: 13px;
+                line-height: 28px;
+                height: 28px;
+                padding: 0 10px;
+                text-align: center;
+                margin: 15px auto;
+                display: block;
+            }
+
+        .comments-list-layer .comment-item .left-col {
+            width: 100%;
+            border: 1px solid #edf1f4;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            padding: 10px 20px
+        }
+
+            .comments-list-layer .comment-item .left-col .heading {
+                padding: 10px 0
+            }
+
+                .comments-list-layer .comment-item .left-col .heading h4 {
+                    width: auto;
+                    white-space: normal;
+                    display: inline-table;
+                    font-size: 14px;
+                    line-height: 15px;
+                    border-left: 1px solid #e3e9ed;
+                    padding-left: 15px;
+                    margin-left: 15px
+                }
+
+                .comments-list-layer .comment-item .left-col .heading span {
+                    width: auto;
+                    white-space: normal;
+                    display: inline-table;
+                    font-size: 13px;
+                    line-height: 15px;
+                    color: #686e71
+                }
+
+            .comments-list-layer .comment-item .left-col .cm-text p {
+                margin: 5px 0;
+                line-height: 26px;
+                font-size: 13px;
+                text-align: justify;
+            }
+
+        .comments-list-layer .comment-item > .comment-item {
+            padding-right: 0;
+            margin: 20px 0
+        }
+
+            .comments-list-layer .comment-item > .comment-item .left-col {
+                padding-right: 105px
+            }
+
+            .comments-list-layer .comment-item > .comment-item .right-col {
+                top: 15px;
+                right: 15px
+            }
+
+                .comments-list-layer .comment-item > .comment-item .right-col img {
+                    width: 75px;
+                    height: 75px;
+                    border: 3px solid #e8ebf2;
+                }
+
+.main-page-content .page-content {
+    margin-bottom: 25px
+}
+
+
+@media screen and (max-width : 1199px) {
+    .comments-layer {
+        padding: 20px
+    }
+}
+
+@media screen and (max-width : 991px) {
+    .last-blog-post {
+        display: none
+    }
+}
+
+@media screen and (max-width : 768px) {
+    .page-style .main-page-content header ul {
+        position: static;
+        margin-bottom: 10px
+    }
+
+        .page-style .main-page-content header ul li:first-child {
+            margin-left: 15px
+        }
+
+        .page-style .main-page-content header ul li {
+            float: right;
+        }
+
+    .page-style .main-page-content header h1:before {
+        display: none
+    }
+
+    .page-style .main-page-content header h1 {
+        padding-right: 25px
+    }
+
+        .page-style .main-page-content header h1 a {
+            font-size: 15px;
+        }
+}
+
+@media screen and (max-width : 680px) {
+    .comments-list-layer .comment-item .left-col .heading h4 {
+        display: block;
+        padding-left: 0;
+        margin-left: 0;
+        border-left: 0;
+        line-height: 20px;
+        padding-bottom: 8px
+    }
+
+    .comments-list-layer .comment-item .left-col .heading span {
+        display: block;
+        line-height: 20px
+    }
+
+    .comments-list-layer .comment-item > .comment-item .left-col {
+        padding-right: 15px
+    }
+
+        .comments-list-layer .comment-item > .comment-item .left-col .heading {
+            padding: 15px 90px 15px 5px
+        }
+
+        .comments-list-layer .comment-item > .comment-item .left-col .cm-text {
+            padding-top: 5px
+        }
+
+    .comments-list-layer .comment-item .left-col .heading span {
+        font-size: 12px
+    }
+
+    .comments-layer {
+        padding: 15px
+    }
+
+    .page-style .page-content .inner {
+        padding: 5px 20px
+    }
+}
+
+@media screen and (max-width : 600px) {
+    .form-style {
+        padding: 0
+    }
+
+        .form-style .input-layer, .form-style .select-layer, .form-style .textarea-layer {
+            margin-bottom: 25px
+        }
+
+    .multi-checkbox-in-row .checkbox-option label, .checkbox-layer .checkbox-option label {
+        font-size: 13px;
+        word-spacing: -1px
+    }
+}
+
+@media screen and (max-width : 480px) {
+    .form-style .select-option-link {
+        position: static;
+        padding-right: 0;
+        border: 0;
+        padding-top: 15px
+    }
+
+    .form-style .radio-selected span {
+        min-width: 100%;
+        margin-bottom: 20px
+    }
+
+    .comments-layer > .heading h3 {
+        font-size: 16px
+    }
+
+    .comments-list-layer .comment-item {
+        padding: 0
+    }
+
+        .comments-list-layer .comment-item > .comment-item {
+            padding-right: 18px
+        }
+
+            .comments-list-layer .comment-item > .comment-item .right-col {
+                right: 30px
+            }
+
+    .comments-list-layer > .comment-item > .right-col {
+        width: 100%;
+        position: static;
+    }
+
+    .comments-list-layer .comment-item img {
+        display: none
+    }
+
+    .comments-list-layer > .comment-item > .left-col > .heading {
+        padding: 40px 0 15px
+    }
+
+    .comments-list-layer > .comment-item > .left-col > .cm-text {
+        margin-top: 5px
+    }
+
+    .comments-list-layer > .comment-item > .right-col button {
+        position: absolute;
+        left: 15px;
+        top: 0
+    }
+
+    .comments-list-layer .comment-item > .comment-item .left-col .heading {
+        padding: 8px 0
+    }
+
+    .last-blog-post {
+        display: block
+    }
+}
+
+@media screen and (max-width : 400px) {
+    .comments-layer > .heading h3 {
+        font-size: 15px;
+        font-weight: normal;
+    }
+}

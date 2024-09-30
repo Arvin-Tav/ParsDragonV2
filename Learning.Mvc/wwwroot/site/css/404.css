@@ -1,0 +1,39 @@
+﻿.breadcrumb {
+    padding: 18px 0 0
+}
+
+.notfound-page {
+    padding: 70px 0
+}
+
+    .notfound-page .breadcrumb li,
+    .notfound-page .breadcrumb li a {
+        color: #fff;
+        line-height: 22px
+    }
+
+    .notfound-page .breadcrumb a:hover,
+    .notfound-page > .heading h1 a:hover {
+        color: #00b3e9
+    }
+
+.notfound {
+    padding: 35px 0 45px
+}
+
+    .notfound img {
+        width: 450px;
+        display: block;
+        margin: 0 auto 35px
+    }
+
+    .notfound p {
+        text-align: center;
+        font-size: 15px
+    }
+
+
+
+
+@media screen and (max-width : 420px) {
+}

@@ -1,0 +1,103 @@
+﻿@model Learning.Domain.DTO.Forum.CreateQuestionDTO
+
+@{
+    ViewData["Title"] = "ایجاد سوال";
+
+}
+@section StylePage{
+
+    <link rel="stylesheet" type="text/css" href="/site/css/question.css">
+    <link rel="stylesheet" type="text/css" href="/site/css/course.css">
+   }
+
+    <div class="container">
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+            <ul itemtype="http://schema.org/BreadcrumbList">
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/Forum"><span itemprop="name"> پرسش و پاسخ </span></a></li>
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  ایجاد سوال </span></a></li>
+            </ul>
+        </div>
+        <!-- /breadcrumb -->
+        <!-- main content -->
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <!-- main Question -->
+
+                <section class="main-question-content box-shadow">
+
+                    <div class="inner">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="alert alert-warning">
+                                توجه داشته باشید : در صورت پرسیدن سوال نا مربوط ویا با عنوان نا مناسب سوال شما حذف خواهد شد.
+                            </div>
+                        </div>
+                        <div class="content-layer">
+                            <div class="comments-layer">
+                                <form method="post" asp-controller="Forum" asp-action="CreateQuestion" novalidate="novalidate">
+                                    <input type="hidden" asp-for="CourseId" />
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <input type="text" asp-for="Title" placeholder=" عنوان سوال خود را بنویسید " data-val="true" data-val-required="لطفا فیلد عنوان سوال را وارد کنید" />
+                                            <span asp-validation-for="Title" class="field-validation-valid" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+                                            <br>
+                                        </div>
+                                        <div class="col-xs-12">
+
+                                            <br />
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <br>
+                                            <textarea asp-for="Body" placeholder=" سوال خود را بنویسید " data-val="true" data-val-required="لطفا فیلد متن سوال را وارد کنید">
+    </textarea>
+                                            <span asp-validation-for="Body" class="field-validation-valid" data-valmsg-for="Body" data-valmsg-replace="true"></span>
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12 captcha-col">
+                                            <partial name="_CaptchaInput" />
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12 pull-left">
+                                            <button class="button-st green"> ایجاد سوال </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+
+                <cache expires-after="@TimeSpan.FromMinutes(15)">
+                    @await Component.InvokeAsync("LastQuestions")
+                </cache>
+
+
+            </div>
+        </div>
+        <!-- /main content -->
+
+    </div>
+
+
+
+
+    @section Scripts
+    {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+
+    <script src="/site/js/question.js"></script>
+
+    <script src="~/site/ckeditor5/ckeditor.js"></script>
+    <script src="~/site/ckeditor5/config.js"></script>
+}

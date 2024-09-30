@@ -1,0 +1,700 @@
+﻿.course-page .left-sidebar .sidebar ul li a:before, .faq-layer .faq-list .faq-row > h2 {
+    outline: medium none;
+    text-decoration: none;
+    -webkit-transition: all .2s linear 0s;
+    -moz-transition: all .2s linear 0s;
+    -ms-transition: all .2s linear 0s;
+    -o-transition: all .2s linear 0s;
+    transition: all .2s linear 0s
+}
+
+.comments-layer .comments-content .comment-row:after, .course-page .right-content .content-section .teacher-row .inner:after, .course-page .right-content section .detail-layer ul:after, .place-layer .search-place ul:after {
+    display: block;
+    clear: both;
+    content: '';
+    visibility: hidden;
+    height: 0;
+    line-height: 0
+}
+
+.pagination-layer {
+    padding-bottom: 0;
+    margin-bottom: 0
+}
+
+.breadcrumb {
+    padding-bottom: 5px
+}
+
+.course-page:before {
+    position: absolute;
+    right: 0;
+    top: 0;
+    content: '';
+    width: 205px;
+    height: 300px;
+    background: url('../images/top-right-bg.svg') no-repeat;
+    background-size: 100%;
+    z-index: -1
+}
+
+.course-page:after {
+    position: absolute;
+    left: -30px;
+    top: 0;
+    content: '';
+    width: 555px;
+    height: 315px;
+    background: url('../images/top-left-bg.svg') no-repeat;
+    background-size: 100% 100%;
+    z-index: -1
+}
+
+.course-page .right-content {
+    width: 76%;
+    float: right;
+    padding-left: 70px
+}
+
+    .course-page .right-content section .main-header {
+        margin-bottom: 35px
+    }
+
+        .course-page .right-content section .main-header h1 a {
+            font-size: 22px;
+            color: #2196f3;
+            line-height: 28px
+        }
+
+    .course-page .right-content section .detail-layer {
+        width: 100%;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        padding: 16px 25px;
+        background-color: rgba(255,255,255,.8);
+        margin-bottom: 45px
+    }
+
+        .course-page .right-content section .detail-layer ul li {
+            float: right;
+            margin: 8px 0;
+            font-size: 15px;
+            color: #2d3339
+        }
+
+            .course-page .right-content section .detail-layer ul li:nth-child(1), .course-page .right-content section .detail-layer ul li:nth-child(3), .course-page .right-content section .detail-layer ul li:nth-child(5) {
+                width: 40%;
+                padding-left: 5px
+            }
+
+            .course-page .right-content section .detail-layer ul li:nth-child(2), .course-page .right-content section .detail-layer ul li:nth-child(4), .course-page .right-content section .detail-layer ul li:nth-child(6) {
+                width: 60%
+            }
+
+            .course-page .right-content section .detail-layer ul li > i {
+                width: 18px;
+                font-size: 17px;
+                color: #c1cdda;
+                position: relative;
+                top: 3px
+            }
+
+            .course-page .right-content section .detail-layer ul li span i {
+                font-size: 18px;
+                color: #f44336;
+                font-style: normal
+            }
+
+    .course-page .right-content .content-section {
+        position: relative;
+        margin: 5px 0;
+        padding: 50px 0
+    }
+
+    .course-page .right-content .course-detail-layer {
+        margin-top: 0;
+        padding-top: 20px
+    }
+
+    .course-page .right-content .content-section .heading {
+        margin-bottom: 25px
+    }
+
+        .course-page .right-content .content-section .heading h2 {
+            font-size: 18px;
+            color: #2196f3;
+            line-height: 30px;
+            position: relative;
+            padding-right: 53px
+        }
+
+            .course-page .right-content .content-section .heading h2:before {
+                width: 30px;
+                height: 6px;
+                border-radius: 15px;
+                -moz-border-radius: 15px;
+                -webkit-border-radius: 15px;
+                background-color: #3e8eff;
+                position: absolute;
+                right: 13px;
+                top: 14px;
+                content: ''
+            }
+
+            .course-page .right-content .content-section .heading h2:after {
+                width: 10px;
+                height: 6px;
+                border-radius: 15px;
+                -moz-border-radius: 15px;
+                -webkit-border-radius: 15px;
+                background-color: #3e8eff;
+                position: absolute;
+                right: 0;
+                top: 14px;
+                content: ''
+            }
+
+    .course-page .right-content .content-section > p {
+        font-size: 14px;
+        line-height: 30px;
+        text-align: justify;
+        color: #2d3339;
+        margin: 12px 0
+    }
+
+    .course-page .right-content .content-section > ul {
+        margin: 20px 0
+    }
+
+        .course-page .right-content .content-section > ul li {
+            font-size: 15px;
+            line-height: 26px;
+            margin: 7px 0;
+            padding-right: 12px;
+            position: relative;
+            color: #2d3339
+        }
+
+            .course-page .right-content .content-section > ul li:before {
+                position: absolute;
+                content: '';
+                width: 5px;
+                height: 5px;
+                background-color: #7fbb00;
+                border-radius: 50px;
+                -moz-border-radius: 50px;
+                -webkit-border-radius: 50px;
+                right: 0;
+                top: 11px
+            }
+
+    .course-page .right-content .content-section a {
+        color: #2196f3
+    }
+
+    .course-page .right-content .content-section > ul li a:hover {
+        color: #7fbb00
+    }
+
+    .course-page .right-content .content-section .teacher-row .inner {
+        position: relative
+    }
+
+    .course-page .right-content .content-section .teacher-row .img-layer {
+        width: 20%;
+        position: relative;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        background-color: #ebf1f6;
+        position: relative;
+        top: 5px;
+        left: -5px;
+        float: right
+    }
+
+.teacher-layer .teacher-row {
+    width: 100%;
+    position: relative;
+    padding: 20px 0
+}
+
+    .teacher-layer .teacher-row .img-layer img {
+        width: 100%;
+        position: relative;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        position: relative;
+        top: -5px;
+        right: -5px
+    }
+
+    .teacher-layer .teacher-row .left-side {
+        width: 80%;
+        display: inline-table;
+        float: right;
+        padding-right: 35px
+    }
+
+        .teacher-layer .teacher-row .left-side h3 {
+            padding: 10px 0;
+            font-size: 15px;
+            line-height: 22px;
+            color: #2d3339
+        }
+
+            .teacher-layer .teacher-row .left-side h3 a {
+                color: #2196f3
+            }
+
+        .teacher-layer .teacher-row .left-side h4 {
+            color: #738596;
+            font-size: 13px;
+            line-height: 22px;
+            word-spacing: -2px;
+            border-bottom: 1px solid #e6ecf2;
+            padding-bottom: 20px;
+            margin-bottom: 12px
+        }
+
+        .teacher-layer .teacher-row .left-side p {
+            color: #738596;
+            font-size: 13px;
+            line-height: 26px;
+            text-align: justify;
+            margin-bottom: 0
+        }
+
+.advantages-layer {
+    position: relative
+}
+
+    .advantages-layer img {
+        position: absolute;
+        left: 0;
+        top: 30px;
+        width: 410px
+    }
+
+.place-layer .search-place a {
+    font-size: 15px;
+    line-height: 25px;
+    color: #2d3339 !important
+}
+
+    .place-layer .search-place a:hover {
+        color: #2196f3 !important
+    }
+
+.place-layer .search-place i {
+    font-size: 24px;
+    color: #b1c9de;
+    margin-left: 4px;
+    position: relative;
+    top: 3px
+}
+
+.comments-layer .heading {
+    margin-bottom: 35px !important
+}
+
+.comments-layer .comments-content .comment-row {
+    padding: 20px 110px 20px 22px;
+    margin: 25px 0;
+    position: relative
+}
+
+    .comments-layer .comments-content .comment-row .img-layer {
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+        overflow: hidden;
+        box-shadow: 0 0 6px rgba(206,223,237,.9);
+        -moz-box-shadow: 0 0 6px rgba(206,223,237,.9);
+        -webkit-box-shadow: 0 0 6px rgba(206,223,237,.9);
+        border: 1px solid #ecf1f4;
+        position: absolute;
+        top: 22px;
+        right: 20px
+    }
+
+        .comments-layer .comments-content .comment-row .img-layer img {
+            width: 100%;
+            display: block;
+            border-radius: 100%;
+            -moz-border-radius: 100%;
+            -webkit-border-radius: 100%
+        }
+
+    .comments-layer .comments-content .comment-row .author {
+        display: block;
+        font-size: 14px;
+        line-height: 25px;
+        color: #2d3339;
+        padding: 5px 0 8px;
+        font-weight: 700
+    }
+
+        .comments-layer .comments-content .comment-row .author i {
+            font-size: 13px;
+            line-height: 25px;
+            color: #6d7b88;
+            font-style: normal;
+            padding-right: 3px;
+            font-weight: 400
+        }
+
+    .comments-layer .comments-content .comment-row p {
+        font-size: 14px;
+        line-height: 28px;
+        color: #2d3339;
+        text-align: justify;
+        margin-bottom: 0
+    }
+
+.faq-layer {
+    padding-bottom: 10px !important
+}
+
+    .faq-layer .faq-list {
+        padding: 8px 0 0;
+        position: relative
+    }
+
+        .faq-layer .faq-list .faq-row {
+            padding: 20px 30px 20px 20px;
+            position: relative;
+            border: 2px dashed #e5edf3;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            margin-bottom: 15px;
+            position: relative
+        }
+
+            .faq-layer .faq-list .faq-row .arrow {
+                width: 30px;
+                height: 30px;
+                line-height: 32px;
+                position: absolute;
+                right: -15px;
+                top: 20px;
+                background-color: #fff;
+                color: #7fbb00;
+                font-size: 21px;
+                text-align: center;
+                font-weight: 700;
+                border-radius: 100%;
+                -moz-border-radius: 100%;
+                -webkit-border-radius: 100%;
+                border: 2px solid #e5edf3
+            }
+
+            .faq-layer .faq-list .faq-row:hover .arrow {
+                cursor: pointer;
+                color: #2196f3
+            }
+
+            .faq-layer .faq-list .faq-row > h2 {
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 30px;
+                color: #2d3339;
+                display: block
+            }
+
+                .faq-layer .faq-list .faq-row > h2:hover {
+                    color: #2196f3;
+                    cursor: pointer
+                }
+
+            .faq-layer .faq-list .faq-row .inner {
+                padding-top: 10px;
+                display: none
+            }
+
+                .faq-layer .faq-list .faq-row .inner p {
+                    font-size: 14px;
+                    line-height: 30px;
+                    text-align: justify;
+                    color: #3f4e5c;
+                    margin-bottom: 0
+                }
+
+                .faq-layer .faq-list .faq-row .inner ul {
+                    margin: 10px 0
+                }
+
+                    .faq-layer .faq-list .faq-row .inner ul li {
+                        line-height: 26px;
+                        margin: 7px 0;
+                        padding-right: 12px;
+                        position: relative;
+                        color: #3f4e5c
+                    }
+
+                        .faq-layer .faq-list .faq-row .inner ul li:before {
+                            position: absolute;
+                            content: '';
+                            width: 5px;
+                            height: 5px;
+                            background-color: #2196f3;
+                            border-radius: 50px;
+                            -moz-border-radius: 50px;
+                            -webkit-border-radius: 50px;
+                            right: 0;
+                            top: 11px
+                        }
+
+.course-page .left-sidebar {
+    width: 24%;
+    float: left;
+    margin-top: -20px
+}
+
+    .course-page .left-sidebar .sidebar {
+        width: 100%;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        padding: 10px 25px 25px;
+        margin-top: 20px;
+        background-color: rgb(255,255,255,.9)
+    }
+
+        .course-page .left-sidebar .sidebar ul li {
+            margin: 10px 0
+        }
+
+            .course-page .left-sidebar .sidebar ul li a {
+                line-height: 28px;
+                font-size: 15px;
+                color: #2d3339;
+                position: relative
+            }
+
+            .course-page .left-sidebar .sidebar ul li.active a {
+                color: #2196f3
+            }
+
+            .course-page .left-sidebar .sidebar ul li a:before {
+                background-color: #2196f3;
+                width: 25px;
+                height: 6px;
+                border-radius: 15px;
+                -moz-border-radius: 15px;
+                -webkit-border-radius: 15px;
+                right: -32px;
+                top: 12px;
+                content: '';
+                position: absolute;
+                opacity: 0
+            }
+
+            .course-page .left-sidebar .sidebar ul li.active a:before {
+                opacity: 1
+            }
+
+        .course-page .left-sidebar .sidebar .register-course {
+            width: 100%;
+            margin-top: 12px;
+            line-height: 48px;
+            height: 50px;
+            font-size: 16px
+        }
+
+@media screen and (max-width :1199px) {
+    .course-page:before {
+        width: 145px;
+        height: 240px
+    }
+
+    .course-page:after {
+        width: 455px;
+        height: 215px
+    }
+
+    .course-page .right-content {
+        padding-left: 50px
+    }
+
+        .course-page .right-content section .detail-layer ul li {
+            font-size: 14px
+        }
+
+        .course-page .right-content .content-section .teacher-row .img-layer {
+            width: 25%
+        }
+
+    .teacher-layer .teacher-row .left-side {
+        width: 75%
+    }
+
+    .advantages-layer img {
+        width: 330px;
+        top: 60px
+    }
+}
+
+@media screen and (max-width :991px) {
+    .course-page .left-sidebar {
+        display: none
+    }
+
+    .course-page .right-content {
+        width: 100%;
+        float: none;
+        padding-left: 0
+    }
+
+    .course-page:after {
+        width: 400px;
+        height: 200px;
+        left: -50px
+    }
+
+    .course-page .right-content .content-section {
+        margin: 0;
+        padding: 20px 0
+    }
+
+    .advantages-layer img {
+        width: 320px;
+        top: 20px
+    }
+}
+
+@media screen and (max-width :700px) {
+    .course-page:after, .course-page:before {
+        display: none
+    }
+
+    .course-page .right-content .content-section {
+        padding: 20px 0
+    }
+
+    .course-page .right-content section .main-header {
+        margin-bottom: 25px
+    }
+
+    .course-page .right-content section .detail-layer {
+        margin-bottom: 30px
+    }
+
+        .course-page .right-content section .detail-layer ul li:nth-child(n) {
+            width: 100%
+        }
+
+        .course-page .right-content section .detail-layer ul li {
+            margin: 6px 0
+        }
+
+    .course-page .right-content .content-section .heading h2 {
+        padding-right: 0
+    }
+
+        .course-page .right-content .content-section .heading h2:after, .course-page .right-content .content-section .heading h2:before {
+            display: none
+        }
+
+    .course-page .right-content .content-section .heading {
+        margin-bottom: 0
+    }
+
+    .teacher-layer {
+        margin-bottom: 35px !important
+    }
+
+        .teacher-layer .teacher-row {
+            padding: 30px 0 0
+        }
+
+    .advantages-layer img {
+        top: 30px
+    }
+
+    .faq-layer .faq-list {
+        margin-top: 15px
+    }
+
+    .comments-layer {
+        margin-top: 20px !important
+    }
+}
+
+@media screen and (max-width :600px) {
+    .advantages-layer img {
+        display: none
+    }
+
+    .course-page .right-content .content-section .teacher-row .img-layer {
+        width: 180px;
+        float: none;
+        margin: 0 auto 20px
+    }
+
+    .teacher-layer .teacher-row .left-side {
+        width: 100%;
+        padding-right: 0
+    }
+
+        .teacher-layer .teacher-row .left-side h3, .teacher-layer .teacher-row .left-side p {
+            text-align: center
+        }
+
+        .teacher-layer .teacher-row .left-side h4 {
+            text-align: center;
+            border-bottom: 0;
+            padding-bottom: 0
+        }
+
+    .teacher-layer {
+        margin-bottom: 15px !important
+    }
+
+    .consultant-layer {
+        margin-bottom: 0 !important;
+        margin-top: 70px !important
+    }
+}
+
+@media screen and (max-width :480px) {
+    .course-page .right-content section .detail-layer {
+        padding: 10px 20px 16px
+    }
+
+    .comments-layer .comments-content .comment-row {
+        padding: 15px 20px
+    }
+
+        .comments-layer .comments-content .comment-row .img-layer {
+            position: static;
+            margin: 0 auto 10px
+        }
+
+        .comments-layer .comments-content .comment-row .author {
+            text-align: center;
+            line-height: 28px
+        }
+
+    .course-page .right-content section .main-header h1 a {
+        font-size: 18px
+    }
+
+    .course-page .right-content .content-section .heading h2 {
+        font-size: 16px;
+        line-height: 28px
+    }
+
+    .teacher-layer .heading h2 {
+        text-align: center
+    }
+
+    .course-page .right-content .content-section > ul li {
+        font-size: 14px
+    }
+}

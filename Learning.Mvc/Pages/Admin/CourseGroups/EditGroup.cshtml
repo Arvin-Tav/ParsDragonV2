@@ -1,0 +1,51 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.CourseGroups.EditGroupModel
+@{
+    ViewData["Title"] = "ویرایش دسته بندی";
+}
+
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class="card flex-div border-0 main-shadow">
+          <input type="hidden" asp-for="CourseGroups.ParentId"/>
+        <input type="hidden" asp-for="CourseGroups.GroupId"/>
+            <div class="modal-body row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            گروه جدید
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عنوان گروه</label>
+                                    <input type="text" asp-for="CourseGroups.GroupTitle" class="form-control">
+                                    <span asp-validation-for="CourseGroups.GroupTitle" class="text-danger"></span>
+                                </div>
+                            </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عنوان url</label>
+                                    <input type="text" asp-for="CourseGroups.UrlName" class="form-control"  placeholder="لطفا url را  با حروف لاتین بنویسید"> 
+                                    <span asp-validation-for="CourseGroups.UrlName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer justify-content-end">
+                            <button type="submit" class="btn btn-success btn-sm text-white">ویرایش<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+

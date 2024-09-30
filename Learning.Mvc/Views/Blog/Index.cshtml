@@ -1,0 +1,71 @@
+﻿@using Learning.Domain.DTO.Blog
+@model FilterBlogDTO
+@{
+    ViewData["Title"] = "مقاله ها";
+}
+
+@section StylePage{
+    <link rel="stylesheet" type="text/css" href="/site/css/blog.css">
+   }
+
+    <!-- main content page -->
+    <div class="blog-page">
+        <div class="container">
+
+            <section class="blog-archive-layer">
+
+                <!-- breadcrumb -->
+                <div class="breadcrumb">
+                    <ul itemtype="http://schema.org/BreadcrumbList">
+                        <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                        <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a itemprop="item" title="مقالات MoneyMagnet" asp-controller="Blog" asp-action="Index"><span itemprop="name"> پست ها </span></a></li>
+                        <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name"> مقالات MoneyMagnet </span></a></li>
+                    </ul>
+                </div>
+                <!-- /breadcrumb -->
+
+                <header><h1> مقالات MoneyMagnet </h1> <span> ( @Model.AllEntitiesCount پست ) </span></header>
+
+                <div class="clearfix"></div>
+
+                <div class="filter-items-layer box-shadow">
+                    <!-- search -->
+
+
+                    <div class="search-form">
+                        <form class="form filter-form">
+                            <input type="hidden" asp-for="PageId">
+                            <input type="text" asp-for="Search" placeholder="عنوان مورد نظر ...">
+                            <button><i class="zmdi zmdi-search"></i></button>
+                        </form>
+                    </div>
+                    <!-- /search -->
+
+                </div>
+
+                <div class="articles-view">
+
+                    <div class="row">
+                        @foreach (var item in Model.Blogs)
+                    {
+                        <partial name="_BoxBlog" model="item" />
+                    }
+
+                </div>
+
+                <!-- pagination -->
+                <partial name="_PagingPartial" model="@Model.GetCurrentPaging()" />
+                <!-- /pagination -->
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script src="/site/js/custom.js"></script>
+    <script src="/site/js/blog.js"></script>
+}

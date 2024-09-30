@@ -1,0 +1,177 @@
+﻿@model IEnumerable<Order>
+
+@{
+
+    ViewData["Title"] = "کلاس های شما";
+}
+@section StylePage{
+    <link rel="stylesheet" type="text/css" href="/site/classes/css/account.css">
+   }
+
+
+
+    <div class="account-page-style">
+        <div class="container">
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  @ViewData["Title"]  </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+
+            <div class="account-page">
+
+                <div class="row">
+
+
+                    <partial name="_SideBar" />
+
+                    <!-- left side -->
+
+
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="left-content">
+
+
+
+
+
+
+                            <section class="section-style box-shadow">
+                                <header><h2> کلاس های من </h2></header>
+                                <div class="inner">
+                                @if (Model.Any(i => !i.IsFinaly))
+                                {
+                                    <div class="info-layer">
+                                        <ul>
+                                            <li>
+
+                                                جهت قطعی نمودن ثبت نام خود می بایست شهریه را بپردازید، در غیر این صورت ممکن است شخص دیگری جایگزین شما شود.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
+
+                                <div class="course-tbl-layer">
+                                    @if (ViewBag.finaly == true)
+                                    {
+                                        <div class="alert alert-success">
+                                            با موفقیت پرداخت گردید
+                                        </div>
+                                    }
+                                    <!-- head -->
+                                    <div class="course-tbl-head">
+                                        <ul>
+                                            <li><span> عنوان آموزش </span></li>
+                                            <li><span> وضعیت </span></li>
+                                            <li><span> جزییات </span></li>
+                                            <li><span> دستورات </span></li>
+                                        </ul>
+                                    </div>
+                                    <!-- /head -->
+                                    <div class="course-tbl-body">
+                                        @foreach (var item in Model)
+                                        {
+                                            <div class="course-tbl-row" remove-ajax-item="@item.OrderId">
+                                                @if (item.IsFinaly)
+                                                {
+                                                    <!-- use in responsive , don't remove-->
+                                                    @*<a class="send-request" href="/UserPanel/Certificate/SelectCertificateForRequest?registerId=62609"> درخواست مدرک </a>*@
+                                                    <a class="send-request" href="/UserPanel/OnlineClass/OnlineClassInfo/@item.OrderDetails.FirstOrDefault().OnlineClassId"> اطلاعات کلاس آنلاین </a>
+                                                    <a class="send-request" href="/UserPanel/OnlineClass/SessionsList/@item.OrderDetails.FirstOrDefault().OnlineClassId"> جلسات </a>
+                                                    <!-- /use in responsive , don't remove-->
+                                                }
+                                                else
+                                                {
+                                                    <a class="send-request" href="/UserPanel/OnlineClass/ShowOnlineClass/@item.OrderId"> پرداخت </a>
+                                                    <a href="/UserPanel/OnlineClass/RemoveOnlineClassFromOrder?orderId=@item.OrderId&detailId=@item.OrderDetails.FirstOrDefault().DetailId" class="send-request"> انصراف </a>
+
+                                                }
+
+
+                                                <ul>
+                                                    <li><span class="title"> عنوان آموزش : </span> <a href="/ShowOnlineClass/@item.OrderDetails.FirstOrDefault().OnlineClassId/@item.OrderDetails.FirstOrDefault().OnlineClass.Title.FixedNameCourse()" class="value ellipsis-style"> @item.OrderDetails.FirstOrDefault().OnlineClass.Title</a></li>
+                                                    @if (item.IsFinaly)
+                                                    {
+                                                        <li><span class="title"> وضعیت ثبت نام : </span> <span class="value"> <i class="green"> قطعی </i> </span></li>
+                                                        <li><a href="javascript:void(0)" class="view-more"><i class="zmdi zmdi-chevron-down"></i> </a></li>
+                                                        <li>
+                                                            @*<a class="send-request" href="/UserPanel/Certificate/SelectCertificateForRequest?registerId=62609"> درخواست مدرک </a>*@
+                                                            <a class="send-request" href="/UserPanel/OnlineClass/OnlineClassInfo/@item.OrderDetails.FirstOrDefault().OnlineClassId"> اطلاعات کلاس آنلاین </a>
+                                                            <a class="send-request" href="/UserPanel/OnlineClass/SessionsList/@item.OrderDetails.FirstOrDefault().OnlineClassId"> جلسات </a>
+
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li><span class="title"> وضعیت ثبت نام : </span> <span class="value"> <i class="red"> غیر قطعی </i> </span></li>
+                                                        <li><a href="javascript:void(0)" class="view-more"><i class="zmdi zmdi-chevron-down"></i> </a></li>
+                                                        <li>
+                                                            <a class="send-request" href="/UserPanel/OnlineClass/ShowOnlineClass/@item.OrderId"> پرداخت </a>
+                                                            <a href="/UserPanel/OnlineClass/RemoveOnlineClassFromOrder?orderId=@item.OrderId&detailId=@item.OrderDetails.FirstOrDefault().DetailId" class="send-request"> انصراف </a>
+
+                                                        </li>
+                                                    }
+                                                </ul>
+
+                                                <div class="course-detail" style="display: none;">
+                                                    <ul>
+                                                        <li><span> تاریخ شروع : </span> <i> @item.OrderDetails.FirstOrDefault().OnlineClass.StartClass.ToShamsi() </i></li>
+                                                        <li>
+                                                            <span> روزهای برگذاری : </span>
+                                                            @foreach (var j in item.OrderDetails.FirstOrDefault().OnlineClass.OnlineClassOfDays)
+                                                            {
+                                                                <i> <strong>@j.Day</strong> (@j.StartTime الی @j.EndTime) </i>
+                                                            }
+                                                        </li>
+                                                        <li><span> شهریه : </span> <i> @item.OrderDetails.FirstOrDefault().OnlineClass.Price.ToString("#,0")  تومان </i></li>
+                                                        @*<li><span> باقیمانده شهریه : </span> <i> 0 تومان </i></li>*@
+                                                        @if (item.IsFinaly)
+                                                        {
+                                                            <li><span> وضعیت پرداخت : </span> <i class="text-success"> تسویه شده </i></li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li><span> وضعیت پرداخت : </span> <i class="text-danger"> تسویه نشده </i></li>
+                                                        }
+
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+
+
+                                        }
+
+
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+                <!-- /left side -->
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts{
+    <script src="/site/classes/js/account.js"></script>
+    <script src="/site/classes/js/custom.js"></script>
+
+    }

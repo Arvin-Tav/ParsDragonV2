@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "نتیجه پرداخت";
+}
+
+
+@section StylePage{
+<link rel="stylesheet" type="text/css" href="/Site/css/basket.css">
+   }
+
+<div class="page-style">
+    <div class="container">
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+                <ul class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name">  MoneyMagnet  </span></a></li>
+                <li  itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name"> پرداخت مبلغ </span></a></li>
+            </ul>
+        </div>
+        <!-- /breadcrumb -->
+        <div class="basket-page">
+            <div class="basket-preview">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="contact-info-layer">
+                            <div class="row">
+
+                                <div class="col-xs-6 contact-info-col">
+                                    <div class="basket-factor box-shadow">
+                                        @if (ViewBag.IsSuccess == true)
+                                        {
+                                            <div class="alert alert-success">
+                                                <h2>پرداخت با موفقیت انجام شد</h2>
+                                                <p> کد پیگیری : @ViewBag.Code</p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <span class="final-payment text-danger">پرداخت شما موفق نبود .</span>
+                                            <span class="main-amount">مبلغ : <i>0 تومان</i> </span>
+                                            <span class="main-payment">شماره مرجع تراکنش : <i>  </i> </span>
+                                            <span class="main-payment">شماره پیگیری : <i>  </i> </span>
+                                            <span class="final-payment"><i> عملیات ناموفق بود </i></span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

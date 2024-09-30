@@ -1,0 +1,74 @@
+﻿@model ActivateMobileDTO
+@{
+   ViewData["Title"] = "فعالسازی تلفن همراه";
+
+}
+
+
+@section StylePage{
+<link href="/Site/css/client.css" rel="stylesheet" />
+   }
+@section Scripts
+{
+<partial name="_CaptchaScripts" />
+}
+<div class="client-page">
+    <div class="container">
+        <!-- breadcrumb -->
+       <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet   </span></a></li>
+                    <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  فعال سازی موبایل </span></a></li>
+                </ul>
+            </div>
+        <!-- /breadcrumb -->
+
+        <div class="client-form password-recovery-form">
+            <div class="inner">
+
+                    <form asp-area="" asp-controller="Account" asp-action="ActivateMobile" method="post">
+                       <input type="hidden" asp-for="Mobile">
+                        <h1> @ViewData["Title"] </h1>
+                        @*<img src="/Site/imag.svg">*@
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="input-element">
+                                    <i class="zmdi zmdi-email"></i>
+                                    <input placeholder="کد ارسالی" asp-for="MobileActiveCode">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <partial name="_CaptchaInput" />
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="input-element">
+                                    <div class="validation-summary-valid" asp-validation-summary="All" data-valmsg-summary="true">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                                <button class="button-st blue pull-left"> تائید </button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

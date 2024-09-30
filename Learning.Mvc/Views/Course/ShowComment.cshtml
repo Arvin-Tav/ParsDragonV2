@@ -1,0 +1,51 @@
+﻿@model FilterCourseCommentDTO
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model.CourseComments)
+{
+    <!-- row -->
+    <div class="items">
+
+        <!-- item -->
+        <div class="comment-item">
+            <div class="right-col">
+                <img src="@item.User.GetUserImageThumbAddress()">
+
+            </div>
+            <div class="left-col ">
+                <div class="heading">
+                    <h4>
+                        @item.User.UserName
+
+                    </h4> <span> ارسال شده در @item.CreateDate.ToShamsi() </span>
+                </div>
+                <div class="cm-text">
+                    <p>
+                        @item.Comment
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- /item -->
+
+    </div>
+    <!-- /row -->
+}
+<!-- pagination -->
+<partial name="_PagingPartial" model="@Model.GetCurrentPaging()" />
+<!-- /pagination -->
+@*<nav aria-label="Page navigation text-center">
+    <ul class="pagination justify-content-center text-center">
+
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <li class="page-item "><a class="page-link" style="cursor:pointer" onclick="pageComment(@i)">@i</a></li>
+        }
+
+    </ul>
+</nav>*@
+

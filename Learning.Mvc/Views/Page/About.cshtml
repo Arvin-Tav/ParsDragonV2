@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "درباره ما";
+}
+
+
+@section StylePage{
+    <link rel="stylesheet" type="text/css" href="/site/css/about.css">
+   }
+
+
+
+    <!-- main content page -->
+    <div class="about-page">
+        <div class="container">
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul class="breadcrumb">
+                    <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                    <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  درباره  MoneyMagnet </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+
+            <div class="about-page-content">
+
+                <div class="inside-content">
+                    <a href="javascript:void(0)" class="history-item active"> <span> MoneyMagnet </span> </a>
+                    <a href="javascript:void(0)" class="working-item"> <span> راه های ارتباطی </span> </a>
+                    <div class="inner box-shadow">
+                        <!-- history -->
+                        <div id="history-item" class="active">
+                            @Html.Raw(ViewData["DarBareyeMa"])
+                        </div>
+
+                        <div id="working-item">
+                            <h2> راه های ارتباطی با MoneyMagnet </h2>
+                            <ul>
+                                <li>  تلفن تماس :  @ViewData["TellHome"] </li>
+                                <li>  موبایل : @ViewData["TellMobile"] </li>
+                                <li>  ایمیل : @ViewData["Email"] </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /main content page -->
+    @section Scripts{
+    <script src="/site/js/about.js"></script>
+}
+

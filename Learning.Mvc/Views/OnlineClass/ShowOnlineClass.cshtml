@@ -1,0 +1,348 @@
+﻿@model Learning.Domain.Models.OnlineClass.OnlineClass
+@{
+    ViewData["Title"] = Model.Title;
+}
+@section StylePage{
+    <link rel="stylesheet" type="text/css" href="/site/onlineClasses/css/public.css">
+    <link rel="stylesheet" type="text/css" href="/site/onlineClasses/css/course.css">
+    <link rel="stylesheet" type="text/css" href="/site/onlineClasses/css/course_new.css">
+  }
+    @section MetaTag
+    {
+    <link rel="canonical" href="https://MoneyMagnet.com.com/OnlineClass/Index/@Model.OnlineClassId/@Model.Title" />
+    <meta name="keywords" content="MoneyMagnet، آموزش زبان های خارجی، زبان، @Model.Tags">
+    <meta name="author" content="MoneyMagnet ">
+    <meta http-equiv="refresh" content="43200">
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta name=description content="@Model.Title">
+    <meta property=og:site_name value="خودآموزش MoneyMagnet">
+    <meta property=og:title content="@Model.Title">
+    <meta property=og:url content="https://MoneyMagnet.com.com/OnlineClass/Index/@Model.OnlineClassId/@Model.Title" />
+    <meta property=og:image content="https://MoneyMagnet.com.com/@Model.GetOnlineClassImageAddress()">
+    <meta property=og:image:url content="https://MoneyMagnet.com.com/@Model.GetOnlineClassImageAddress()" />
+    <meta property=og:image:width content="700">
+    <meta property=og:image:type content="image/jpg">
+    <meta property=og:description content="@Model.Title">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+    <meta name="twitter:title" content="@Model.Title">
+    <meta name="twitter:description" content="@Model.Title" />
+    <meta name="twitter:image" content="https://MoneyMagnet.com/images/logo.png">
+    <meta name="twitter:card" content=summary_large_image>
+
+}
+    <section class="course-page">
+        <div class="container">
+
+            <header class="course-page-header">
+                <div class="right-side">
+
+                    <!-- breadcrumb -->
+                    <div class="breadcrumb">
+                        <div class="breadcrumb">
+                            <ul itemtype="http://schema.org/BreadcrumbList">
+                                <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                                <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item"><span itemprop="name"> دوره های آموزشی </span></a></li>
+                                <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item"><span itemprop="name">@Model.Title </span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /breadcrumb -->
+
+
+                    <h1><a href="javascript:void(0)">@Model.Title </a></h1>
+
+                </div>
+
+            </header>
+
+            <div class="row">
+                <!-- card-col -->
+
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div id="heightrow">
+
+
+                        <article class=" course-details-page box-shadow position-relative">
+
+
+                            <div class="row ">
+
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                                    <div class="course-details-right-side ">
+
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 " style="padding-right: 0;">
+                                            <a class="course-details-right-side-img" href="#"><img src="@Model.User.GetUserImageAddress()"></a>
+                                        </div>
+
+                                        <!-- info -->
+                                        <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 ">
+                                            <div class="course-details-right-side-body ">
+
+                                                <!-- title -->
+                                                <h2> مدرس این دوره : <a class="course-details-view-resume-link " href="#"> @Model.User.UserName<span class="course-details-view-resume ">  </span> </a></h2>
+
+                                                <div class="row ">
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                        <div class="education-page-card-info-item ">
+                                                            <div class="education-page-card-main-item-title">
+                                                                <i class="zmdi zmdi-time filter-collapse-icon-label "></i>
+                                                                <span class="education-page-card-main-item1 ">شروع از : </span>
+                                                            </div>
+                                                            <span class="education-page-card-main-item2 mr-5"> @Model.StartClass.ToShamsi() </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                        <div class="education-page-card-main-item-title">
+                                                            <i class="zmdi zmdi-money filter-collapse-icon-label"></i>
+                                                            <span class="education-course-details-price-item1 ">هزینه دوره</span>
+                                                            <span class="education-course-details-price-item2 mr-5">(آنلاین) :</span>
+                                                            <span class="education-course-details-price mr-5"> @Model.Price.ToString("#,0") تومان </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                                    <div class="course-details-left-side-card">
+                                        <div class="course-details-btn-submit">
+                                            @if (Model.StartClass.Date >= DateTime.Now.Date)
+                                        {
+
+                                            <a class="course-details-registration-button1" href="/OnlineClass/BuyOnlineClass/@Model.OnlineClassId"> ثبتـــ نام آنلاین </a>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="filter-collapse-body">
+                                    <button class="filter-item-collapse" type="button" data-toggle="collapse" data-target="#ActiveCourseBox-156" aria-expanded="false" aria-controls="collapseExample">
+                                        <i class="zmdi zmdi-filter-list"></i>
+                                        <span class="filter-item-collapse-text">اطلاعات بیشتر</span>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="collapse course-details-filter-main-body" id="ActiveCourseBox-156">
+
+                                    <h2 class="course-details-filter-main-title"><i class="zmdi zmdi-check tab-icon-check"></i>جزئیات دوره</h2>
+
+
+
+                                    <div class="education-page-card-info-item">
+                                        <div class="education-page-card-main-item-title">
+                                            <i class="zmdi zmdi-calendar-note filter-collapse-icon-label"></i>
+                                            <span class="education-page-card-main-item1"> تعداد جلسات : </span>
+                                        </div>
+                                        <span class="education-page-card-main-item2 mr-5"> @Model.NumberSessions جلسه </span>
+                                    </div>
+
+                                    <div class="education-page-card-info-item">
+                                        <div class="education-page-card-main-item-title">
+                                            <i class="zmdi zmdi-time-restore filter-collapse-icon-label"></i>
+                                            <span class="education-page-card-main-item1"> طول دوره : </span>
+                                        </div>
+                                        <span class="education-page-card-main-item2 mr-5"> @Model.TimeSessions ساعت </span>
+                                    </div>
+
+                                    <div class="education-page-card-info-item">
+                                        <div class="education-page-card-main-item-title">
+                                            <i class="zmdi zmdi-calendar-check filter-collapse-icon-label"></i>
+                                            <span class="education-page-card-main-item1"> روزهای برگزاری : </span>
+                                        </div>
+                                        <span class="education-page-card-main-item2 mr-5">
+                                            @foreach (var item in Model.OnlineClassOfDays)
+                                            {
+                                                <span class="ml-5"> <strong>@item.Day</strong> (@item.EndTime الی @item.StartTime) </span>
+                                            }
+                                        </span>
+                                    </div>
+
+                                    <div class="education-page-card-info-item">
+                                        <div class="education-page-card-main-item-title">
+                                            <i class="zmdi zmdi-phone filter-collapse-icon-label"></i>
+                                            <span class="education-page-card-main-item1"> تلفن تماس : </span>
+                                        </div>
+                                        <span class="education-page-card-main-item2 mr-5"> @Model.Tell </span>
+                                    </div>
+
+                                    <div class="education-page-card-info-item">
+                                        <div class="education-page-card-main-item-title">
+                                            <i class="zmdi zmdi-home filter-collapse-icon-label"></i>
+                                            <span class="education-page-card-main-item1"> نشانی : </span>
+                                        </div>
+                                        <span class="education-page-card-main-item2 mr-5">
+                                            @Model.Address
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+
+                    <div class="course-details-public-info-body">
+                        <div class="course-details-public-info-title">
+                            <div class="card-body-head-mark"></div>
+                            <h2 id="one">توضیحات دوره</h2>
+                        </div>
+
+                        @Html.Raw(Model.BodyHtml)
+
+                    </div>
+
+                    <div class="course-details-public-info-body">
+                        <div class="course-details-public-info-title">
+                            <div class="card-body-head-mark"></div>
+                            <h2 id="two">پیش نیازها</h2>
+                        </div>
+                        @if (Model.OnlineClassPrerequisites.Any())
+                        {
+
+                            @foreach (var item in Model.OnlineClassPrerequisites)
+                            {
+
+                                <p>&nbsp;- @item.Name</p>
+
+                            }
+                        }
+                        else
+                        {
+                            <p>این دوره پیشنیاز ندارد .</p>
+
+                        }
+
+                    </div>
+
+                    <div class="course-details-public-info-body">
+                        <div class="course-details-public-info-title">
+                            <div class="card-body-head-mark"></div>
+                            <h2 id="three">مخاطبان این دوره</h2>
+                        </div>
+                        @if (Model.OnlineClassContacts.Any())
+                        {
+                            <ul>
+
+                                @foreach (var item in Model.OnlineClassContacts)
+                                {
+
+                                    <li>@item.Name</li>
+
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>این دوره مخاطبین خاصی  ندارد .</p>
+
+                        }
+
+
+                    </div>
+
+                    <div class="course-details-public-info-body">
+                        <div class="course-details-public-info-title">
+                            <div class="card-body-head-mark"></div>
+                            <h2 id="five">سرفصل دوره</h2>
+                        </div>
+                        @if (Model.OnlineClassHeadings.Any())
+                        {
+                            <ul>
+
+                                @foreach (var item in Model.OnlineClassHeadings)
+                                {
+
+                                    <li>  @item.Name</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>این دوره سرفصل  خاصی  ندارد .</p>
+
+                        }
+
+
+                        <p>&nbsp;</p>
+
+                    </div>
+
+                    <div class="course-details-public-info-body">
+                        <div class="course-details-public-info-title">
+                            <div class="card-body-head-mark"></div>
+                            <h2 id="six">اهداف این آموزش</h2>
+                        </div>
+
+                        @if (Model.OnlineClassGoals.Any())
+                        {
+                            <ul>
+
+                                @foreach (var item in Model.OnlineClassGoals)
+                                {
+
+                                    <li>  @item.Name</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>این دوره اهداف  خاصی  ندارد .</p>
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- content-col -->
+            <div class="col-lg-3 col-md-3">
+                <div class="main_Item_sidebar" id="side-list">
+                    <ul>
+                        <li class="Item_sidebar activeSide">
+                            <a href="#one">
+                                <i class="zmdi zmdi-circle tab-icon-circle"></i>توضیحات دوره
+                            </a>
+                        </li>
+
+                        <li class="Item_sidebar">
+                            <a href="#two">
+                                <i class="zmdi zmdi-circle tab-icon-circle"></i>پیش نیازها
+                            </a>
+                        </li>
+
+                        <li class="Item_sidebar">
+                            <a href="#three">
+                                <i class="zmdi zmdi-circle tab-icon-circle"></i>مخاطبان این دوره
+                            </a>
+                        </li>
+
+                        <li class="Item_sidebar">
+                            <a href="#five">
+                                <i class="zmdi zmdi-circle tab-icon-circle"></i>سرفصل دوره
+                            </a>
+                        </li>
+
+                        <li class="Item_sidebar">
+                            <a href="#six">
+                                <i class="zmdi zmdi-circle tab-icon-circle"></i>اهداف این آموزش
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

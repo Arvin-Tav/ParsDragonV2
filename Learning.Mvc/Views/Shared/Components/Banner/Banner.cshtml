@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Learning.Domain.Models.Banner.Banner>
+@using Learning.Domain.Models.Banner
+@{
+    List<Slider> listSlider = ViewBag.ListSlider as List<Slider>;
+}
+
+<div class="container">
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+
+            <div class="owl-carousel TopBanner owl-rtl owl-loaded owl-drag">
+
+                @foreach (var item in Model)
+                {
+                    <div class="item">
+                        <a href="@item.Link" target="_blank" alt="@item.Name" title="@item.Name">
+                            <img src="@item.GetBannerImageAddress()" alt="@item.Name" class="BannerBoxImage" />
+                        </a>
+                    </div>
+                }
+
+            </div>
+        }
+
+
+        @if (listSlider != null && listSlider.Any())
+        {
+
+            <div class="link-image owl-carousel">
+                @foreach (var group in listSlider)
+                {
+                    int groupId = group.GroupId;
+                    @if (group.SubGroup != null)
+                    {
+                        groupId = (int)group.SubGroup;
+                    }
+
+                    <div class="item">
+                        @if (group.IsOnlineClass)
+                        {
+                            <a onclick="addSliderVisitAjax('@group.Name')"  asp-controller="OnlineClass" asp-action="Index" asp-route-selectedGroups="@groupId">
+                                <img src="@group.GetSliderImageAddress()" alt="@group.Name" title="کلاس @group.Name  " class="BannerBoxImage" />
+                            </a>
+                        }
+                        else
+                        {
+
+                            <a onclick="addSliderVisitAjax('@group.Name')"  asp-controller="Course" asp-action="Index" asp-route-selectedGroups="@groupId">
+                                <img src="@group.GetSliderImageAddress()" alt="@group.Name"  title="دوره @group.Name  " class="BannerBoxImage" />
+                            </a>
+                        }
+                    </div>
+
+                }
+            </div>
+        }
+
+    </div>
+</div>

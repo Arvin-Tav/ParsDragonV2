@@ -1,0 +1,58 @@
+name: Build and Deploy to Amazon ECS
+
+on:
+  push:
+    branches:
+      - master  # Trigger the workflow on push to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Log in to Amazon ECR
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        env:
+          AWS_REGION: us-east-1  # Ensure region is passed as an environment variable
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+
+      # Build the Docker image
+      - name: Build Docker image
+        run: |
+          IMAGE_URI="${{ steps.login-ecr.outputs.registry }}/io-soori:latest"
+          docker build -t $IMAGE_URI .
+      
+      # Push the image to Amazon ECR
+      - name: Push Docker image to Amazon ECR
+        run: |
+          IMAGE_URI="${{ steps.login-ecr.outputs.registry }}/io-soori:latest"
+          docker push $IMAGE_URI
+
+  deploy:
+    needs: build  # Run the deploy step after the build step
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Deploy to Amazon ECS
+      - name: Force Update ECS Service
+        run: |
+          IMAGE_URI="${{ needs.build.outputs.registry }}/io-soori:latest"
+          aws ecs update-service \
+            --cluster IOGame \
+            --service SooriService \
+            --force-new-deployment \
+            --region ${{ secrets.AWS_REGION }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

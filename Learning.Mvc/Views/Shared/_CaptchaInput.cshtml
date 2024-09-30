@@ -1,0 +1,8 @@
+﻿@using Learning.Domain.DTO.Account
+@model CaptchaDTO
+
+@*<input type="hidden" asp-for="Captcha" id="captchaInput" />*@
+<div class="col-md-12 col-sm-12 col-xs-12 captcha-col">
+    <div class="g-recaptcha" data-sitekey="6LeLwHMeAAAAAPGevQTcTxW92A4J2FpvUfa-jdEc"></div>
+    <span asp-validation-for="Captcha"  class="field-validation-valid" data-valmsg-for="Captcha" data-valmsg-replace="true"></span>
+</div>

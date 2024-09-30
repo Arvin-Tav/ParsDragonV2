@@ -1,0 +1,116 @@
+﻿@page
+@using Learning.Domain.DTO.Wallet
+@model Learning.Mvc.Pages.Admin.Wallet.IndexModel
+@{
+    ViewData["Title"] = "تراکنش های مالی";
+}
+
+
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+
+                    <form class="card-form filter-form">
+                        <input type="hidden" name="UserId" value="@Model.FilterWalletDTO.UserId" />
+                        <input type="hidden" class="pageId" name="PageId" value="@Model.FilterWalletDTO.PageId" />
+
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <select name="FilterWalletType" class="form-control">
+
+                                    @foreach (var item in Html.GetEnumSelectList<FilterWalletType>())
+                                    {
+                                        <option value="@item.Value" selected="@((Convert.ToInt32(Model.FilterWalletDTO.FilterWalletType) == Convert.ToInt32(item.Value) ? true : false))">   @item.Text </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" name="Search" value="@Model.FilterWalletDTO.Search" placeholder="مشخصات کاربری یا اسم دوره" />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+
+                                <a href="/Admin/Wallet" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-header bg-white row">
+                <div class="col-md-4">
+                    <span>جمع شارژ حساب  </span>@Model.FilterWalletDTO.Charge.ToString("#,0 تومان")
+                </div>
+                <div class="col-md-4">
+                    <span>جمع برداشت یرای خرید دوره   </span>@Model.FilterWalletDTO.Withdraw.ToString("#,0 تومان")
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>شماره کد </th>
+                                <th>توسط کاربر</th>
+                                <th>تاریخ تراکنش </th>
+                                <th>مبلغ </th>
+                                <th>آی پی </th>
+                                <th>نوع تراکنش</th>
+                                <th>توضیح مختصر</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.FilterWalletDTO.Wallets)
+                            {
+                                <tr>
+                                    <td>@order.WalletId</td>
+                                    <td>@order.User.UserName</td>
+                                    <td>
+                                        @order.CreateDate.ToShamsi()
+                                    </td>
+                                    <td>
+                                        @order.Amount.ToString("#,0")
+                                    </td>
+                                    <td>
+                                        @order.Ip
+                                    </td>
+                                    <td>
+                                        @if (order.TypeId == 1 && order.IsPay)
+                                        {
+                                            <p class="text-success">واریز به حساب</p>
+                                        }
+                                        else if (order.TypeId == 1 && !order.IsPay)
+                                        {
+                                            <p class="text-warning">عدم واریز به حساب در درگاه </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-danger">برداشت از حساب</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        <span data-placement="top" data-toggle="tooltip" title="">
+                                            @{
+                                                string tagHref = "<a  class='text-primary LoadingDiv'  href='/Admin/Orders/ShowOrderDetails/" + order.Description.Replace("فاکتور شما #", "") + "' >#</a>";
+                                            }
+                                            @Html.Raw(order.Description.Replace("#", tagHref))
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <partial name="_PagingAdminPartial" model="@Model.FilterWalletDTO.GetCurrentPaging()" />
+
+        </div>
+    </div>
+</div>

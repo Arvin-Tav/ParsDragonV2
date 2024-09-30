@@ -1,0 +1,170 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Users.EditUserModel
+@inject IPermissionService _PermissionService
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    List<Role> Roles = ViewData["Roles"] as List<Role>;
+    List<int> userRolesId = Model.EditUserByAdminDTO.UserRoles;
+}
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class=" card flex-div border-0 main-shadow">
+            <input type="hidden" asp-for="EditUserByAdminDTO.UserId" />
+            <input type="hidden" asp-for="EditUserByAdminDTO.AvatarName" />
+            <div class="modal-body row">
+                <div class="col-md-8 col-lg-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات کاربر
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>نام </label>
+                                    <input type="text" asp-for="EditUserByAdminDTO.FirstName" class="form-control">
+                                    <span asp-validation-for="EditUserByAdminDTO.FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>نام خانوادگی</label>
+                                    <input type="text" asp-for="EditUserByAdminDTO.LastName" class="form-control">
+                                    <span asp-validation-for="EditUserByAdminDTO.LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>نام کاربری</label>
+                                    <input type="text" asp-for="EditUserByAdminDTO.UserName" class="form-control">
+                                    <span asp-validation-for="EditUserByAdminDTO.UserName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>شماره موبایل </label>
+                                    <input type="text" asp-for="EditUserByAdminDTO.Mobile" class="form-control">
+                                    <span asp-validation-for="EditUserByAdminDTO.Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>ایمیل</label>
+                                    <input type="email" asp-for="EditUserByAdminDTO.Email" class="form-control">
+                                    <span asp-validation-for="EditUserByAdminDTO.Email" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>کلمه عبور</label>
+                                    <input type="text" asp-for="EditUserByAdminDTO.Password" class="form-control">
+                                    <span asp-validation-for="EditUserByAdminDTO.Password" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>کبف پول </label>
+                                    <input asp-for="EditUserByAdminDTO.Wallet" class="form-control">
+                                    <span asp-validation-for="EditUserByAdminDTO.Wallet" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>بیوگرافی(اختیاری) </label>
+                                    <textarea class="form-control" asp-for="EditUserByAdminDTO.AboutMe"></textarea>
+                                    <span asp-validation-for="EditUserByAdminDTO.AboutMe" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>انتخاب نقش کاربر</label>
+
+                                    @foreach (var item in Roles)
+                                    {
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" style="margin:5px" name="SelectedRoles" value="@item.RoleId" @((userRolesId != null ? userRolesId.Any(r => r == item.RoleId) ? "checked" : null : null))>@item.RoleTitle
+                                            </label>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4  col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            تصویر کاربر
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            @{
+                                var imageName = Model.EditUserByAdminDTO.AvatarName;
+                                if (imageName == "DefultAvatar.jpg")
+                                {
+                                    imageName = PathExtensions.DefaultAvatar;
+                                }
+                                else
+                                {
+                                    imageName = Model.EditUserByAdminDTO.GetUserImageAddress();
+                                }
+                            }
+                            <img id="imgAvatar" class="thumbnail" src="@imageName" />
+
+                            <div class="form-group">
+                                <label>انتخاب تصویر</label><br />
+                                <input type="file" name="imageUser" id="imageUser">
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="submit" class="btn btn-success btn-sm text-white">ویرایش<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imageUser").change(function () {
+            readURL(this);
+        });
+    </script>
+
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+
+        CKEDITOR.replace('EditUserViewModel_AboutMe', {
+            customConfig: '/ckeditor/config.js'
+        });
+
+    </script>
+}

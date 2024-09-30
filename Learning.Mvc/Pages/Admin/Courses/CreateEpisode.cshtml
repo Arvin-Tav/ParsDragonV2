@@ -1,0 +1,77 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Courses.CreateEpisodeModel
+@{
+    ViewData["Title"] = "بخش جدید";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class="card flex-div border-0 main-shadow">
+        <input type="hidden" asp-for="CreateCourseEpisodeDTO.CourseId"/>
+
+            <div class="modal-body row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات بخش
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عنوان بخش</label>
+                                    <input type="text" asp-for="CreateCourseEpisodeDTO.EpisodeTitle" class="form-control">
+                                    <span asp-validation-for="CreateCourseEpisodeDTO.EpisodeTitle" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>زمان بخش</label>
+                                    <input type="text" asp-for="CreateCourseEpisodeDTO.EpisodeTime" class="form-control">
+                                    <span asp-validation-for="CreateCourseEpisodeDTO.EpisodeTime"  class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>فایل بخش</label>
+                                    <input type="file" name="fileEpisode">
+                                    <p class="text-danger">فایل اجباری است</p>
+                                    @if (ViewData["IsExistFile"] != null)
+                                    {
+                                        <div class="alert alert-danger">
+                                            نام فایل معتبر نیست ، لطفا تغییر دهید
+                                        </div>
+                                    }
+                                    
+                                    <span asp-validation-for="CreateCourseEpisodeDTO.EpisodeFileName" class="text-danger"></span>
+                                    <p class="help-block"> پسوند فایل .rar باشد</p>
+                                    <p class="help-block">    برای نامگذاری فایل از * # & ، و .... استفاده نکنید</p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>دسترسی</label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" asp-for="CreateCourseEpisodeDTO.IsFree">
+                                            رایگان است
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-end">
+                            <button type="submit" class="btn btn-success btn-sm text-white LoadingDiv">افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+

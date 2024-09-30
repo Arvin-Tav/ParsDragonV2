@@ -1,0 +1,1220 @@
+﻿.course-page-header:after, .short-description:after, .share-socials:after, .video-list-layer .heading:after, .video-items-layer .video-item:after,
+.video-items-layer .video-item ul:after, .comments-layer .heading:after, .comments-list-layer .comment-item:after {
+    display: block;
+    clear: both;
+    content: '';
+    visibility: hidden;
+    height: 0;
+    line-height: 0
+}
+
+.video-items-layer .video-item ul li h2,
+.video-items-layer .video-item > button,
+.comments-list-layer .comment-item .right-col button {
+    outline: medium none;
+    text-decoration: none;
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+    -ms-transition: all 0.2s linear 0s;
+    -o-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s
+}
+
+.breadcrumb {
+    padding: 6px 0 0
+}
+
+    .breadcrumb ul li a {
+        color: #889296
+    }
+
+.course-page {
+    padding: 35px 0;
+    position: relative;
+}
+
+    .course-page:before {
+        position: absolute;
+        right: 0;
+        top: 25px;
+        background: url('../images/course-parallax.svg') no-repeat top right;
+        background-size: 165px 310px;
+        width: 165px;
+        height: 310px;
+        content: ''
+    }
+
+    .course-page:after {
+        position: absolute;
+        left: -10px;
+        top: 155px;
+        background: url('../images/course-bg.svg') no-repeat top left;
+        background-size: 100px 125px;
+        width: 100px;
+        height: 125px;
+        content: '';
+        z-index: 0
+    }
+
+.course-page-header {
+    padding-bottom: 30px;
+    position: relative;
+    z-index: 1
+}
+
+    .course-page-header .right-side {
+        width: auto;
+        display: table;
+        float: right;
+        position: relative;
+    }
+
+    .course-page-header .left-side {
+        width: auto;
+        display: table;
+        float: left;
+        position: relative;
+    }
+
+    .course-page-header h1 a {
+        font-size: 20px;
+        line-height: 35px;
+        color: #1e2f38
+    }
+
+.course-shortlink {
+    position: relative;
+    width: 100%;
+    display: table;
+    min-width: 200px;
+    white-space: normal;
+    padding: 0 80px 0 60px;
+    margin-top: 6px;
+    direction: ltr;
+    width: 100%
+}
+
+    .course-shortlink .title {
+        position: absolute;
+        right: 0;
+        top: 1px;
+        padding: 0 20px;
+        line-height: 55px;
+        font-size: 14px;
+        color: #686e71
+    }
+
+    .course-shortlink .link {
+        padding: 0 20px;
+        line-height: 55px;
+        font-size: 14px;
+        color: #686e71;
+        width: 100%;
+        text-align: left;
+    }
+
+    .course-shortlink .copy-btn {
+        width: 60px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        line-height: 55px;
+        height: 55px;
+        text-align: center;
+        font-size: 19px;
+        border-right: 1px solid #edf1f4;
+        color: #686e71
+    }
+
+        .course-shortlink .copy-btn:hover {
+            color: #00b3e9
+        }
+
+.short-description {
+    padding: 20px 20px 20px 300px;
+    margin-bottom: 30px;
+    background-color: rgba(255,255,255,0.9);
+    position: relative;
+    min-height: 140px;
+    z-index: 1
+}
+
+    .short-description .right-side {
+        width: 80%;
+        position: relative;
+        padding-right: 120px;
+    }
+
+        .short-description .right-side .img-layer {
+            width: 97px;
+            height: 97px;
+            border-radius: 100%;
+            -moz-border-radius: 100%;
+            -webkit-border-radius: 100%;
+            border: 3px solid #e6eaf0;
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0
+        }
+
+            .short-description .right-side .img-layer img {
+                width: 100%;
+                border-radius: 100%;
+                -moz-border-radius: 100%;
+                -webkit-border-radius: 100%;
+                display: block;
+            }
+
+        .short-description .right-side h2 {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 25px;
+            color: #1e2f38;
+            padding: 2px 0 8px
+        }
+
+            .short-description .right-side h2 a {
+                color: #00b3e9;
+                font-size: 15px;
+                padding: 0 5px
+            }
+
+            .short-description .right-side h2 span.view-resume {
+                font-size: 13px;
+                padding-right: 5px
+            }
+
+            .short-description .right-side h2 a:hover {
+                color: #5fb430
+            }
+
+        .short-description .right-side p {
+            font-size: 14px;
+            line-height: 28px;
+            text-align: justify;
+            color: #2d3e46;
+            margin-bottom: 0;
+            height: 52px;
+            overflow: hidden;
+        }
+
+    .short-description .left-side {
+        width: auto;
+        display: table;
+        min-width: 150px;
+        white-space: normal;
+        position: absolute;
+        left: 25px;
+        top: 18px;
+    }
+
+        .short-description .left-side span {
+            display: block;
+            line-height: 30px;
+            font-size: 15px;
+            margin-bottom: 15px
+        }
+
+            .short-description .left-side span i {
+                font-style: normal;
+                font-size: 16px;
+                font-weight: bold;
+                color: #5fb430
+            }
+
+        .short-description .left-side .registration-button {
+            line-height: 45px;
+            height: 45px;
+            font-size: 16px;
+            width: 100%
+        }
+
+.main-content {
+    width: 66%;
+    float: left;
+}
+
+.sidebar-content {
+    width: 34%;
+    float: right;
+    padding-left: 25px
+}
+
+    .sidebar-content aside > div {
+        margin-bottom: 30px
+    }
+
+.course-details-layer {
+    padding: 10px 25px 25px 25px;
+    margin-bottom: 30px
+}
+
+    .course-details-layer .course-price {
+        display: block;
+        width: 100%;
+        line-height: 35px;
+        font-size: 16px;
+        padding: 8px 0 18px;
+        border-bottom: 1px solid #edf1f4;
+        color: #1e2f38
+    }
+
+        .course-details-layer .course-price .zmdi-money {
+            font-size: 19px;
+            position: relative;
+            margin-left: 5px;
+            top: 3px;
+            color: #6fc341
+        }
+
+        .course-details-layer .course-price span {
+            color: #6fc341;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+            .course-details-layer .course-price span i {
+                font-style: normal;
+                font-size: 20px;
+                font-weight: bold;
+                padding: 0 3px
+            }
+
+    .course-details-layer ul {
+        padding: 15px 0
+    }
+
+        .course-details-layer ul li {
+            position: relative;
+            line-height: 25px;
+            font-size: 14px;
+            margin: 10px 0;
+            color: #686e71
+        }
+
+            .course-details-layer ul li i {
+                width: 25px;
+                text-align: right;
+                font-size: 17px;
+                color: #b0b9be;
+                position: relative;
+                top: 2px
+            }
+
+                .course-details-layer ul li i.zmdi-account {
+                    right: 2px
+                }
+
+            .course-details-layer ul li span {
+                position: relative;
+                line-height: 25px;
+                font-size: 14px;
+                color: #1e2f38
+            }
+
+            .course-details-layer ul li a {
+                padding-right: 3px;
+                color: #5fb430
+            }
+
+                .course-details-layer ul li a:hover {
+                    color: #00b3e9
+                }
+
+            .course-details-layer ul li span.blue-lbl {
+                color: #00b3e9
+            }
+
+            .course-details-layer ul li span.green-lbl {
+                color: #5fb430
+            }
+
+    .course-details-layer .registration-button {
+        width: 100%;
+        line-height: 45px;
+        height: 45px;
+        font-size: 16px;
+        margin-top: 2px
+    }
+
+.main-content .course-details-layer {
+    display: none
+}
+
+.share-socials {
+    padding: 20px;
+    position: relative;
+}
+
+    .share-socials span {
+        line-height: 35px;
+        font-size: 14px;
+        color: #1e2f38;
+        width: auto;
+        display: table;
+        float: right;
+    }
+
+    .share-socials a {
+        width: 35px;
+        height: 35px;
+        float: left;
+        margin-right: 8px;
+        border-radius: 100%;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+        text-align: center;
+        font-size: 20px;
+        color: #263c46;
+        line-height: 38px;
+        border: 1px solid #e4eaee;
+    }
+
+        .share-socials a img {
+            width: 18px;
+            height: 18px;
+            position: relative;
+            top: -3px;
+            right: 1px
+        }
+
+        .share-socials a:hover {
+            border: 1px solid #8edaf1;
+            box-shadow: 0 0 6px #8edaf1;
+            -moz-box-shadow: 0 0 6px #8edaf1;
+            -webkit-box-shadow: 0 0 6px #8edaf1;
+        }
+
+.tags-layer {
+    padding: 20px
+}
+
+    .tags-layer span {
+        line-height: 20px;
+        font-size: 14px;
+        color: #1e2f38;
+        display: block;
+        margin-bottom: 15px;
+        padding-right: 5px
+    }
+
+        .tags-layer span i {
+            font-size: 15px;
+            position: relative;
+            top: 3px;
+            margin-left: 4px;
+            color: #b0b9be
+        }
+
+    .tags-layer a {
+        background-color: #f1f5f8;
+        margin: 6px 5px;
+        font-size: 13px;
+        color: #1e2f38;
+        padding: 3px 6px;
+        line-height: 18px;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+    }
+
+        .tags-layer a:hover {
+            background-color: #dce4e9
+        }
+
+.ask-question-button {
+    border: 0;
+    line-height: 45px;
+    height: 45px;
+    text-align: center;
+    padding: 0 20px;
+    color: #fff;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #eb1460;
+    width: 100%;
+    display: block;
+    font-size: 15px
+}
+
+    .ask-question-button:hover {
+        background-color: #f81e6b;
+        color: #fff;
+    }
+
+.course-content-layer {
+    padding: 25px;
+    margin-bottom: 30px
+}
+
+    .course-content-layer .img-layer {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        margin-bottom: 20px
+    }
+
+        .course-content-layer .img-layer img {
+            width: 100%
+        }
+
+    .course-content-layer h2 {
+        padding: 15px 0
+    }
+
+        .course-content-layer h2 a {
+            width: 100%;
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 30px;
+            color: #1e2f38
+        }
+
+            .course-content-layer h2 a:hover {
+                color: #5fb430
+            }
+
+    .course-content-layer p {
+        font-size: 14px;
+        line-height: 30px;
+        text-align: justify;
+        margin: 10px 0;
+        color: #394145
+    }
+
+    .course-content-layer .alerts {
+        font-size: 15px;
+        text-align: justify;
+        line-height: 28px;
+        margin: 20px 0
+    }
+
+        .course-content-layer .alerts.blue {
+            color: #00b3e9
+        }
+
+        .course-content-layer .alerts.green {
+            color: #54aa24;
+            background-color: #f3fbee;
+            border: 1px solid #d5edc6;
+            padding: 14px 20px;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            margin: 35px 0
+        }
+
+        .course-content-layer .alerts:last-child {
+            margin-bottom: 0
+        }
+
+.comments-layer {
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+    .comments-layer .alert-info {
+        margin: 8px 0 25px
+    }
+
+    .comments-layer > .heading {
+        padding: 10px 0 12px;
+        position: relative;
+        z-index: 2;
+    }
+
+        .comments-layer > .heading .bullet {
+            width: 42px;
+            height: 37px;
+            position: relative;
+            background: url('../images/bullet-3.svg') no-repeat 0 0;
+            background-size: 42px 37px;
+            top: -1px;
+            margin-left: 12px;
+            float: right;
+            display: table;
+            text-align: left;
+        }
+
+            .comments-layer > .heading .bullet i {
+                font-size: 16px;
+                color: #b0b9be;
+                position: relative;
+                left: 7px;
+                top: 9px
+            }
+
+        .comments-layer > .heading h3 {
+            width: auto;
+            display: table;
+            line-height: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e2f38;
+            float: right;
+        }
+
+    .comments-layer form {
+        margin: 10px 0 25px
+    }
+
+        .comments-layer form button {
+            width: 100%
+        }
+
+        .comments-layer form textarea {
+            width: 100%;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 13px;
+            line-height: 26px;
+            text-align: justify;
+            border: 1px solid #edf1f4;
+            height: 150px;
+            resize: none;
+            margin-bottom: 15px
+        }
+
+.comments-list-layer {
+    padding: 25px 0 0
+}
+
+    .comments-list-layer .comment-item {
+        padding-right: 100px;
+        position: relative;
+        margin-bottom: 20px
+    }
+
+        .comments-list-layer .comment-item .right-col {
+            width: 85px;
+            position: absolute;
+            right: 0;
+            top: 0
+        }
+
+            .comments-list-layer .comment-item .right-col img {
+                width: 85px;
+                height: 85px;
+                border: 3px solid #e8ebf2;
+                border-radius: 100%;
+                -moz-border-radius: 100%;
+                -webkit-border-radius: 100%;
+                box-shadow: 0 0 6px 0 #e7ebf2;
+                -moz-box-shadow: 0 0 6px 0 #e7ebf2;
+                -webkit-box-shadow: 0 0 6px 0 #e7ebf2
+            }
+
+            .comments-list-layer .comment-item .right-col button {
+                font-size: 13px;
+                line-height: 28px;
+                height: 28px;
+                padding: 0 10px;
+                text-align: center;
+                margin: 15px auto;
+                display: block;
+            }
+
+        .comments-list-layer .comment-item .left-col {
+            width: 100%;
+            border: 1px solid #edf1f4;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            padding: 10px 20px
+        }
+
+            .comments-list-layer .comment-item .left-col .heading {
+                padding: 10px 0
+            }
+
+                .comments-list-layer .comment-item .left-col .heading h4 {
+                    width: auto;
+                    white-space: normal;
+                    display: inline-table;
+                    font-size: 14px;
+                    line-height: 15px;
+                    border-left: 1px solid #e3e9ed;
+                    padding-left: 15px;
+                    margin-left: 15px
+                }
+
+                .comments-list-layer .comment-item .left-col .heading span {
+                    width: auto;
+                    white-space: normal;
+                    display: inline-table;
+                    font-size: 13px;
+                    line-height: 15px;
+                    color: #686e71
+                }
+
+            .comments-list-layer .comment-item .left-col .cm-text p {
+                margin: 5px 0;
+                line-height: 26px;
+                font-size: 13px;
+                text-align: justify;
+            }
+
+        .comments-list-layer .comment-item > .comment-item {
+            padding-right: 0;
+            margin: 20px 0
+        }
+
+            .comments-list-layer .comment-item > .comment-item .left-col {
+                padding-right: 105px
+            }
+
+            .comments-list-layer .comment-item > .comment-item .right-col {
+                top: 15px;
+                right: 15px
+            }
+
+                .comments-list-layer .comment-item > .comment-item .right-col img {
+                    width: 75px;
+                    height: 75px;
+                    border: 3px solid #e8ebf2;
+                }
+
+.video-list-layer {
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+    .video-list-layer:before {
+        position: absolute;
+        width: 45px;
+        height: 75px;
+        background: url('../images/circle-bg.svg') no-repeat top left;
+        background-size: 45px 75px;
+        left: -5px;
+        top: 25px;
+        content: '';
+        z-index: 1
+    }
+
+    .video-list-layer .heading {
+        padding: 10px 0 15px;
+        position: relative;
+        z-index: 2
+    }
+
+        .video-list-layer .heading .bullet {
+            width: 42px;
+            height: 37px;
+            position: relative;
+            background: url('../images/bullet-3.svg') no-repeat 0 0;
+            background-size: 42px 37px;
+            top: -2px;
+            margin-left: 12px;
+            float: right;
+            display: table;
+            text-align: left;
+        }
+
+            .video-list-layer .heading .bullet i {
+                font-size: 20px;
+                color: #b0b9be;
+                position: relative;
+                left: 11px;
+                top: 6px
+            }
+
+        .video-list-layer .heading h3 {
+            width: auto;
+            display: table;
+            line-height: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e2f38;
+            float: right;
+        }
+
+        .video-list-layer .heading .course-time {
+            width: auto;
+            display: table;
+            line-height: 31px;
+            font-size: 14px;
+            color: #686e71;
+            float: left;
+        }
+
+            .video-list-layer .heading .course-time i {
+                font-style: normal;
+                padding-right: 10px;
+                font-size: 16px
+            }
+
+    .video-list-layer .video-player-layer {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        margin: 10px 0
+    }
+
+        .video-list-layer .video-player-layer video {
+            width: 100%;
+            display: block;
+        }
+
+    .video-list-layer .alert {
+        margin: 35px 0
+    }
+
+.video-items-layer .video-item {
+    border: 1px dashed #d7e0e9;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    position: relative;
+    padding: 12px 15px;
+    margin-bottom: 15px
+}
+
+    .video-items-layer .video-item:last-child {
+        margin-bottom: 5px
+    }
+
+    .video-items-layer .video-item .video-num {
+        border: 2px solid #d7e0e9;
+        width: 30px;
+        height: 30px;
+        line-height: 28px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: #556167;
+        position: absolute;
+        right: -15px;
+        top: 17px;
+        background-color: #fff;
+        border-radius: 100%;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+    }
+
+    .video-items-layer .video-item > a,
+    .video-items-layer .video-item > button {
+        width: 35px;
+        height: 35px;
+        float: left;
+        margin-right: 8px;
+        text-align: center;
+        border-radius: 100%;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+        margin-top: 4px;
+        background-color: #fff
+    }
+
+    .video-items-layer .video-item > .download-video {
+        border: 1px solid #b6e49c;
+        color: #6fc341;
+        font-size: 19px;
+        line-height: 39px;
+    }
+
+    .video-items-layer .video-item > .view-description {
+        border: 1px solid #e7eaee;
+        color: #b0b9be;
+        font-size: 18px;
+        line-height: 36px;
+    }
+
+    .video-items-layer .video-item > .show-video {
+        border: 1px solid #b6e49c;
+        color: #6fc341;
+        font-size: 21px;
+        line-height: 36px;
+    }
+
+        .video-items-layer .video-item > .show-video i {
+            position: relative;
+            left: 1px;
+            top: 1px
+        }
+
+    .video-items-layer .video-item > .download-video:hover {
+        box-shadow: 0 0 6px 0 #b6e49c;
+        -moz-box-shadow: 0 0 6px 0 #b6e49c;
+        -webkit-box-shadow: 0 0 6px 0 #b6e49c;
+    }
+
+    .video-items-layer .video-item > .view-description:hover {
+        box-shadow: 0 0 6px 0 #d7dfe9;
+        -moz-box-shadow: 0 0 6px 0 #d7dfe9;
+        -webkit-box-shadow: 0 0 6px 0 #d7dfe9;
+    }
+
+    .video-items-layer .video-item > .show-video:hover {
+        box-shadow: 0 0 6px 0 #b6e49c;
+        -moz-box-shadow: 0 0 6px 0 #b6e49c;
+        -webkit-box-shadow: 0 0 6px 0 #b6e49c;
+    }
+
+    .video-items-layer .video-item ul {
+        padding: 10px 17px 10px 0;
+        margin-bottom: 4px;
+        width: auto;
+        display: table;
+        float: right;
+    }
+
+        .video-items-layer .video-item ul li {
+            width: auto;
+            display: table;
+            float: right;
+            line-height: 20px;
+            border-left: 1px solid #edf1f4;
+            padding-left: 13px
+        }
+
+            .video-items-layer .video-item ul li:last-child {
+                border-left: 0
+            }
+
+            .video-items-layer .video-item ul li h2 {
+                line-height: 20px;
+            }
+
+            .video-items-layer .video-item ul li span {
+                padding-right: 13px;
+                line-height: 20px;
+            }
+
+                .video-items-layer .video-item ul li span.vidoe-time {
+                    color: #8f9ca7
+                }
+
+                .video-items-layer .video-item ul li span.video-price {
+                    color: #5fb430
+                }
+
+    .video-items-layer .video-item .video-description-layer {
+        clear: both;
+        line-height: 25px;
+        text-align: justify;
+        font-size: 13px;
+        color: #1e2f38;
+        padding: 15px 5px 0 5px;
+        display: none
+    }
+
+
+
+@media screen and (max-width : 1199px) {
+    .video-items-layer .video-item ul {
+        float: none;
+        width: 100%
+    }
+
+    .course-content-layer,
+    .video-list-layer,
+    .comments-layer {
+        padding: 20px
+    }
+
+    .course-details-layer {
+        padding: 10px 20px 20px 20px
+    }
+
+    .tags-layer, .share-socials {
+        padding: 15px
+    }
+
+    .short-description .right-side {
+        width: 90%;
+    }
+
+        .short-description .right-side p {
+            font-size: 13px
+        }
+
+    .course-page-header h1 a {
+        font-size: 18px
+    }
+
+    .course-page-header .right-side {
+        max-width: 62%
+    }
+
+    .breadcrumb ul li a {
+        font-size: 12px
+    }
+
+    .breadcrumb ul li {
+        margin-left: 15px
+    }
+
+        .breadcrumb ul li::before {
+            left: -9px;
+            top: 11px;
+            font-size: 11px;
+        }
+}
+
+@media screen and (max-width : 991px) {
+    .course-page-header .right-side {
+        float: none;
+        width: 100%;
+        max-width: 100%
+    }
+
+    .course-page-header .left-side {
+        width: 100%;
+        float: none;
+        margin-top: 15px
+    }
+
+    .course-shortlink {
+        width: 100%;
+        min-width: 50px;
+        padding: 0 0 0 60px;
+        background-color: rgba(255,255,255,0.9);
+    }
+
+    .course-page-header {
+        padding-bottom: 25px
+    }
+
+    .short-description {
+        padding-left: 20px
+    }
+
+        .short-description .left-side {
+            display: none
+        }
+
+        .short-description .right-side {
+            width: 100%
+        }
+
+    .sidebar-content,
+    .main-content {
+        width: 100%;
+        float: none;
+        padding: 0
+    }
+
+        .sidebar-content .course-details-layer {
+            display: none
+        }
+
+        .main-content .course-details-layer {
+            display: block;
+        }
+
+        .short-description,
+        .main-content .course-details-layer,
+        .course-content-layer, .video-list-layer, .comments-layer,
+        .sidebar-content aside > div {
+            margin-bottom: 25px
+        }
+
+            .short-description .right-side p {
+                overflow: visible;
+                height: auto;
+            }
+}
+
+@media screen and (max-width : 800px) {
+    .course-page:before,
+    .course-page:after {
+        display: none
+    }
+}
+
+@media screen and (max-width : 680px) {
+    .comments-list-layer .comment-item .left-col .heading h4 {
+        display: block;
+        padding-left: 0;
+        margin-left: 0;
+        border-left: 0;
+        line-height: 20px;
+        padding-bottom: 8px
+    }
+
+    .comments-list-layer .comment-item .left-col .heading span {
+        display: block;
+        line-height: 20px
+    }
+
+    .comments-list-layer .comment-item > .comment-item .left-col {
+        padding-right: 15px
+    }
+
+        .comments-list-layer .comment-item > .comment-item .left-col .heading {
+            padding: 15px 90px 15px 5px
+        }
+
+        .comments-list-layer .comment-item > .comment-item .left-col .cm-text {
+            padding-top: 5px
+        }
+
+    .video-items-layer .video-item ul li:first-child {
+        display: block;
+        padding-left: 0;
+        margin-left: 0;
+        border-left: 0;
+        float: none;
+        width: 100%;
+        margin-bottom: 25px
+    }
+
+    .video-items-layer .video-item ul li span.vidoe-time {
+        padding-right: 0
+    }
+
+    .video-items-layer .video-item ul {
+        margin-bottom: -43px
+    }
+
+    .video-items-layer .video-item > a, .video-items-layer .video-item > button {
+        margin-bottom: 5px
+    }
+
+    .video-items-layer .video-item ul li h2 {
+        line-height: 25px;
+        font-size: 14px;
+    }
+
+    .comments-list-layer .comment-item .left-col .heading span {
+        font-size: 12px
+    }
+
+    .video-list-layer:before {
+        display: none;
+    }
+
+    .course-page {
+        padding: 20px 0 35px
+    }
+}
+
+@media screen and (max-width : 480px) {
+    .short-description .right-side .img-layer {
+        position: static;
+        display: block;
+        margin: 0 auto 15px
+    }
+
+    .short-description .right-side {
+        padding: 0
+    }
+
+    .short-description {
+        padding: 17px
+    }
+
+        .short-description .right-side h2 {
+            text-align: center;
+        }
+
+        .short-description .right-side p {
+            text-align: center;
+        }
+
+        .short-description .right-side h2 a {
+            padding: 0
+        }
+
+    .video-list-layer .heading h3,
+    .comments-layer > .heading h3 {
+        font-size: 16px
+    }
+
+    .video-list-layer .heading .course-time {
+        display: none
+    }
+
+    .comments-list-layer .comment-item {
+        padding: 0
+    }
+
+        .comments-list-layer .comment-item > .comment-item {
+            padding-right: 18px
+        }
+
+            .comments-list-layer .comment-item > .comment-item .right-col {
+                right: 30px
+            }
+
+    .course-content-layer, .video-list-layer, .comments-layer {
+        padding: 15px
+    }
+
+    .video-items-layer .video-item .video-num {
+        right: -10px;
+        top: 19px;
+    }
+
+    .comments-list-layer > .comment-item > .right-col {
+        width: 100%;
+        position: static;
+    }
+
+    .comments-list-layer .comment-item img {
+        display: none
+    }
+
+    .comments-list-layer > .comment-item > .left-col > .heading {
+        padding: 40px 0 15px
+    }
+
+    .comments-list-layer > .comment-item > .left-col > .cm-text {
+        margin-top: 5px
+    }
+
+    .comments-list-layer > .comment-item > .right-col button {
+        position: absolute;
+        left: 15px;
+        top: 0
+    }
+
+    .comments-list-layer .comment-item > .comment-item .left-col .heading {
+        padding: 8px 0
+    }
+}
+
+@media screen and (max-width : 400px) {
+    .video-items-layer .video-item ul {
+        margin-bottom: 0
+    }
+
+        .video-items-layer .video-item ul li:first-child {
+            margin-bottom: 12px
+        }
+
+    .course-shortlink .title {
+        display: none
+    }
+
+    .course-content-layer h2 {
+        padding: 0
+    }
+
+        .course-content-layer h2 a {
+            font-size: 16px;
+            line-height: 32px
+        }
+
+    .comments-layer > .heading h3 {
+        font-size: 15px;
+        font-weight: normal;
+    }
+
+    .course-details-layer .course-price {
+        font-size: 14px
+    }
+}

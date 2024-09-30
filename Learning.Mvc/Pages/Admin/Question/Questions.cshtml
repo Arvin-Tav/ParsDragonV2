@@ -1,0 +1,79 @@
+﻿@page "{handler?}"
+@model Learning.Mvc.Pages.Admin.Question.QuestionsModel
+@{
+    ViewData["Title"] = "سوالات کاربران";
+}
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+                    <form class="card-form  filter-form">
+                        <input type="hidden" class="pageId" name="PageId" value="@Model.FilterQuestionDTO.PageId" />
+                        <input type="hidden" class="UserId" name="PageId" value="@Model.FilterQuestionDTO.UserId" />
+                        <input type="hidden" name="CourseId" value="@Model.FilterQuestionDTO.CourseId"/>
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <input type="text" name="UserName"  value="@Model.FilterQuestionDTO.UserName" class="form-control" placeholder="مشخصات کاربری یا اسم دوره" />
+
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="filters" value="@Model.FilterQuestionDTO.Search" class="form-control" placeholder="متنی از سوال" />
+
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+                                <a href="/Admin/Question/Questions" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>کد سوال </th>
+                                <th>نام کاربر</th>
+                                <th>نام دوره</th>
+                                <th>تاریخ ثبت </th>
+                                <th>تعداد پاسخ  </th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var question in Model.FilterQuestionDTO.Questions)
+                            {
+                                <tr class="item_@question.QuestionId">
+                                    <td>@question.QuestionId</td>
+                                    <td>@question.User.UserName</td>
+                                    <td>
+                                        <a href="/ShowCourse/@question.CourseId" target="_blank">@question.Course.CourseTitle</a>
+                                    </td>
+                                    <td>@question.CreateDate.ToShamsi()</td>
+                                    <td>@question.Answers.Count</td>
+                                    <td>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="مشاهده">
+                                            <a href="/Admin/Question/Questions/IsReadAdminQuestion?id=@question.QuestionId" class="text-primary LoadingDiv" uk-icon="@((question.IsAdminRead?"eye":"eye-off-outline"))"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                            <a  ajax-url-button="@question.QuestionId"
+                                           href="/Admin/Question/Questions/DeleteQuestion?code=@question.QuestionId" class="text-danger" uk-icon="trash"></a>
+                                        </span>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <partial name="_PagingAdminPartial" model="@Model.FilterQuestionDTO.GetCurrentPaging()" />
+
+
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,171 @@
+﻿@using Learning.Domain.Models.Order
+@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "فاکتورهای شما";
+}
+@section StylePage{
+
+<link rel="stylesheet" type="text/css" href="/Site/css/account.css">
+
+
+   }
+
+
+
+<div class="account-page-style">
+    <div class="container">
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+            <ul itemtype="http://schema.org/BreadcrumbList">
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  @ViewData["Title"]  </span></a></li>
+            </ul>
+        </div>
+        <!-- /breadcrumb -->
+
+        <div class="account-page">
+
+            <div class="row">
+
+
+                <partial name="_SideBar" />
+
+                <!-- left side -->
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="left-content">
+
+                        <section class="section-style box-shadow">
+                            <header><h2> فاکتورها </h2></header>
+                            <div class="inner">
+
+                                <div class="factors-list box-shadow">
+                                    <div class="heading"><span> فاکتورهای پرداخت نشده : <i> @Model.Count(i=>!i.IsFinaly) </i> </span></div>
+                                    <!-- factor table -->
+                                    @if (ViewBag.finaly == true)
+                                    {
+                                        <div class="alert alert-success">
+                                            فاکتور با موفقیت پرداخت گردید
+                                        </div>
+                                    }
+                                    <div class="factor-tbl">
+                                        <!-- head -->
+                                        <div class="factor-tbl-heading">
+                                            <ul>
+                                                <li> تاریخ </li>
+                                                <li> تعداد دوره ها </li>
+                                                <li> وضعیت پرداخت </li>
+                                                <li> جزییات </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /head -->
+                                        <!-- body -->
+
+                                        <div class="factor-tbl-body">
+
+                                            @foreach (var item in Model)
+                                            {
+                                                <!-- row -->
+                                                <div class="factor-tbl-row">
+                                                    <ul>
+                                                        <li><span> تاریخ : </span>  @item.CreateDate.ToShamsi()</li>
+                                                        <li><span> تعداد دوره ها : </span> @item.OrderDetails.Count </li>
+                                                        <li>
+                                                            <span> وضعیت پرداخت : </span>
+                                                            @if (item.IsFinaly)
+                                                            {
+
+                                                                <i class="green"> پرداخت شده </i>
+
+                                                            }
+                                                            else
+                                                            {
+
+
+                                                                <i class="red"> پرداخت نشده </i>
+
+                                                            }
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void(0)" class="view-detail"> جزییات </a>
+                                                            @if (!item.IsFinaly)
+                                                            {
+
+                                                                <a class="pay-order" href="/UserPanel/MyOrders/ShowOrder/@item.OrderId">پرداخت </a>
+
+
+                                                            }
+
+                                                        </li>
+                                                    </ul>
+                                                    <!-- factor detail -->
+                                                <div class="factor-detail-layer" style="display: none;">
+                                                    </div>
+
+                                                    <div class="factor-detail-layer" style="display: none;">
+                                                        @if (item.OrderDetails.Any())
+                                                        {
+                                                            @foreach (var details in item.OrderDetails)
+                                                            {
+
+                                                                <div class="detail-row">
+                                                                    <div class="right-col">
+                                                                        <span class="title"><a href="/ShowCourse/@details.CourseId/@details.Course.CourseTitle.FixedNameCourse() target="_blank">@details.Course.CourseTitle </a></span>
+                                                                    </div>
+                                                                    <div class="left-col">
+                                                                        <span>مبلغ اصلی : @details.Price.ToString("#,0") تومان </span>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            <div class="detail-row">
+                                                                <div class="right-col">
+                                                                    <span class="title"><a href="#"> مبلغ پرداختی </a></span>
+                                                                </div>
+                                                                <div class="left-col">
+                                                                    <span>مبلغ اصلی : @item.OrderDetails.Sum(d => d.Price * d.Count).ToString("#,0") تومان </span>
+                                                                    @if (item.DiscountPrice > 0)
+                                                                    {
+                                                                        <span>تخفیف : @item.DiscountPrice.ToString("#,0") تومان </span>
+                                                                    }
+                                                                    <span>مبلغ پرداختی : @item.OrderSum.ToString("#,0") تومان </span>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    <!-- /factor detail -->
+                                            </div>
+                                                <!-- /row -->
+                                            }
+
+
+
+                                            <!-- /body -->
+                                        </div>
+                                        <!-- /factor table -->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+                <!-- /left side -->
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts{
+<script src="/Site/js/account.js"></script>
+
+    }

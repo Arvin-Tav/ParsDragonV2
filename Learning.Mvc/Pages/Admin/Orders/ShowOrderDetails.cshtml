@@ -1,0 +1,85 @@
+﻿@page "{id}"
+@model Learning.Mvc.Pages.Admin.Orders.ShowOrderDetailsModel
+@{
+    ViewData["Title"] = "فاکتور شماره " + Model.Order.OrderId + " برای کاربر" + Model.Order.User.UserName;
+}
+
+
+
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @ViewData["Title"]
+            </div>
+
+            <div class="card flex-div border-0 main-shadow">
+                <div id="card-table" class="card-body flex-div">
+                    <div class="table-responsive flex">
+                        <table class="table fixed">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>دوره</th>
+                                    <th>تعداد</th>
+                                    <th>قیمت</th>
+                                    <th>جمع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Order.OrderDetails)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/ShowCourse/@item.CourseId" target="_blank">@item.Course.CourseTitle</a>
+                                        </td>
+                                        <td>@item.Count</td>
+                                        <td>@item.Price.ToString("#,0 تومان")</td>
+                                        <td>
+                                            @((item.Count * item.Price).ToString("#,0 تومان"))
+                                        </td>
+                                    </tr>
+                                }
+                                <tr>
+
+                                    <td colspan="3" class="text-left">مبلغ اصلی </td>
+                                    <td>
+                                        @Model.Order.OrderDetails.Sum(d => d.Price * d.Count).ToString("#,0 تومان")
+                                    </td>
+                                </tr>
+                                <tr>
+                                   @if (Model.Order.DiscountPrice > 0)
+                                    {
+                                        <td colspan="3" class="text-left">تخفیف </td>
+                                        <td>
+                                            @Model.Order.DiscountPrice.ToString("#,0 تومان")
+                                        </td>
+                                    }
+                                </tr>
+                                <tr>
+
+                                    <td colspan="3" class="text-left">جمع کل پرداختی</td>
+                                    <td>
+                                        @Model.Order.OrderSum.ToString("#,0 تومان")
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,139 @@
+﻿@using Learning.Domain.DTO.Forum
+@inject ICourseService _CourseService;
+@inject IOrderService _OrderService;
+@inject IPermissionService _PermissionService;
+@model FilterQuestionDTO
+
+@{
+    ViewData["Title"] = "پرسش و پاسخ";
+    bool isUserInCourse = false;
+    bool isAdmin = false;
+    bool isMasterInCourse = false;
+    int courseId = 0;
+    Course course = new Course();
+    if (Model.CourseId != 0 && Model.CourseId != null)
+    {
+        courseId = (int)Model.CourseId;
+        course = await _CourseService.GetCourseById(courseId);
+        isUserInCourse = await _CourseService.IsUserInCourse(User.GetUserId(), courseId);
+        isMasterInCourse = await _CourseService.IsMasterInCourse(User.GetUserId(), courseId);
+        isAdmin = await _PermissionService.CheckPermission("AccessToCourses", User.GetUserId());
+    }
+}
+@section StylePage{
+
+    <link rel="stylesheet" type="text/css" href="/site/css/question.css">
+}
+
+    <div class="container">
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+            <ul itemtype="http://schema.org/BreadcrumbList">
+                <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/Forum" itemprop="item"><span itemprop="name">پرسش و پاسخ  </span></a></li>
+                @if (courseId != 0)
+            {
+                <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a itemprop="item" class="current" href="/ShowCourse/@courseId/@course.CourseTitle.FixedNameCourse()"><span itemprop="name">@course.CourseTitle</span></a></li>
+            }
+        </ul>
+    </div>
+    <!-- /breadcrumb -->
+    <!-- main content -->
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+
+            <section class="questions-archive-layer">
+                <header>
+                    @if (courseId != 0)
+                    {
+                        <h1>پرسش و پاسخ در @course.CourseTitle </h1>
+                    }
+                    else
+                    {
+                        <h1>پرسش و پاسخ در MoneyMagnet </h1>
+                    }
+
+                    <span>@Model.Questions.Count() پرسش ثبت شده </span>
+                </header>
+
+                <!-- action in aerchive  -->
+                <div class="action-questions-layer">
+                    <!-- search -->
+                    <div class="search-questions">
+                        <form method="get" asp-action="Index" class="filter-form ">
+                            <input type="hidden" class="pageId" id="PageId" name="PageId" value="@Model.PageId">
+                            <input type="text" name="Search" value="@Model.Search" placeholder="دنبال چه سوالی میگردی ؟ ">
+                            <button><i class="zmdi zmdi-search"></i></button>
+                            <input type="hidden" name="CourseId" value="@courseId" />
+                        </form>
+                    </div>
+                    <!-- /search -->
+                    @if (courseId != 0)
+                    {
+                        if (course.CoursePrice == 0 || isUserInCourse || isMasterInCourse || isAdmin)
+                        {
+                            <div class="sort-questions">
+                                <a class="btn btn-primary" asp-action="CreateQuestion" asp-route-id="@courseId">پرسش سوال</a>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="sort-questions">
+
+                                <div class="alert alert-danger">
+                                    شما این دوره را خریداری نکردید
+                                </div>
+                            </div>
+                        }
+
+                    }
+                </div>
+
+                <!-- /action in aerchive  -->
+                <!-- question item -->
+                @foreach (var item in Model.Questions)
+                {
+
+
+                    <div class="question-item box-shadow ">
+
+                        <a class="img-layer box-shadow"><img src="@item.User.GetUserImageThumbAddress()"></a>
+                        <h2><a href="/ShowQuestion/@item.QuestionId/@item.Title.FixedNameCourse()">@item.Title</a></h2>
+                        <ul>
+                            <li><span><a  asp-controller="Course" asp-action="ShowCourse"  asp-route-id="@item.CourseId" asp-route-name="@item.Course.CourseTitle.FixedNameCourse()" >@item.Course.CourseTitle</a> </span></li>
+                            <li><span>@item.CreateDate.ToShamsi()</span></li>
+                            <li><span>@item.Answers.Count پاسخ </span></li>
+                        </ul>
+                    </div>
+                }
+                 <!-- pagination -->
+                <partial name="_PagingPartial" model="@Model.GetCurrentPaging()" />
+                <!-- /pagination -->
+
+
+            </section>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <cache expires-after="@TimeSpan.FromMinutes(15)">
+                @await Component.InvokeAsync("LastQuestions")
+            </cache>
+        </div>
+    </div>
+    <!-- /main content -->
+
+</div>
+
+
+
+@section Scripts{
+    <script src="/site/js/custom.js"></script>
+    <script src="/site/js/question.js"></script>
+    <script>
+        function paginateClick(id) {
+            $(".pageId").val(id);
+            $(".filter-form").submit();
+        }
+    </script>
+}

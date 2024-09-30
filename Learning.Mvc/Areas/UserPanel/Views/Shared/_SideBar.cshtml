@@ -1,0 +1,80 @@
+﻿
+@inject IUserService _userService
+@inject IPermissionService _permissionService
+@{
+    SideBarUserPanelDTO user = await _userService.GetSideBarUserPanelData(User.GetUserId());
+}
+
+
+@section StylePage{
+    <link href="/site/css/account.css" rel="stylesheet" />
+
+ }
+
+
+    <div class="col-md-3 col-sm-12 col-xs-12">
+        <!-- right side -->
+        <aside class="sidebar box-shadow">
+
+
+            <div class="headline">
+                <div class="img-layer">
+                    <form action="/UserPanel/ChangeAvatar" enctype="multipart/form-data" id="form" method="post">
+                        <a href="javascript:void(0)" class="change-image">
+                            <input type="file" id="upImgAvatar" name="avatar" class="ProfileAvatarInput">
+                            <i class="zmdi zmdi-edit"></i>
+                        </a>
+                        <img id="imgAvatar" class="imgAvatar" src="@user.GetMasterImageAddress()">
+                    </form>
+                </div>
+                <h1> @user.UserName </h1>
+                <a data-toggle="tooltip" data-placement="right" title="" class="exit-link" href="/logOut" data-original-title=" خروج از حساب "><i class="zmdi zmdi-power"></i></a>
+            </div>
+
+            <section class="access-menu">
+                <ul>
+                    <li></li>
+                    <li><a href="/UserPanel"> مشاهده حساب کاربری </a></li>
+                    <li><a href="/UserPanel/EditProfile"> ویرایش حساب کاربری </a></li>
+                    <li><a href="/UserPanel/ChangePassword"> تغییر رمز عبور </a></li>
+                    <li><a href="/UserPanel/Wallet"> کیف پول شما</a></li>
+                    <li><a href="/UserPanel/MyOrders"> فاکتورها  </a></li>
+                    <li><a href="/UserPanel/MyCourses"> دوره های من </a></li>
+                    <li><a href="/UserPanel/OnlineClass"> کلاس های من </a></li>
+                    @*    <li><a href="/Account/MyQuestions"> سوالات من </a></li>
+                <li><a href="/Account/MyAnswers"> پاسخ های من </a></li>*@
+                    @*<li><a href="/Account/Tickets"> تیکت ها </a></li>*@
+                    <li><a href="/logOut"> خروج از حساب کاربری </a></li>
+                    <li></li>
+                </ul>
+            </section>
+        @if (await _permissionService.CheckPermission("Master", User.GetUserId()))
+        {
+            <section class="access-menu">
+                <header><h3> پنل مدرس </h3></header>
+                <div class="inner">
+                    <ul>
+                        <li></li>
+                        <li><a asp-action="MasterCoursesList" asp-controller="Master"> مدیریت دوره ها </a></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </section>
+        }
+    </aside>
+
+
+
+
+
+
+    <!-- /right side -->
+</div>
+
+
+@section Scripts
+    {
+    <script src="/site/js/account.js"></script>
+}
+
+

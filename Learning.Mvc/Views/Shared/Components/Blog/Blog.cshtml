@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Learning.Domain.Models.Blog.Blog>
+
+@if (Model != null && Model.Any())
+{
+<div class="last-articles-layer articles-view">
+    <span class="right-parallax" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800"></span>
+    <section class="container">
+        <header class="heading">
+            <h2> آخرین مقالات MoneyMagnet</h2>
+            <a class="view-more" asp-controller="Blog" asp-action="Index"> مشاهده همه مقالات <i class="zmdi zmdi-arrow-left"></i></a>
+        </header>
+        <div class="row">
+            <!-- col -->
+            @foreach (var item in Model)
+            {
+                <partial name="_BoxBlog" model="@item" />
+            }
+            <!-- /col -->
+        </div>
+    </section>
+    <span class="left-parallax" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300"></span>
+</div>
+}

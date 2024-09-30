@@ -1,0 +1,27 @@
+﻿@using Learning.Domain.DTO.Course
+@model CourseInformaationDTO
+ <div class="landing-statistics  hidden-sm hidden-xs animated fadeIn">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="statistic-col">
+                    <img src="/images/stat-time.svg">
+                    <span class="title mb-5">  @Model.EpisodeAllTime.ToString("#,0")  </span>
+                    <span class="title"> دقیقه آموزش </span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="statistic-col">
+                    <img src="/images/stat-teacher.svg">
+                    <span class="title mb-5"> @Model.MasterCount.ToString("#,0")  </span>
+                    <span class="title"> مدرس مجرب </span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="statistic-col">
+                    <img src="/images/stat-student.svg">
+                    <span class="title mb-5"> @Model.UserCount.ToString("#,0") </span>
+                    <span class="title"> نفر دانشجو </span>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,174 @@
+﻿@page
+@model Learning.Mvc.Pages.Admin.Courses.CreateCourseModel
+@{
+    ViewData["Title"] = "افزودن دوره جدید";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <form method="post" enctype="multipart/form-data" style="overflow-y:auto" class=" card flex-div border-0 main-shadow">
+            <div class="modal-body row">
+                <div class="col-md-8 col-lg-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            اطلاعات دوره
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>عنوان دوره</label>
+                                    <input type="text" asp-for="CreateCourseDTO.CourseTitle" class="form-control">
+                                    <span asp-validation-for="CreateCourseDTO.CourseTitle" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>گروه اصلی</label>
+                                    <select class="form-control" asp-for="CreateCourseDTO.GroupId" asp-items="@(ViewData["Groups"] as SelectList)"></select>
+                                    <span asp-validation-for="CreateCourseDTO.GroupId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>گروه فرعی</label>
+                                    <select class="form-control" asp-for="CreateCourseDTO.SubGroup" asp-items="@(ViewData["SubGroups"] as SelectList)"></select>
+                                    <span asp-validation-for="CreateCourseDTO.SubGroup" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>مدرس دوره</label>
+                                    <select class="form-control" asp-for="CreateCourseDTO.TeacherId" asp-items="@(ViewData["Teachers"] as SelectList)"></select>
+                                    <span asp-validation-for="CreateCourseDTO.TeacherId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>شرح دوره</label>
+                                    <textarea class="form-control" asp-for="CreateCourseDTO.CourseDescription" rows="10"></textarea>
+                                    <span asp-validation-for="CreateCourseDTO.CourseDescription" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>قیمت دوره</label>
+                                    <input type="number" asp-for="CreateCourseDTO.CoursePrice" placeholder="0" value="0" class="form-control" />
+                                    <span asp-validation-for="CreateCourseDTO.CoursePrice" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>فایل دمو دوره(Mp4)</label>
+                                    <input type="file" name="demoUp">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>کلمات کلیدی دوره</label>
+                                    <input type="text" asp-for="CreateCourseDTO.Tags" class="form-control">
+                                    <p class="help-block">کلمات را با - جدا کنید</p>
+                                    <span asp-validation-for="CreateCourseDTO.Tags" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4  col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            تصویر دوره
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <img id="imgCourse" class="thumbnail" src="@PathExtensions.DefaultCourse" />
+                            <div class="form-row">
+
+                                <div class="form-group">
+                                    <label>انتخاب تصویر</label><br />
+                                    <input type="file" name="imgCourseUp" id="imgCourseUp">
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>سطح دوره</label>
+                                    <select class="form-control" asp-for="CreateCourseDTO.LevelId" asp-items="@(ViewData["Levels"] as SelectList)"></select>
+                                    <span asp-validation-for="CreateCourseDTO.LevelId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>وضعیت دوره</label>
+                                    <select class="form-control" asp-for="CreateCourseDTO.StatusId" asp-items="@(ViewData["Statues"] as SelectList)"></select>
+                                    <span asp-validation-for="CreateCourseDTO.StatusId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button type="submit" class="btn btn-success btn-sm text-white">افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $("#CreateCourseDTO_GroupId").change(function () {
+            $("#CreateCourseDTO_SubGroup").empty();
+            $.getJSON("/home/GetSubGroups/" + $("#CreateCourseDTO_GroupId :selected").val(),
+                function (data) {
+
+                    $.each(data,
+                        function () {
+                            $("#CreateCourseDTO_SubGroup").append('<option value=' + this.value + '>' + this.text + '</option>');
+
+                        });
+
+                });
+
+
+        });
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgCourse').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgCourseUp").change(function () {
+            readURL(this);
+        });
+    </script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    @*<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>*@
+    <script>
+
+        CKEDITOR.replace('CreateCourseDTO_CourseDescription', {
+            customConfig: '/ckeditor/config.js'
+        });
+
+    </script>
+}

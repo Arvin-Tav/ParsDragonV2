@@ -1,0 +1,69 @@
+﻿.Part_Background_Inp_search {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 35px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 7px 0 #eaeff4;
+}
+
+.Background_Inp_search {
+    display: flex;
+    align-items: flex-end;
+}
+
+.Main_part_Inp_Search_Name_teacher {
+    position: relative;
+}
+
+.Inp_Search_Name_teacher {
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    font-size: 14px;
+    border: 1px solid #edf1f4;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding-left: 50px;
+}
+
+.Btn_Search {
+    /* width: 100px; */
+    height: 35px;
+    background-color: transparent;
+    border-radius: 13px;
+}
+
+.Part_Btn_Search {
+    position: absolute;
+    top: 39px;
+    left: 3px;
+}
+
+.label_page_teacher_list {
+    font-size: 14px;
+    line-height: 30px;
+    color: #656565;
+}
+
+.Btn_Search:focus {
+    outline: none;
+    border: none;
+}
+
+.Btn_Search:focus-visible {
+    outline: none !important;
+    border: none !important;
+}
+
+.icon_Btn_Search {
+    font-size: 26px
+}
+
+    .icon_Btn_Search:hover {
+        color: #00b3e9;
+    }
+
+.teacher-box-size {
+    aspect-ratio: 285.5/387.74;
+}

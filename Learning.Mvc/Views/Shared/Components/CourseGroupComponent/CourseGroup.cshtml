@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Learning.Domain.Models.Course.CourseGroup>
+<div id="overlay"></div>
+<div class="main-menu">
+    <div class="container  AutoWidth">
+        <nav>
+
+            <ul>
+                @foreach (var group in Model.Where(g => g.ParentId == null))
+                {
+                    <li class="LiCLass">
+                        <a asp-controller="Course" asp-action="Index" asp-route-SelectedGroups="@group.GroupId"> @group.GroupTitle </a>
+                        @if (Model.Any(g => g.ParentId == group.GroupId))
+                        {
+                            <ul>
+                                @foreach (var sub in Model.Where(g => g.ParentId == group.GroupId))
+                                {
+                                    <li>
+                                        <a asp-controller="Course" asp-action="Index" asp-route-SelectedGroups="@sub.GroupId"> @sub.GroupTitle </a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+
+                }
+            </ul>
+        </nav>
+
+    </div>
+</div>

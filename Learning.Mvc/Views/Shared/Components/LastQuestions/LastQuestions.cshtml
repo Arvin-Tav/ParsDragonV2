@@ -1,0 +1,33 @@
+﻿@using Learning.Domain.Models.Question
+@model IEnumerable<Question>
+
+
+<aside class="sidebar">
+
+
+    <div class="most-popular-questions">
+        <div class="heading">آخرین پرسش ها</div>
+        <div class="inner">
+            <ul>
+
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <li>
+                            <h2><a href="/ShowQuestion/@item.QuestionId/@item.Title.FixedNameCourse()"> @item.Title </a></h2>
+                            <span class="statistics">
+                                <span><i class="zmdi zmdi-comments"></i>@item.Answers.Count </span>
+                                @*<span><i class="zmdi zmdi-eye"></i>0 </span>*@
+                            </span>
+                        </li>
+                    }
+
+                }
+
+
+            </ul>
+        </div>
+    </div>
+
+</aside>

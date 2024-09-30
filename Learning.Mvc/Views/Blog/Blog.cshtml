@@ -1,0 +1,158 @@
+﻿@using Learning.Application.Convertors
+@using Learning.Domain.Models.Blog
+@model Blog
+@{
+    ViewData["Title"] = Model.Title;
+}
+@section StylePage{
+    <link rel="stylesheet" type="text/css" href="/site/css/blog.css">
+   }
+    @section MetaTag
+    {
+
+    <link rel="canonical" href="https://MoneyMagnet.com.com/Blog/@Model.BlogId/@Model.Title" />
+    <meta name="keywords" content="MoneyMagnet، آموزش زبان های خارجی، زبان، @Model.Tags">
+    <meta name="author" content="MoneyMagnet ">
+    <meta http-equiv="refresh" content="43200">
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta name=description content="@Model.Description">
+    <meta property=og:site_name value="خودآموزش MoneyMagnet">
+    <meta property=og:title content="@Model.Title">
+    <meta property=og:url content="https://MoneyMagnet.com.com/Blog/@Model.BlogId/@Model.Title.FixTextForUrl()" />
+    <meta property=og:image content="@Model.GetBlogImageAddress()">
+    <meta property=og:image:url content="https://MoneyMagnet.com.com/@Model.GetBlogImageAddress()" />
+    <meta property=og:image:width content="700">
+    <meta property="og:image:height" content="500">
+    <meta property=og:image:type content="image/jpg">
+    <meta property=og:description content="@Model.Description">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+    <meta name="twitter:title" content="@Model.Title">
+    <meta name="twitter:description" content="@Model.Description" />
+    <meta name="twitter:image" content="https://MoneyMagnet.com.com/@Model.GetBlogImageAddress()">
+    <meta name="twitter:card" content=summary_large_image>
+    <meta name="twitter:site" content="@Model.Description">
+}
+    <!-- main content page -->
+    <div class="blog-page">
+        <div class="container">
+
+            <section class="blog-content-layer">
+
+                <header class="heading">
+                    <div class="right-side">
+
+                        <h1><a href="">  @Model.Title  </a></h1>
+
+                        <!-- breadcrumb -->
+                        <div class="breadcrumb">
+                            <ul itemtype="http://schema.org/BreadcrumbList">
+                                <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                                <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a itemprop="item" title="مقالات" href="/blogs"><span itemprop="name"> بلاگ </span></a></li>
+                                <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a title="مقالات MoneyMagnet" itemprop="item" href="/blogs?categories=MoneyMagnet"><span itemprop="name"> MoneyMagnet </span></a></li>
+                                <li itemtype="http://schema.org/ListItem" itemscope="" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">     @Model.Title     </span></a></li>
+                            </ul>
+                        </div>
+                        <!-- /breadcrumb -->
+                    </div>
+
+                    <div class="left-side">
+                    </div>
+
+                </header>
+
+                <div class="row">
+                    <!-- right -->
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <!-- main content -->
+                        <div class="blog-main-content box-shadow">
+
+                            <div class="top-layer">
+                                <div class="img-layer"><img alt="@Model.Title" src="@Model.GetBlogImageAddress()"></div>
+                                <div class="blog-details">
+                                    <a href="" class="author-img"><img alt=" @Model.User.UserName" src="@Model.User.GetUserImageAddress()"></a>
+                                    <ul>
+                                        @*<li><i class="zmdi zmdi-eye"></i> <span>153 بازدید</span> </li>*@
+                                        <li><i class="zmdi zmdi-calendar"></i> <span>@Model.CreateDate.ToShamsi()</span> </li>
+                                        <li><i class="zmdi zmdi-account"></i><a href="#"> @Model.User.UserName </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <article>
+                                <!-- repeat title for seo -->
+                                <div class="heading"><h2><a href=""> @Model.Title </a> </h2></div>
+                                <!-- /repeat title for seo -->
+                                <p>
+                                    @Html.Raw(Model.BodyHtml)
+                                </p>
+
+                            </article>
+
+
+                            <!-- sharing -->
+                            @*  <div class="share-socials">
+                        <span> به اشتراک گذاری</span>
+                        <a href="" class="box-shadow"><img src="/Site/images/telegram-dark.svg"></a>
+                        <a href="" class="box-shadow"><i class="zmdi zmdi-twitter"></i></a>
+                        <a href="" class="box-shadow"><i class="zmdi zmdi-facebook"></i></a>
+                        </div>*@
+                            <!-- /sharing -->
+
+                        </div>
+                        <!-- /main content -->
+                        <!-- tags -->
+                        @if (Model.Tags != null)
+                    {
+
+                        <div class="tags-layer box-shadow">
+                            @foreach (var item in Model.Tags.Split("-", StringSplitOptions.RemoveEmptyEntries))
+                            {
+                                <a href="/blogs?Search=@item">  @item </a>
+                            }
+                        </div>
+                    }
+                    <!-- /tags -->
+                    <!-- comment list -->
+                    <!-- comment list -->
+
+
+
+
+                </div>
+                <!-- /right -->
+                <!-- sidebar -->
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <aside>
+
+                        <br />
+
+                        <div class="section-aside box-shadow">
+                            <div class="heading"> دسته بندی دوره های آموزشی </div>
+                            <div class="inner categories-list">
+
+                                <cache expires-after="@TimeSpan.FromMinutes(15)">
+                                    @await Component.InvokeAsync("CourseGroupShowBlog")
+                                </cache>
+                            </div>
+                        </div>
+
+                    </aside>
+                </div>
+                <!-- /sidebar -->
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+
+
+
+@section Scripts
+    {
+    <script src="/site/js/site.SinglePost.min.js" class="3370"></script>
+}

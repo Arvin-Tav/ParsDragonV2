@@ -1,0 +1,103 @@
+﻿<script src="~/adminStaticFile/Jquery/jquery-3.4.1.js"></script>
+<script src="~/adminStaticFile/Jquery/jquery-3.4.1.min.js"></script>
+<script src="~/adminStaticFile/Jquery/modal.js"></script>
+<script src="~/adminStaticFile/Jquery/popper.min.js"></script>
+<script src="~/adminStaticFile/Bootstrap/js/bootstrap.js"></script>
+<script src="~/adminStaticFile/Bootstrap/js/bootstrap.min.js"></script>
+<script src="~/adminStaticFile/Bootstrap/js/bootstrap.bundle.js"></script>
+<script src="~/adminStaticFile/Bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/adminStaticFile/js/uikit.min.js"></script>
+<script src="~/adminStaticFile/js/uikit-icons.js"></script>
+<link href="~/adminStaticFile/DataPicker/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+<script src="~/adminStaticFile/script.js"></script>
+@*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7/dist/sweetalert2.all.min.js"></script>
+<script src="/js/notifications.js"></script>
+<script src="/js/custom.js"></script>
+
+
+
+
+
+<script>
+    $(".LoadingDiv").click(function() {
+        $("#overlay").fadeIn(300);
+    });
+    function FillPageId(id) {
+        $(".pageId").val(id);
+        $(".filter-form").submit();
+    }
+
+    function Remove(id) {
+        var url = $('.addressUrl').val() + id;
+        swal("آیا از حذف مطمئن هستین؟", "success", {
+            buttons: {
+                cancel: "خیر",
+                catch: {
+                    text: "بله",
+                    value: "catch",
+                },
+            },
+        })
+            .then((value) => {
+                switch (value) {
+                    case "catch":
+                        $.ajax({
+                            type: "get",
+                            url: url
+
+                        }).done(function(res) {
+                            if (res === 'true') {
+
+                                $(".item_" + id).addClass('text-danger');
+                                $(".item_" + id).hide('slow');
+                                swal("حذف", "حذف با موفقیت انجام شد", "success");
+                            } else {
+                                swal("حذف", "حذف انجام نشد", "error");
+                            }
+                        }).fail(function() {
+                            swal("حذف", "خطا در حذف", "info");
+
+                        });
+                        break;
+                    default:
+                }
+            });
+
+    }
+
+
+
+    $('[ajax-url-button]').on('click', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var itemId = $(this).attr('ajax-url-button');
+        swal({
+            title: 'اخطار',
+            text: "آیا از انجام عملیات مورد نظر اطمینان دارید؟",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "بله",
+            cancelButtonText: "خیر",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }).then((result) => {
+            if (result.value) {
+                $.get(url).then(result => {
+                    if (result === 'true') {
+                        swal("حذف", "حذف با موفقیت انجام شد", "success");
+                        $(".item_" + itemId).addClass('text-danger');
+                        $(".item_" + itemId).hide('slow');
+                    }
+                    else {
+                        swal("حذف", "حذف انجام نشد", "error");
+                    }
+                });
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                swal('اعلام', 'عملیات لغو شد', 'error');
+            }
+        });
+    });
+
+</script>

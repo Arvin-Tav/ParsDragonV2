@@ -1,0 +1,86 @@
+﻿@page "{handler?}"
+@model Learning.Mvc.Pages.Admin.Question.AnswersModel
+@{
+    ViewData["Title"] = "پاسخ های کاربران";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+                    <div class="alert alert-success alertCodeQuestionIsDelete" style="display: none">
+                        <p class="text-success">سوال حذف شد</p>
+                    </div>
+                    <div class="alert alert-danger alertCodeQuestionNotIsDelete" style="display: none">
+                        <p class="text-muted">سوال حذف نشد</p>
+                    </div>
+                    <form class="card-form  filter-form">
+                        <input type="hidden" class="pageId" name="PageId" value="@Model.FilterAnswerDTO.PageId" />
+                        <input type="hidden" name="QuestionId" value="@Model.FilterAnswerDTO.QuestionId" />
+
+                        <div class="row form-row">
+                            <div class="col-md-4">
+
+                                <input type="text" class="form-control" name="UserName" value="@Model.FilterAnswerDTO.UserName" placeholder="مشخصات کاربری" />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" name="Search" value="@Model.FilterAnswerDTO.Search" placeholder="متنی از جواب" />
+
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+                                <a href="/Admin/Answer/Answers" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>کد جواب </th>
+                                <th>کد سوال </th>
+                                <th>دوره</th>
+                                <th>نام کاربر سوال کننده </th>
+                                <th>نام کاربر جواب دهنده</th>
+                                <th>تاریخ ثبت </th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var answer in Model.FilterAnswerDTO.Answers)
+                            {
+                                <tr class="item_@answer.AnswerId">
+                                    <td>@answer.AnswerId</td>
+                                    <td>@answer.QuestionId</td>
+                                    <td>
+                                        <a href="/ShowCourse/@answer.Question.CourseId" target="_blank">@answer.Question.Course.CourseTitle</a>
+                                    </td>
+                                    <td>@answer.Question.User.UserName</td>
+                                    <td>@answer.User.UserName</td>
+                                    <td>@answer.CreateDate.ToShamsi()</td>
+                                    <td>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="نمایش سوال به همراه جواب ها">
+                                            <a href="/Admin/Question/Answers/IsReadAdminAnswer?id=@answer.QuestionId&answerId=@answer.AnswerId" class="text-primary LoadingDiv" uk-icon="@((answer.IsAdminRead?"eye":"eye-off-outline"))"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                            <a ajax-url-button="@answer.AnswerId"
+                                           href="/Admin/Question/Answers/DeleteAnswer?code=@answer.AnswerId"
+                                           class="text-danger" uk-icon="trash"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <partial name="_PagingAdminPartial" model="@Model.FilterAnswerDTO.GetCurrentPaging()" />
+
+        </div>
+    </div>
+</div>

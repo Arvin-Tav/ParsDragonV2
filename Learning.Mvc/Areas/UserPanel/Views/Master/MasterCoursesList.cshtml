@@ -1,0 +1,109 @@
+﻿@using Learning.Domain.Models.Course
+@model IEnumerable<Course>
+
+@{
+    ViewData["Title"] = "لیست دوره ها";
+}
+
+
+<div class="account-page-style">
+    <div class="container">
+        <div class="container">
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                    <li itemscope="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name">  @ViewData["Title"]  </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+        </div>
+        <div class="account-page">
+
+            <div class="row">
+
+
+                <partial name="_SideBar" />
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="left-content">
+
+
+                        <section class="section-style box-shadow">
+                            <header><h2> @ViewData["Title"] </h2></header>
+                            <div class="inner">
+                                <div class="row charge-wallet">
+                                    <div class="col-xs-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-browed table-hover dataTable table-striped text-center" role="grid">
+                                                <tbody>
+                                                    <tr class="active">
+                                                        <th>عنوان</th>
+                                                        <th>وضعیت تدریس</th>
+                                                        <th>وضعیت نمایش</th>
+                                                        <th>تعداد قسمت ها</th>
+                                                        <th>تعداد دانشجوها ها</th>
+                                                        <th> قیمت دوره</th>
+                                                        <th>دستورات</th>
+                                                    </tr>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @item.CourseTitle
+                                                            </td>
+                                                            <td>
+                                                                @item.CourseStatus.StatusTitle
+                                                            </td>
+                                                            <td>
+                                                                @if (item.IsShow)
+                                                                {
+                                                                    <span class="text-success">نمایش</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="text-warning">غیرفعال</span>
+
+                                                                }
+                                                            </td>
+                                                            <td>@item.CourseEpisodes.Count()</td>
+                                                            <td>@item.UserCourses.Count()</td>
+                                                            @if (item.CoursePrice == 0)
+                                                            {
+                                                                <td>
+                                                                    <span class="text-success">رایگان</span>
+                                                                </td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td>@item.CoursePrice.ToString("#,0")</td>
+                                                            }
+                                                            <td>
+                                                                <a class="btn btn-info" asp-action="EpisodesList" asp-controller="Master" asp-route-courseId="@item.CourseId">مدیریت قسمت ها</a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+
+                <!-- /left side -->
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+

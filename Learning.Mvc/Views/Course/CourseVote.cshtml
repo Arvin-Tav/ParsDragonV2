@@ -1,0 +1,29 @@
+﻿@model Tuple<int, int>
+@inject ICourseService couserService;
+@inject IPermissionService _PermissionService;
+@{
+    bool isAdmin = false;
+    bool isMasterInCourse = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        isMasterInCourse = await couserService.IsMasterInCourse(User.GetUserId(), ViewBag.CourseId);
+        isAdmin = await _PermissionService.CheckPermission("AccessToCourses", User.GetUserId());
+    }
+}
+@if ((User.Identity.IsAuthenticated && ViewBag.NotAccess == null) || (isAdmin || isMasterInCourse))
+{
+    <div class="row">
+        <img src="~/images/static/votew.jpg" />
+        <p></p>
+        <p>
+            <a class="btn btn-success" onclick="vote(true)">
+                <img class="btnLike" src="~/images/static/like.png" />
+                میپسندم @((isAdmin || isMasterInCourse)?@Model.Item1:"")
+            </a>
+            <a class="btn btn-danger" onclick="vote(false)">
+                <img class="btnLike" src="~/images/static/dislike.png" />
+                نمی پسندم @((isAdmin || isMasterInCourse)?@Model.Item2:"")
+            </a>
+        </p>
+    </div>
+}

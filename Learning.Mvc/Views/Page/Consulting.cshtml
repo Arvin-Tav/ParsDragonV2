@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "مشاوره  ";
+}
+
+
+@section StylePage{
+<link rel="stylesheet" type="text/css" href="/site/css/about.css">
+   }
+
+
+
+<!-- main content page -->
+<div class="about-page">
+    <div class="container">
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+              <ul class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="/Help" itemprop="item" class="current"><span itemprop="name">     @ViewData["Title"] </span></a></li>
+            </ul>
+        </div>
+        <!-- /breadcrumb -->
+
+        <div class="about-page-content">
+
+            <div class="inside-content">
+                <a href="/Terms" class="working-item active"> <span> @ViewData["Title"] </span> </a>
+                <div class="inner box-shadow">
+                    <!-- history -->
+                    <div id="history-item" class="active">
+                        @Html.Raw(ViewBag.Consulting)
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /main content page -->
+@section Scripts{
+<script src="/Site/js/about.js"></script>
+}
+

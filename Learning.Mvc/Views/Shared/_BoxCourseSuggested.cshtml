@@ -1,0 +1,40 @@
+﻿@using Learning.Application.Convertors
+@using Learning.Domain.DTO.Course
+@model ShowCourseListItemDTO
+
+<div class="item">
+    <div class="course-col">
+        <div class="box-shadow">
+
+            @*<div class="off-section">50% <span>تخفیف</span></div>*@
+            <div class="img-layer">
+                <a asp-controller="Course"
+            asp-action="ShowCourse" 
+            asp-route-id="@Model.CourseId"
+            asp-route-name="@Model.Title.FixedNameCourse()">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <img class="lazy " src="/img/LazyLoad.png" data-src="@Model.GetCourseImageThumbAddress()" alt=" @Model.Title">
+
+            </div>
+            <h2><a  asp-controller="Course"
+            asp-action="ShowCourse" 
+            asp-route-id="@Model.CourseId"
+            asp-route-name="@Model.Title.FixedNameCourse()">@Model.Title </a></h2>
+            <div class="detail">
+                <div class="top">
+                    <a href="#"><i class="zmdi zmdi-account"></i> @Model.TeacherName </a>
+                </div>
+                <div class="bottom">
+                    <span class="time"><i class="zmdi zmdi-time"></i> @Model.TotalTime </span>
+                    <span class="price">
+                        @((Model.Price==0)?"رایگان":Model.Price.ToString("#,0 تومان"))
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

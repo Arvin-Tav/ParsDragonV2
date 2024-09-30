@@ -1,0 +1,153 @@
+﻿@model Learning.Domain.DTO.OnlineClass.FilterOnlineClassDTO
+
+@{
+    ViewData["Title"] = "کلاس های آموزشی";
+}
+
+
+
+@section StylePage{
+    <link rel="stylesheet" type="text/css" href="/site/onlineClasses/css/public.css">
+    <link rel="stylesheet" type="text/css" href="/site/onlineClasses/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/site/onlineClasses/css/branch-courses.css">
+  }
+
+    <!-- main content page -->
+    <div class="main-content-page page-style">
+        <div class="container">
+
+            <!-- breadcrumb -->
+            <div class="breadcrumb">
+                <ul itemtype="http://schema.org/BreadcrumbList">
+                    <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> MoneyMagnet </span></a></li>
+                    <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a asp-controller="OnlineClass" asp-action="Index"> itemprop="item"><span itemprop="name"> دوره های آموزشی </span></a></li>
+                    <li itemtype="http://schema.org/ListItem" itemprop="itemListElement"><a href="" itemprop="item" class="current"><span itemprop="name"> لیست کلاس ها </span></a></li>
+                </ul>
+            </div>
+            <!-- /breadcrumb -->
+
+            <div class="branch-courses-layer">
+
+                <!-- right side -->
+                <div class="right-content">
+                    <aside class="theiaStickySidebar">
+
+                        <div class="filters-layer shadow-style">
+                            <div class="heading"> جستجو در دوره های آموزشی </div>
+                            <div class="inner">
+
+                                <form class="form-style filter-form" method="get" asp-controller="OnlineClass" asp-action="Index">
+                                    <div class="row">
+
+                                        <input type="hidden" data-val="true" data-val-required="The Page field is required." id="PageId" name="PageId" value="@Model.PageId" />
+
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="input-layer">
+                                                <label>عنوان دوره</label>
+                                                <input type="text" placeholder="عنوان دوره مورد نظر ... " id="Search" name="Search" value="@Model.Search">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12 pull-left text-left">
+                                            <button type="submit" class="button-st green"> جستجو </button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="all-courses-list">
+                            <div class="row">
+                                @if (Model.OnlineClasses.Any())
+                            {
+
+                                @foreach (var item in Model.OnlineClasses)
+                                {
+
+                                    <div class="col-xs-12">
+                                        <article class="shadow-style">
+
+                                            <a class="img-layer" asp-controller="OnlineClass" asp-action="ShowOnlineClass"
+                                       asp-route-id="@item.OnlineClassId">
+                                                <img src="@item.GetOnlineClassImageThumbAddress()">
+                                            </a>
+                                            <h2>
+                                                <a asp-controller="OnlineClass" asp-action="ShowOnlineClass"
+                                           asp-route-id="@item.OnlineClassId"> @item.Title </a>
+                                            </h2>
+                                            <div class="description-style">
+                                                @item.Description
+                                            </div>
+                                        </article>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-md-12">
+                                    <div class="alert alert-info">
+                                        <p class="tc"> آیتمی یافت نشد . </p>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- pagination -->
+                            <partial name="_PagingPartial" model="@Model.GetCurrentPaging()" />
+                            <!-- /pagination -->
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+
+            <!-- left side -->
+            <div class="left-content">
+                <div class="theiaStickySidebar">
+
+                    <div class="categories-sidebar shadow-style">
+                        <div class="heading"> دسته بندی دوره ها </div>
+                        <div class="inner">
+
+                            @{
+                                List<CourseGroup> groups = ViewBag.Groups as List<CourseGroup>;
+                                List<int> selected = ViewBag.selectedGroups as List<int>;
+                            }
+                            <ul>
+
+                                @foreach (var group in groups.Where(g => g.ParentId == null))
+                                {
+                                    <li class="cursor-pointer">
+                                        <a  asp-controller="OnlineClass" asp-action="Index" asp-route-selectedGroups="@group.GroupId"> @group.GroupTitle </a>
+
+                                        @if (groups.Any(g => g.ParentId == group.GroupId))
+                                        {
+                                            <ul>
+                                                @foreach (var sub in groups.Where(g => g.ParentId == group.GroupId))
+                                                {
+                                                    <li>
+                                                        <a  asp-controller="OnlineClass" asp-action="Index" asp-route-selectedGroups="@sub.GroupId"> @sub.GroupTitle </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- banner -->
+
+
+
+                </div>
+            </div>
+            <!-- /left side -->
+
+        </div>
+
+    </div>
+</div>
+<!-- /main content page -->

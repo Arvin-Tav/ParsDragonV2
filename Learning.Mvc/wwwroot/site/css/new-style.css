@@ -1,0 +1,199 @@
+﻿:root {
+    --star-size: 25px;
+    --star-color: #dadada;
+    --star-background: #fc0;
+}
+
+
+.heading {
+    margin-bottom: 25px !important;
+}
+
+.latest-courses-section {
+    float: right !important;
+    margin-bottom: 25px !important;
+}
+
+    .latest-courses-section li {
+        padding-left: 13px;
+        cursor: pointer;
+    }
+
+        .latest-courses-section li a {
+            color: #1e2f38;
+            transition: all ease 0.3s;
+        }
+
+            .latest-courses-section li a::after {
+                content: "";
+                background-color: lightgray;
+                width: 100%;
+                height: 3px;
+                display: inline-block;
+                border-radius: 8px;
+            }
+
+        .latest-courses-section li.active a::after {
+            content: "";
+            background-color: #00b3e9;
+            width: 100%;
+            height: 3px;
+            display: inline-block;
+            border-radius: 8px;
+        }
+
+        .latest-courses-section li a:hover {
+            color: #00b3e9;
+        }
+
+    .latest-courses-section .owl-stage {
+        width: 100% !important;
+    }
+
+.last-courses-layer .inner .row {
+    display: none;
+}
+
+    .last-courses-layer .inner .row.active {
+        display: block;
+    }
+
+.main-menu .container nav ul li ul {
+    padding-left: 0;
+}
+
+    .main-menu .container nav ul li ul li .sign-down {
+        position: absolute;
+        top: 6px;
+        color: #1e2f38;
+    }
+
+    .main-menu .container nav ul li ul li ul {
+        visibility: hidden;
+        opacity: 0;
+        min-width: 200px;
+        height: auto;
+        background-color: #fff;
+        position: absolute;
+        right: calc(100% + 2px);
+        z-index: 9999;
+        top: -14px;
+        border-radius: 5px;
+        border: 1px solid #eaeff2;
+        padding: 10px 15px 10px 0;
+        transition: all ease 0.3s;
+    }
+
+    .main-menu .container nav ul li ul li:hover > ul {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .main-menu .container nav ul li ul li:hover .sign-down {
+        color: #00b3e9;
+    }
+
+
+.course-time-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    float: left;
+    margin-right: 8px;
+    text-align: center;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    margin-top: 4px;
+    background-color: #fff;
+}
+
+    .course-time-left span {
+        border-left: 1px solid #edf1f4;
+        padding-left: 10px;
+        color: #8f9ca7;
+    }
+
+.BannerBoxImage {
+    margin: 10px 0 0 0 !important;
+    border-radius: 10px;
+}
+
+.terms-condition {
+    margin-top: 40px;
+    line-height: 30px;
+    text-align: justify;
+}
+
+    .terms-condition a {
+        transition: all ease .3s;
+    }
+
+        .terms-condition a:hover {
+            transform: translateY(-2px);
+        }
+
+
+.courses-view .course-col > div .off-section {
+    position: absolute;
+    left: -60px;
+    top: 10px;
+    margin-top: 2px;
+    background-color: red;
+    padding: 0 15px;
+    color: white;
+    z-index: 800;
+    border-radius: 0 15px 15px 0;
+    transition: all ease .4s;
+    box-shadow: 0px 0px 5px lightyellow;
+}
+
+.courses-view .course-col:hover > div .off-section {
+    left: 0;
+}
+
+.courses-view .course-col > div .off-section span {
+    color: white;
+    padding-right: 10px;
+}
+
+.box-shadow.ratings-layer .Stars {
+    --percent: calc(var(--rating) / 5 * 100%);
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: Times;
+}
+
+    .box-shadow.ratings-layer .Stars::before {
+        content: '★★★★★';
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+.box-shadow.ratings-layer {
+    padding: 25px;
+}
+
+    .box-shadow.ratings-layer h2 {
+        border-bottom: 1px solid #edf1f4;
+        padding-bottom: 25px;
+    }
+
+    .box-shadow.ratings-layer .rating-items {
+        margin-top: 30px;
+    }
+
+        .box-shadow.ratings-layer .rating-items p {
+            margin-bottom: 0;
+        }
+
+.ratings-layer .rating-item .rate {
+    text-align: end;
+}
+
+.margin-top-0 {
+    margin-top: 0 !important;
+}

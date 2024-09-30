@@ -1,0 +1,74 @@
+﻿@page "{handler?}"
+@model Learning.Mvc.Pages.Admin.Banners.IndexModel
+@{
+    ViewData["Title"] = "بنرها";
+
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+
+                    <form class="card-form filter-form">
+                        <input type="hidden" class="pageId" name="PageId" value="@Model.FilterBannerDTO.PageId"  />
+
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <input name="Search" value="@Model.FilterBannerDTO.Search" class="form-control uk-text-small" placeholder="متن جستجو">
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+                                <a href="/Admin/Banners" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+                                <a asp-page="CreateBanner" class="btn btn-success btn-sm LoadingDiv"> افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></a>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>نام </th>
+                                <th>لینک</th>
+                                <th>عکس</th>
+                                <th>تاریخ ثبت بنر</th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var banner in Model.FilterBannerDTO.Banners)
+                            {
+                                <tr class="item_@banner.BannerId">
+                                    <td>@banner.Name</td>
+                                    <td>@banner.Link</td>
+                                    <td>
+                                        <img src="@banner.GetBannerImageThumbAddress()" class="thumbnail" style="max-width: 120px" />
+                                    </td>
+                                    <td>@banner.CreateDate.ToShamsi()</td>
+                                    <td>
+
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                            <a href="/Admin/Banners/EditBanner/@banner.BannerId" class="text-primary LoadingDiv" uk-icon="create-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                            <a  ajax-url-button="@banner.BannerId" href="/Admin/Banners/Index/DeleteBanner?code=@banner.BannerId" class="text-danger" uk-icon="trash"></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <partial name="_PagingAdminPartial" model="@Model.FilterBannerDTO.GetCurrentPaging()" />
+          
+        </div>
+    </div>
+</div>
+<input type="hidden" class="addressUrl" value="/Admin/Banners/Index/DeleteBanner?code=" />

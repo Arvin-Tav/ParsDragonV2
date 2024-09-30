@@ -1,0 +1,382 @@
+﻿@model IEnumerable<string>
+<div class="side-nav">
+    <div class="side-nav-inner">
+        <div class="side-nav-logo">
+            <a href="/" class="uk-margin-auto row">
+                <img src="/images/logo.png" width="48" style="height:44px !important" alt="لوگو MoneyMagnet">
+            </a>
+            <div class="mobile-toggle side-nav-toggle">
+                <a href="#" uk-icon="chevron-back-outline">
+                </a>
+            </div>
+        </div>
+        <ul class="side-nav-menu scrollable">
+
+            @if (Model.Contains("Admin"))
+            {
+                <li class="nav-item active">
+                    <a href="/Admin" class="LoadingDiv">
+                        <span class="icon-holder">
+                            <i uk-icon="home"></i>
+                        </span>
+                        <span class="title">داشبورد</span>
+                    </a>
+                </li>
+            }
+
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i uk-icon="eye"></i>
+                    </span>
+                    <span class="title">بازدید سایت</span>
+                    <span class="arrow" uk-icon="chevron-forward">
+                    </span>
+                </a>
+                @await Component.InvokeAsync("VisitSiteAdmin")
+
+            </li>
+            @if (Model.Contains("Config"))
+            {
+
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i uk-icon="settings"></i>
+                        </span>
+                        <span class="title">مدیریت</span>
+                        <span class="arrow" uk-icon="chevron-forward">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item active">
+                            <a href="/Admin/Config" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="cog"></i>
+                                </span>
+                                <span class="title">تنظیمات سایت</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (Model.Contains("Courses"))
+            {
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i uk-icon="cube"></i>
+                        </span>
+                        <span class="title">دوره ها</span>
+                        <span class="arrow" uk-icon="chevron-forward">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item active">
+                            <a href="/admin/Courses" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="list"></i>
+                                </span>
+                                <span class="title">لیست دوره ها</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/Courses/CreateCourse" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="add"></i>
+                                </span>
+                                <span class="title">افزودن دوره</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/CourseGroups" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="file-tray-stacked"></i>
+                                </span>
+                                <span class="title">گروه ها</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a href="/Admin/Discounts" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="pricetags-outline"></i>
+                                </span>
+                                <span class="title">تخفیفات</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/Courses?isSuggested=true" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="bookmark"></i>
+                                </span>
+                                <span class="title">پیشنهادی ها</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a href="/Admin/Comment" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="chatbubble-ellipses"></i>
+                                </span>
+                                <span class="title">نظرات</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/Question/Questions" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="bookmark"></i>
+                                </span>
+                                <span class="title"> سوالات</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/Question/Answers" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="bookmark"></i>
+                                </span>
+                                <span class="title">  پاسخ های سوالات</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (Model.Contains("AccessToOnlineClass"))
+            {
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i uk-icon="cube"></i>
+                        </span>
+                        <span class="title">کلاس های آنلاین</span>
+                        <span class="arrow" uk-icon="chevron-forward">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item active">
+                            <a href="/admin/OnlineClass" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="list"></i>
+                                </span>
+                                <span class="title">لیست کلاس ها</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/OnlineClass/CreateOnlineClass" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="add"></i>
+                                </span>
+                                <span class="title">افزودن کلاس</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            }
+            @if (Model.Contains("Orders"))
+            {
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i uk-icon="cart"></i>
+                        </span>
+                        <span class="title">فاکتور دوره ها   </span>
+                        <span class="arrow" uk-icon="chevron-forward">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item active">
+                            <a href="/admin/orders" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="desktop-outline"></i>
+                                </span>
+                                <span class="title">همه فاکتور ها </span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/orders?IsFinaly=true" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="basket"></i>
+                                </span>
+                                <span class="title">فاکتورهای پرداخت شده </span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/orders?IsFinaly=false" class="LoadingDiv">
+                                <span class="icon-holder text-danger">
+                                    <i uk-icon="flash-off"></i>
+                                </span>
+                                <span class="title"> فاکتورهای پرداخت نشده</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (Model.Contains("Wallet"))
+            {
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i uk-icon="business"></i>
+                        </span>
+                        <span class="title">   تراکنش ها   </span>
+                        <span class="arrow" uk-icon="chevron-forward">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item active">
+                            <a href="/admin/wallet" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="business"></i>
+                                </span>
+                                <span class="title">همه تراکنش </span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/wallet?typeId=1" class="LoadingDiv">
+                                <span class="icon-holder text-success">
+                                    <i uk-icon="business"></i>
+                                </span>
+                                <span class="title">تراکنش های پرداخت شده </span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/wallet?typeId=2" class="LoadingDiv">
+                                <span class="icon-holder text-warning">
+                                    <i uk-icon="business"></i>
+                                </span>
+                                <span class="title"> تراکنش های برداشتی  </span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/admin/wallet?typeId=3" class="LoadingDiv">
+                                <span class="icon-holder text-danger">
+                                    <i uk-icon="business"></i>
+                                </span>
+                                <span class="title"> تراکنش های پرداخت نشده</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (Model.Contains("Banners"))
+            {
+
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i uk-icon="folder-open"></i>
+                        </span>
+                        <span class="title">مدیا</span>
+                        <span class="arrow" uk-icon="chevron-forward">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item active">
+                            <a href="/Admin/Banners" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="images"></i>
+                                </span>
+                                <span class="title">بنر</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/Admin/Sliders" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="images"></i>
+                                </span>
+                                <span class="title">اسلایدر</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+
+            @if (Model.Contains("Contact"))
+            {
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i uk-icon="headset-sharp"></i>
+                        </span>
+                        <span class="title">پشتیبانی</span>
+                        <span class="arrow" uk-icon="chevron-forward">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item active">
+                            <a href="/Admin/Contact" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="call"></i>
+                                </span>
+                                <span class="title">تماس با ما</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (Model.Contains("Users"))
+            {
+
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder">
+                            <i uk-icon="people"></i>
+                        </span>
+                        <span class="title">کاربران</span>
+                        <span class="arrow" uk-icon="chevron-forward">
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item active">
+                            <a href="/Admin/users" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="people"></i>
+                                </span>
+                                <span class="title">همه کاربران</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/Admin/users?isMaster=true" class="LoadingDiv">
+                                <span class="icon-holder">
+                                    <i uk-icon="people"></i>
+                                </span>
+                                <span class="title">مدرسین</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/Admin/users/ListDeleteUsers" class="LoadingDiv">
+                                <span class="icon-holder text-danger">
+                                    <i uk-icon="people"></i>
+                                </span>
+                                <span class="title">کاربران حذف شده</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (Model.Contains("Roles"))
+            {
+                <li class="nav-item active">
+                    <a href="/Admin/roles" class="LoadingDiv">
+                        <span class="icon-holder">
+                            <i uk-icon="people"></i>
+                        </span>
+                        <span class="title">دسترسی کاربران</span>
+                    </a>
+                </li>
+            }
+            @if (Model.Contains("Blogs"))
+            {
+                <li class="nav-item active">
+                    <a href="/Admin/Blogs" class="LoadingDiv">
+                        <span class="icon-holder">
+                            <i uk-icon="newspaper"></i>
+                        </span>
+                        <span class="title"> مقاله ها</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿@inject IPermissionService _PermissionService
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>   @((ViewData["Title"]==null?"پنل مدیریت MoneyMagnet":@ViewData["Title"]))</title>
+    <partial name="_StyleAdmin" />
+
+</head>
+
+<body>
+
+    <div class="wrapper flex-div">
+        <div class="layout flex-div">
+            <!-- Side Nav START -->
+            @*<partial name="_SlideNavMenu" />*@
+            @await Component.InvokeAsync("MainMenuAdmin")
+            <!-- Side Nav END -->
+            <!-- Page Container START -->
+            <div class="page-container flex-div">
+                <!-- Header START -->
+                <div class="header navbar">
+                    <div class="header-container">
+                        <ul class="nav-right float-right mr-3">
+                            <li>
+                                <a class="side-nav-toggle" href="javascript:void(0);" uk-icon="menu-outline">
+
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="/logOut" class="nav-left float-left ml-5 mt-4 text-secondary"> <span uk-icon="log-out"></span>خروج از حساب</a>
+                    </div>
+                </div>
+
+                <div class="sub-header">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb rounded-0 m-0 bg-white">
+                            <li class="breadcrumb-item p-0"><a href="/admin/Home">داشبورد</a></li>
+                            <li class="breadcrumb-item p-0 active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+                <!-- Header END -->
+                <!-- Content Wrapper START -->
+                <div class="main-content flex">
+                    <div class="container-fluid flex-div">
+                        @RenderBody()
+                    </div>
+                </div>
+                <!-- Content Wrapper END -->
+                <!-- Footer START -->
+                <footer class="content-footer bg-white">
+                    <div class="footer border-0">
+                        <div class="copyright">
+                            <span><b class="text-dark">MoneyMagnet </b> 2022</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- Footer END -->
+            </div>
+            <!-- Page Container END -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalSave" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                @*JS Dynamic*@
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <!--Loading-->
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+    <!--Loading-->
+    <partial name="_ScriptAdmin" />
+    <partial name="_SiteAdminMessages" />
+
+
+
+    @RenderSection("Scripts", false)
+</body>
+
+</html>

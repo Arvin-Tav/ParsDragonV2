@@ -1,0 +1,130 @@
+﻿@page "{handler?}"
+@using Learning.Domain.DTO.Account
+@model Learning.Mvc.Pages.Admin.Users.IndexModel
+@{
+    ViewData["Title"] = "کاربران";
+}
+
+<div class="row flex-div">
+    <div class="col-md-12 flex-div pb-3 pt-3">
+        <div class="card flex-div border-0 main-shadow">
+            <div class="card-header bg-white">
+                <div class="pr-1 pt-2">
+
+                    <form class="card-form filter-form">
+                        <input type="hidden" class="PageId" name="pageId" value="@Model.FilterUserDTO.PageId" />
+                        <input type="hidden" name="CourseId" value="@Model.FilterUserDTO.CourseId" />
+                        <input type="hidden" name="OnlioneClassId" value="@Model.FilterUserDTO.OnlineClassId" />
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <input type="text" name="UserName" value="@Model.FilterUserDTO.UserName"class="form-control" placeholder="نام کاربری" />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="Email" value="@Model.FilterUserDTO.Email"class="form-control" placeholder="ایمیل" />
+                            </div>
+                            <div class="col-md-4">
+                                <select name="FilterUserType" class="form-control">
+
+                                    @foreach (var item in Html.GetEnumSelectList<FilterUserType>())
+                                    {
+                                        <option value="@item.Value" selected="@((Convert.ToInt32(Model.FilterUserDTO.FilterUserType) == Convert.ToInt32(item.Value) ? true : false))">   @item.Text </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="FilterUserStatus" class="form-control">
+
+                                    @foreach (var item in Html.GetEnumSelectList<FilterUserStatus>())
+                                    {
+                                        <option value="@item.Value" selected="@((Convert.ToInt32(Model.FilterUserDTO.FilterUserStatus) == Convert.ToInt32(item.Value) ? true : false))">   @item.Text </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-sm LoadingDiv">جستجو<span class="icon-holder uk-margin-small-right" uk-icon="search-outline"></span></button>
+
+                                <a href="/Admin/Users" class="btn btn-info btn-sm LoadingDiv">خالی<span class="icon-holder uk-margin-small-right" uk-icon="reload-outline"></span></a>
+                                <a asp-page="CreateUser" class="btn btn-success btn-sm LoadingDiv"> افزودن<span class="icon-holder uk-margin-small-right" uk-icon="add-circle-outline"></span></a>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="card-table" class="card-body flex-div">
+                <div class="table-responsive flex">
+                    <table class="table fixed">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>نام کاربری</th>
+                                <th>ایمیل</th>
+                                <th>تاریخ ثبت نام</th>
+                                @*<th>موجودی کیف پول  </th>*@
+                                <th>وضعیت</th>
+                                <th>دستورات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model.FilterUserDTO.Users)
+                            {
+                                <tr class="item_@user.UserId">
+                                    <td>@user.UserName</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.CreateDate.ToShamsi()</td>
+                                   @* <td>
+                                        @user.Wallet.ToString("0,#")
+                                    </td>*@
+                                    <td>
+                                        @if (user.IsActive)
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="فعال است با کلیک غیر فعال میکنید ">
+                                                <a href="/Admin/Users/Index/IsActiveUser?id=@user.UserId" class="text-danger" uk-icon="ban-outline"></a>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" d data-original-title="غیر فعال است با کلیک  فعال میکنید ">
+                                                <a href="/Admin/Users/Index/IsActiveUser?id=@user.UserId" class="text-success" uk-icon="checkmark-outline"></a>
+                                            </span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.FilterUserDTO.FilterUserType == FilterUserType.Master)
+                                        {
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" مشاهده دورهای مدرس">
+                                                <a href="/admin/Courses/Index?teacherId=@user.UserId" class="text-primary LoadingDiv" uk-icon="people"></a>
+                                            </span>
+                                            <span data-placement="top" data-toggle="tooltip" title="" data-original-title="  مشاهده کلاس های مدرس">
+                                                <a href="/admin/OnlineClass/Index?teacherId=@user.UserId" class="text-primary LoadingDiv" uk-icon="people"></a>
+                                            </span>
+                                        }
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" تراکنش ها">
+                                            <a href="/Admin/Wallet/Index?userId=@user.UserId" class="text-primary LoadingDiv" uk-icon="eye"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title=" فاکتور ها">
+                                            <a href="/Admin/Orders/Index?userId=@user.UserId" class="text-primary LoadingDiv" uk-icon="eye"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                            <a href="/Admin/Users/EditUser/@user.UserId" class="text-primary LoadingDiv" uk-icon="create-outline"></a>
+                                        </span>
+                                        <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                            <a ajax-url-button="@user.UserId"
+                                           href="/Admin/Users/Index/DeleteUser?code=@user.UserId"
+                                           class="text-danger" uk-icon="trash"></a>
+                                        </span>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <partial name="_PagingAdminPartial" model="@Model.FilterUserDTO.GetCurrentPaging()" />
+
+
+        </div>
+    </div>
+</div>
