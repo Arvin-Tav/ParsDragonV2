@@ -50,7 +50,7 @@ jobs:
           IMAGE_URI="${{ needs.build.outputs.registry }}/io-soori:latest"
           aws ecs update-service \
             --cluster IOGame \
-            --service SooriService \
+            --service ParsDragonService \
             --force-new-deployment \
             --region ${{ secrets.AWS_REGION }}
         env:

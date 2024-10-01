@@ -36,8 +36,5 @@ COPY --from=build /out .
 # Expose the port the application runs on
 EXPOSE 5000
 
-ENV ASPNETCORE_URLS=http://+:5000
-ENV ASPNETCORE_ENVIRONMENT=Production
-
-# Set the entrypoint to run the application
-ENTRYPOINT ["dotnet", "Learning.Mvc.dll"]
+# Set the entrypoint to run the application with --urls option
+ENTRYPOINT ["dotnet", "Learning.Mvc.dll", "--urls", "http://+:5000"]
