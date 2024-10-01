@@ -27,7 +27,7 @@ WORKDIR /app/Learning.Mvc
 RUN dotnet publish -c Release -o /out
 
 # Stage 2: Create the runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
 
 # Copy the build output from the build stage
