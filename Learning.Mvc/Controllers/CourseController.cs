@@ -1,4 +1,4 @@
-﻿using Ganss.XSS;
+﻿using Ganss.Xss;
 using Learning.Application.Convertors;
 using Learning.Application.Interfaces;
 using Learning.Domain.DTO.Course;
@@ -6,9 +6,6 @@ using Learning.Domain.Models.Course;
 using Learning.Mvc.PresentationExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Learning.Mvc.Controllers
 {

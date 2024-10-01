@@ -5,7 +5,6 @@ using Learning.Mvc.PresentationExtensions;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
-using ZarinpalSandbox;
 
 namespace Learning.Mvc.Areas.UserPanel.Controllers
 {
