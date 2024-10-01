@@ -44,22 +44,11 @@ namespace Learning.Mvc.Controllers
         }
 
         [HttpPost("register"), ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterDTO register, IFormCollection form)
+        public async Task<IActionResult> Register(RegisterDTO register)
         {
             try
             {
-                //version 3 reCaptcha
-                //if (!await _captchaValidator.IsCaptchaPassedAsync(login.Captcha))
-                //{
-                //    ModelState.AddModelError("Captcha", "اعتبار سنجی captcha نا موفق بود! ");
-                //    return View(register);
-                //}
-                //version 2 reCaptcha
-                if (!MethodRepo.CheckRechapcha(form))
-                {
-                    ModelState.AddModelError("Captcha", "اعتبار سنجی captcha نا موفق بود! ");
-                    return View(register);
-                }
+
                 if (ModelState.IsValid)
                 {
                     var result = await _userService.RegisterUser(register);
@@ -106,13 +95,8 @@ namespace Learning.Mvc.Controllers
             return View(activateMobileDto);
         }
         [HttpPost("active-mobile"), ValidateAntiForgeryToken]
-        public async Task<IActionResult> ActivateMobile(ActivateMobileDTO activate, IFormCollection form)
+        public async Task<IActionResult> ActivateMobile(ActivateMobileDTO activate)
         {
-            if (!MethodRepo.CheckRechapcha(form))
-            {
-                ModelState.AddModelError("Captcha", "اعتبار سنجی captcha نا موفق بود! ");
-                return View(activate);
-            }
 
             if (ModelState.IsValid)
             {
@@ -164,21 +148,11 @@ namespace Learning.Mvc.Controllers
             }
         }
         [HttpPost("login"),ValidateAntiForgeryTokenAttribute]
-        public async Task<IActionResult> Login(LoginDTO login, IFormCollection form, string ReturnUrl = "")
+        public async Task<IActionResult> Login(LoginDTO login, string ReturnUrl = "")
         {
             try
             {
-                //version 3 reCaptcha
-                //if (!await _captchaValidator.IsCaptchaPassedAsync(login.Captcha))
-                //{
-                //    ModelState.AddModelError("Captcha", "اعتبار سنجی captcha نا موفق بود! ");
-                //    return View(login);
-                //}
-                //version 2 reCaptcha
-                if (!MethodRepo.CheckRechapcha(form))
-                {
-                    ModelState.AddModelError("Captcha", "اعتبار سنجی captcha نا موفق بود! ");
-                }
+
                 if (ModelState.IsValid)
                 {
 
@@ -261,22 +235,11 @@ namespace Learning.Mvc.Controllers
 
         }
         [HttpPost("forgotPassword"), ValidateAntiForgeryToken]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordDTO forgot, IFormCollection form)
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordDTO forgot)
         {
             try
             {
-                //version 3 reCaptcha
-                //if (!await _captchaValidator.IsCaptchaPassedAsync(login.Captcha))
-                //{
-                //    ModelState.AddModelError("Captcha", "اعتبار سنجی captcha نا موفق بود! ");
-                //    return View(forgot);
-                //}
-                //version 2 reCaptcha
-                if (!MethodRepo.CheckRechapcha(form))
-                {
-                    ModelState.AddModelError("Captcha", "اعتبار سنجی captcha نا موفق بود! ");
-                    return View(forgot);
-                }
+
                 if (ModelState.IsValid)
                 {
                     var result = await _userService.ForgotPassword(forgot);

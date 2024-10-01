@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Learning.Infra.Ioc", "Learn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Learning.Mvc", "Learning.Mvc\Learning.Mvc.csproj", "{087B92E7-8272-4AD3-91B6-B41BB86AB84C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{E0FD7652-BC24-4872-89DC-0F7FF43345F2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,10 +49,6 @@ Global
 		{087B92E7-8272-4AD3-91B6-B41BB86AB84C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{087B92E7-8272-4AD3-91B6-B41BB86AB84C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{087B92E7-8272-4AD3-91B6-B41BB86AB84C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0FD7652-BC24-4872-89DC-0F7FF43345F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0FD7652-BC24-4872-89DC-0F7FF43345F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0FD7652-BC24-4872-89DC-0F7FF43345F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0FD7652-BC24-4872-89DC-0F7FF43345F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,7 +59,6 @@ Global
 		{D0125FB8-D433-43A8-9230-3432B75E744A} = {9680E19C-E02B-4F54-A617-7AAD4434C63F}
 		{719AB245-59A8-4944-A5A4-67F7FBFD74DC} = {7D49797A-34E8-44B3-8915-9C4B3C783D9C}
 		{087B92E7-8272-4AD3-91B6-B41BB86AB84C} = {0303AA91-4258-427B-9A23-BED378A5E26F}
-		{E0FD7652-BC24-4872-89DC-0F7FF43345F2} = {0303AA91-4258-427B-9A23-BED378A5E26F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD88EC79-3508-43E4-AABB-C17BEB006941}
