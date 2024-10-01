@@ -86,9 +86,9 @@ namespace Learning.Application.Services
         public async Task<LoginResult> LoginUser(LoginDTO login)
         {
             var user = await _userRepository.GetUserForLogin(login.EmailOrMobile.FixedEmail());
-            user.Password = login.Password.EncodePasswordSha256();
-            _userRepository.UpdateUser(user);
-            await _userRepository.Save();
+            //user.Password = login.Password.EncodePasswordSha256();
+            //_userRepository.UpdateUser(user);
+            //await _userRepository.Save();
 
 
             if (user == null) return LoginResult.NotFound;
