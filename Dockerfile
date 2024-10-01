@@ -34,9 +34,9 @@ WORKDIR /app
 COPY --from=build /out .
 
 # Expose the port the application runs on
-EXPOSE 8080
+EXPOSE 5000
 
-ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_URLS=http://+:5000
 ENV ASPNETCORE_ENVIRONMENT=Production
 
 # Set the entrypoint to run the application
