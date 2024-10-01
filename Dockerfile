@@ -37,4 +37,4 @@ COPY --from=build /out .
 EXPOSE 5000
 
 # Set the entrypoint to run the application with --urls option
-ENTRYPOINT ["dotnet", "Learning.Mvc.dll", "--urls", "http://+:5000"]
+ENTRYPOINT ["dotnet", "Learning.Mvc.dll"]
