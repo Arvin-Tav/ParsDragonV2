@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Learning.Domain.DTO.Account
 {
-    public class CaptchaDTO
-    {
-        public string Captcha { get; set; }
-    }
+    //public class CaptchaDTO
+    //{
+    //    public string Captcha { get; set; }
+    //}
 }

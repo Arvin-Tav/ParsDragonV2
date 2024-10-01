@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Learning.Domain.DTO.Account
 {
-    public class ForgotPasswordDTO:CaptchaDTO
+    public class ForgotPasswordDTO
     {
         [Display(Name = "موبایل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Learning.Domain.DTO.Account
 {
-    public class LoginDTO: CaptchaDTO
+    public class LoginDTO
     {
         [Display(Name = " ایمیل یا شماره موبایل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

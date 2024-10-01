@@ -247,8 +247,6 @@ namespace Learning.Infra.Data.Repositories
 
             //await _context.SaveChangesAsync();
             #endregion
-
-
             return await _context.Configs.AsQueryable().FirstOrDefaultAsync(i => i.Key == key);
         }
 

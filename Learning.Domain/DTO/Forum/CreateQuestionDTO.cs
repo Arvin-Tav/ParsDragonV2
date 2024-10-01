@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Learning.Domain.DTO.Forum
 {
-    public class CreateQuestionDTO : CaptchaDTO
+    public class CreateQuestionDTO
     {
         [Required]
         public int CourseId { get; set; }
