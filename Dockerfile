@@ -34,7 +34,7 @@ WORKDIR /app
 COPY --from=build /out .
 
 # Expose the port the application runs on
-EXPOSE 8080
+EXPOSE 5000
 
 # Set the entrypoint to run the application with --urls option
-ENTRYPOINT ["dotnet", "Learning.Mvc.dll"]
+ENTRYPOINT ["dotnet", "Learning.Mvc.dll", "--urls", "http://0.0.0.0:5000"]
